@@ -20,7 +20,7 @@ public class GlobalExceptionHandler extends BaseController {
 
     @ExceptionHandler(value = ApiException.class)
     public Result<?> handle(ApiException e) {
-        if (e.getErrorCode() == null) {
+        if (e.getErrorCode() != null) {
             return fail(e.getErrorCode());
         }
         return fail(e.getMessage());

@@ -6,10 +6,11 @@ import com.example.bio.common.api.Result;
 import com.example.bio.dto.ActiveAccountDto;
 import com.example.bio.dto.LoginDto;
 import com.example.bio.dto.SignupDto;
-import com.example.bio.util.JwtUtils;
 import com.example.bio.security.service.UserDetailsImpl;
 import com.example.bio.service.UserService;
+import com.example.bio.util.JwtUtils;
 import com.example.bio.vo.JwtVo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,6 +32,7 @@ import java.util.stream.Collectors;
  * @date 2020/10/26
  */
 @RestController
+@Api(value = "auth",tags = "认证模块")
 @RequestMapping("/api/auth")
 public class AuthController extends BaseController {
 

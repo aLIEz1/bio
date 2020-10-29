@@ -1,5 +1,6 @@
 package com.example.bio.util;
 
+import com.example.bio.exception.Asserts;
 import com.example.bio.security.service.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
@@ -45,14 +46,19 @@ public class JwtUtils {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
+            Asserts.fail("Invalid JWT signature");
             log.error("Invalid JWT signature: {}", e.getMessage());
         } catch (MalformedJwtException e) {
+            Asserts.fail("Invalid JWT token");
             log.error("Invalid JWT token: {}", e.getMessage());
         } catch (ExpiredJwtException e) {
+            Asserts.fail("JWT token is expired");
             log.error("JWT token is expired: {}", e.getMessage());
         } catch (UnsupportedJwtException e) {
+            Asserts.fail("JWT token is unsupported");
             log.error("JWT token is unsupported: {}", e.getMessage());
         } catch (IllegalArgumentException e) {
+            Asserts.fail("JWT claims string is empty");
             log.error("JWT claims string is empty: {}", e.getMessage());
         }
 
