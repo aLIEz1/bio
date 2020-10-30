@@ -1,14 +1,14 @@
 package com.example.bio.service.impl;
 
-import com.example.bio.model.BioTag;
-import com.example.bio.mapper.BioTagMapper;
-import com.example.bio.service.BioTagService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.bio.mapper.BioTagMapper;
+import com.example.bio.model.BioTag;
+import com.example.bio.service.BioTagService;
 import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author zhangfuqi

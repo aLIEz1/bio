@@ -1,10 +1,10 @@
 package com.example.bio.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.bio.mapper.RoleMapper;
 import com.example.bio.model.ERole;
 import com.example.bio.model.Role;
-import com.example.bio.mapper.RoleMapper;
 import com.example.bio.service.RoleService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.Set;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author zhangfuqi
@@ -35,12 +35,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     }
 
     @Override
-    public void addRole(Long userId, Set<Role> roles) {
-        roleMapper.addRole(userId,roles);
+    public void addRole(String userId, Set<Role> roles) {
+        roleMapper.addRole(userId, roles);
     }
 
     @Override
-    public List<Role> getRoleListByUserId(Long userId) {
+    public List<Role> getRoleListByUserId(String userId) {
         return roleMapper.getRoleListByUserId(userId);
     }
 }

@@ -1,8 +1,8 @@
 package com.example.bio.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.bio.common.domain.PageQueryParams;
 import com.example.bio.model.BioCategory;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ import java.util.List;
 public interface BioCategoryService extends IService<BioCategory> {
     /**
      * 获取传记类别分页
+     *
      * @param pageQueryParams
      * @return
      */

@@ -4,7 +4,6 @@ import com.example.bio.model.User;
 import com.example.bio.model.UserActiveToken;
 import com.example.bio.service.MailService;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;

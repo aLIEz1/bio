@@ -2,7 +2,7 @@ package com.example.bio.model;
 
 /**
  * @author zhangfuqi
- * @date  2020/10/24
+ * @date 2020/10/24
  */
 public enum ERole {
     /**
@@ -17,6 +17,5 @@ public enum ERole {
     /**
      * 管理员用户
      */
-    ROLE_ADMIN
-    ;
+    ROLE_ADMIN;
 }

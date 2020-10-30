@@ -9,7 +9,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * 动态权限决策管理器，用于判断用户是否有访问权限

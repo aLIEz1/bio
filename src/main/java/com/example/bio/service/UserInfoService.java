@@ -1,11 +1,11 @@
 package com.example.bio.service;
 
-import com.example.bio.model.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.bio.model.UserInfo;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author zhangfuqi

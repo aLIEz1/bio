@@ -1,21 +1,14 @@
 package com.example.bio.model;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-
-import java.util.Date;
-
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
-
-import java.io.Serializable;
-import java.util.Set;
-
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.example.bio.common.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.Set;
 
 /**
  * <p>
@@ -29,16 +22,11 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 @TableName("biography")
 @ApiModel(value = "Biography对象", description = "")
-public class Biography implements Serializable {
+public class Biography extends BaseEntity {
 
-    private static final long serialVersionUID = 1L;
-
-    @ApiModelProperty(value = "自传id")
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private Long id;
 
     @TableField(value = "owner_id")
-    private Long ownerId;
+    private String ownerId;
 
     @ApiModelProperty(value = "标题")
     @TableField("title")
@@ -50,7 +38,7 @@ public class Biography implements Serializable {
 
     @ApiModelProperty(value = "类别id")
     @TableField("category_id")
-    private Long categoryId;
+    private String categoryId;
 
     @ApiModelProperty(value = "自传所属类别名称(冗余字段)")
     @TableField("category_name")
@@ -70,7 +58,7 @@ public class Biography implements Serializable {
 
     @ApiModelProperty(value = "阅读量")
     @TableField("views")
-    private Long views;
+    private String views;
 
     @ApiModelProperty(value = "0-允许评论，1-不允许评论")
     @TableField("enable_comment")
@@ -79,19 +67,6 @@ public class Biography implements Serializable {
     @ApiModelProperty(value = "备注")
     @TableField("note")
     private String note;
-
-    @ApiModelProperty(value = "0-未删除，1-已删除")
-    @TableField("is_deleted")
-    @TableLogic
-    private Integer isDeleted;
-
-    @ApiModelProperty(value = "记录创建时间")
-    @TableField("gmt_create")
-    private Date gmtCreate;
-
-    @ApiModelProperty(value = "记录修改时间")
-    @TableField("gmt_modified")
-    private Date gmtModified;
 
     @ApiModelProperty(value = "类别")
     @TableField(exist = false)

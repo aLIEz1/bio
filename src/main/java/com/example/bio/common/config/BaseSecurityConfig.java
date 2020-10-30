@@ -3,7 +3,6 @@ package com.example.bio.common.config;
 
 import com.example.bio.security.component.*;
 import com.example.bio.security.config.IgnoreUrlsConfig;
-import com.example.bio.security.component.AuthTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;

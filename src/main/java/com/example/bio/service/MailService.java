@@ -11,6 +11,7 @@ public interface MailService {
 
     /**
      * 发送HTML邮件
+     *
      * @param to
      * @param subject
      * @param content
@@ -19,6 +20,7 @@ public interface MailService {
 
     /**
      * 发送激活邮件
+     *
      * @param token
      * @param user
      */

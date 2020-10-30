@@ -10,7 +10,7 @@
     <insert id="addRole">
         <foreach collection="roles" item="item" separator=";">
             insert into biography.user_role
-            values (#{userId}, #{item.id},default,default)
+            values (#{userId}, #{item.id},default,default,default)
         </foreach>
     </insert>
 

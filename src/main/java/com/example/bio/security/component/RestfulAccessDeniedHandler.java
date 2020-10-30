@@ -1,7 +1,7 @@
 package com.example.bio.security.component;
 
 import cn.hutool.json.JSONUtil;
-import com.example.bio.common.api.BaseController;
+import com.example.bio.common.base.BaseController;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;

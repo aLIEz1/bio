@@ -13,7 +13,7 @@ import java.util.Map;
  * @date 2020/10/29
  */
 public class OrderItemUtil {
-    public static List<OrderItem> orderHandler(Map<String, Object> conditions){
+    public static List<OrderItem> orderHandler(Map<String, Object> conditions) {
         String orderBy = (String) conditions.get("orderBy");
         Boolean isAsc = (Boolean) conditions.get("isAsc");
         List<OrderItem> orderItems = new ArrayList<>();

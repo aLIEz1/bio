@@ -1,20 +1,18 @@
 package com.example.bio.model;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.example.bio.common.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.Date;
+
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author zhangfuqi
@@ -23,18 +21,12 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("bio_comment")
-@ApiModel(value="BioComment对象", description="")
-public class BioComment implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @ApiModelProperty(value = "评论id")
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private Long id;
+@ApiModel(value = "BioComment对象", description = "")
+public class BioComment extends BaseEntity {
 
     @ApiModelProperty(value = "自传id")
     @TableField("bio_id")
-    private Long bioId;
+    private String bioId;
 
     @ApiModelProperty(value = "评论者的昵称")
     @TableField("commentator")
@@ -63,11 +55,6 @@ public class BioComment implements Serializable {
     @ApiModelProperty(value = "回复时间")
     @TableField("gmt_reply_create")
     private Date gmtReplyCreate;
-
-    @ApiModelProperty(value = "0-未删除，1-已删除")
-    @TableField("is_deleted")
-    @TableLogic
-    private Integer isDeleted;
 
 
 }

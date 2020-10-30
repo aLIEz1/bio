@@ -1,5 +1,6 @@
-package com.example.bio.common.api;
+package com.example.bio.common.base;
 
+import com.example.bio.common.api.ApiController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -7,9 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author super
+ * @author zhangfuqi
+ * @date 2020/10/30
  */
 public abstract class BaseController extends ApiController {
+
+
     /**
      * 获取当前请求
      *

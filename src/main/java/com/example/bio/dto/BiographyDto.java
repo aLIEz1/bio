@@ -1,7 +1,6 @@
 package com.example.bio.dto;
 
 import com.example.bio.model.BioTag;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,8 +15,7 @@ import java.util.Set;
 @Setter
 public class BiographyDto {
 
-    @NotBlank
-    private Long ownerId;
+    private String ownerId;
 
     @NotBlank
     private String title;
@@ -25,8 +23,7 @@ public class BiographyDto {
     @NotBlank
     private String content;
 
-    @NotBlank
-    private Long categoryId;
+    private String categoryId;
 
     private String categoryName;
 

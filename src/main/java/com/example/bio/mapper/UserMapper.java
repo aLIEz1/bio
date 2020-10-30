@@ -1,7 +1,7 @@
 package com.example.bio.mapper;
 
-import com.example.bio.model.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.bio.model.User;
 import org.apache.ibatis.annotations.Param;
 
 /**

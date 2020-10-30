@@ -1,6 +1,5 @@
 package com.example.bio.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.bio.common.domain.PageQueryParams;
 import com.example.bio.dto.BiographyDto;
@@ -27,6 +26,7 @@ public interface BiographyService extends IService<Biography> {
 
     /**
      * 获取私人传记分页
+     *
      * @param pageQueryParams
      * @return
      */
@@ -34,6 +34,7 @@ public interface BiographyService extends IService<Biography> {
 
     /**
      * 获取他人传记分页
+     *
      * @param pageQueryParams
      * @return
      */
@@ -41,6 +42,7 @@ public interface BiographyService extends IService<Biography> {
 
     /**
      * 游客获取公共传记列表
+     *
      * @param pageQueryParams
      * @return
      */

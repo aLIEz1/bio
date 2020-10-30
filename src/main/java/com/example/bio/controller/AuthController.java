@@ -1,8 +1,8 @@
 package com.example.bio.controller;
 
-import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.EResult;
 import com.example.bio.common.api.Result;
+import com.example.bio.common.base.BaseController;
 import com.example.bio.dto.ActiveAccountDto;
 import com.example.bio.dto.LoginDto;
 import com.example.bio.dto.SignupDto;
@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
  * @date 2020/10/26
  */
 @RestController
-@Api(value = "auth",tags = "认证模块")
+@Api(value = "auth", tags = "认证模块")
 @RequestMapping("/api/auth")
 public class AuthController extends BaseController {
 

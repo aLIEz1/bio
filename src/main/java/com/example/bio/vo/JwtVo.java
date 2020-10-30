@@ -12,12 +12,12 @@ public class JwtVo {
 
     private String accessToken;
     private String tokenType = "Bearer";
-    private Long id;
+    private String id;
     private String username;
     private String email;
     private List<String> roles;
 
-    public JwtVo(String accessToken, Long id, String username, String email, List<String> roles) {
+    public JwtVo(String accessToken, String id, String username, String email, List<String> roles) {
         this.accessToken = accessToken;
         this.id = id;
         this.username = username;
@@ -41,11 +41,11 @@ public class JwtVo {
         this.tokenType = tokenType;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

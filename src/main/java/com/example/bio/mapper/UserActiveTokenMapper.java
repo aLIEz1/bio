@@ -1,12 +1,12 @@
 package com.example.bio.mapper;
 
-import com.example.bio.model.UserActiveToken;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.bio.model.UserActiveToken;
 import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author zhangfuqi
@@ -15,12 +15,14 @@ import org.apache.ibatis.annotations.Param;
 public interface UserActiveTokenMapper extends BaseMapper<UserActiveToken> {
     /**
      * 向account_active_token表中添加记录
+     *
      * @param activeToken
      */
     void addToken(UserActiveToken activeToken);
 
     /**
      * 根据token查找
+     *
      * @param token
      * @return
      */
@@ -28,8 +30,9 @@ public interface UserActiveTokenMapper extends BaseMapper<UserActiveToken> {
 
     /**
      * 删除token记录
+     *
      * @param id
      */
-    void removeToken(@Param("id") Long id);
+    void removeToken(@Param("id") String id);
 
 }

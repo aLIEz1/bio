@@ -1,16 +1,15 @@
 package com.example.bio.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.bio.model.ERole;
 import com.example.bio.model.Role;
-import com.baomidou.mybatisplus.extension.service.IService;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Set;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author zhangfuqi
@@ -27,17 +26,19 @@ public interface RoleService extends IService<Role> {
 
     /**
      * 向role user表中添加联系
+     *
      * @param userId
      * @param roles
      * @return
      */
-    void addRole(Long userId, Set<Role> roles);
+    void addRole(String userId, Set<Role> roles);
 
     /**
      * 根据用户id获取role
+     *
      * @param userId
      * @return
      */
-    List<Role> getRoleListByUserId( Long userId);
+    List<Role> getRoleListByUserId(String userId);
 
 }

@@ -1,15 +1,15 @@
 package com.example.bio.service.impl;
 
-import com.example.bio.model.UserActiveToken;
-import com.example.bio.mapper.UserActiveTokenMapper;
-import com.example.bio.service.UserActiveTokenService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.bio.mapper.UserActiveTokenMapper;
+import com.example.bio.model.UserActiveToken;
+import com.example.bio.service.UserActiveTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author zhangfuqi
@@ -36,7 +36,7 @@ public class UserActiveTokenServiceImpl extends ServiceImpl<UserActiveTokenMappe
     }
 
     @Override
-    public void removeToken(Long id) {
+    public void removeToken(String id) {
         tokenMapper.removeToken(id);
     }
 }

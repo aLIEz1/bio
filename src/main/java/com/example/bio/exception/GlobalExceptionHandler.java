@@ -1,7 +1,7 @@
 package com.example.bio.exception;
 
-import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.Result;
+import com.example.bio.common.base.BaseController;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -27,12 +27,12 @@ public class GlobalExceptionHandler extends BaseController {
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public Result<?> handleValidException(MethodArgumentNotValidException e){
+    public Result<?> handleValidException(MethodArgumentNotValidException e) {
         return getResult(e.getBindingResult());
     }
 
     @ExceptionHandler(value = BindException.class)
-    public Result<?> handleValidException(BindException e){
+    public Result<?> handleValidException(BindException e) {
         return getResult(e.getBindingResult());
     }
 
@@ -41,7 +41,7 @@ public class GlobalExceptionHandler extends BaseController {
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
             if (fieldError != null) {
-                message = fieldError.getField()+fieldError.getDefaultMessage();
+                message = fieldError.getField() + fieldError.getDefaultMessage();
             }
         }
         return validateFailed(message);

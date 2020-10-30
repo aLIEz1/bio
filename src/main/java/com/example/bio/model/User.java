@@ -1,16 +1,13 @@
 package com.example.bio.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.example.bio.common.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
-import java.util.Date;
 import java.util.Set;
 
 /**
@@ -24,14 +21,8 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("user")
-@ApiModel(value="User对象", description="")
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @ApiModelProperty(value = "用户id")
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private Long id;
+@ApiModel(value = "User对象", description = "")
+public class User extends BaseEntity {
 
     @ApiModelProperty(value = "用户名")
     @TableField("username")
@@ -56,15 +47,6 @@ public class User implements Serializable {
     @ApiModelProperty(value = "0-未锁定，1-已锁定")
     @TableField("is_locked")
     private Integer isLocked;
-
-    @ApiModelProperty(value = "记录创建时间")
-    @TableField(value = "gmt_create")
-    private Date gmtCreate;
-
-    @ApiModelProperty(value = "记录修改时间")
-    @TableField(value = "gmt_modified")
-    private Date gmtModified;
-
 
     @ApiModelProperty(value = "自传")
     @TableField(exist = false)

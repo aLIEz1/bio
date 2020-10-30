@@ -6,7 +6,6 @@ import cn.hutool.json.JSONUtil;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import net.logstash.logback.marker.Markers;
-import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -40,7 +39,8 @@ import java.util.Map;
 @Slf4j
 public class WebLogAspect {
 
-    @Pointcut("execution(public * com.example.bio.controller.*.*(..))")
+    @Pointcut("execution(public com.example.bio.common.api.Result com.example.bio.controller.*.*(..))||@annotation(io.swagger.annotations.ApiOperation)")
+
     public void webLog() {
 
     }

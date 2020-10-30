@@ -1,28 +1,25 @@
 package com.example.bio.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bio.common.domain.PageQueryParams;
 import com.example.bio.dto.BiographyDto;
 import com.example.bio.exception.Asserts;
+import com.example.bio.mapper.BiographyMapper;
 import com.example.bio.model.BioCategory;
 import com.example.bio.model.Biography;
-import com.example.bio.mapper.BiographyMapper;
 import com.example.bio.security.service.UserDetailsImpl;
 import com.example.bio.service.BioCategoryService;
 import com.example.bio.service.BiographyService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bio.util.OrderItemUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -75,7 +72,7 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
         if (userDetails == null) {
             Asserts.fail("未登录，登陆后查看");
         }
-        Long id = userDetails.getId();
+        String id = userDetails.getId();
         wrapper.eq("owner_id", id);
         wrapper.eq("is_deleted", 0);
         if (ObjectUtil.isNotNull(privacyLevel)) {
@@ -97,7 +94,6 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
         Map<String, Object> conditions = pageQueryParams.getConditions();
         Object categoryName = conditions.get("categoryName");
         Object ownerId = conditions.get("ownerId");
-        List<OrderItem> orderItems;
         if (ObjectUtil.isNotNull(ownerId)) {
             wrapper.eq(true, "owner_id", ownerId);
         }

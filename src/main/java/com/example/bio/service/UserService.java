@@ -1,16 +1,12 @@
 package com.example.bio.service;
 
-import com.example.bio.dto.SignupDto;
-import com.example.bio.model.Role;
-import com.example.bio.model.User;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.bio.model.UserActiveToken;
-
-import java.util.Set;
+import com.example.bio.dto.SignupDto;
+import com.example.bio.model.User;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author zhangfuqi
@@ -20,6 +16,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 根据用户名查找用户
+     *
      * @param username
      * @return
      */
@@ -27,6 +24,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 根据邮箱查询用户
+     *
      * @param email
      * @return
      */
@@ -34,6 +32,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 解锁用户
+     *
      * @param token
      * @return
      */
@@ -42,6 +41,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 注册用户
+     *
      * @param signupDto
      */
     void registerUser(SignupDto signupDto);

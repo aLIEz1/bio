@@ -2,8 +2,8 @@ package com.example.bio.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.Result;
+import com.example.bio.common.base.BaseController;
 import com.example.bio.common.domain.PageQueryParams;
 import com.example.bio.dto.BiographyDto;
 import com.example.bio.model.Biography;
@@ -46,10 +46,11 @@ public class BiographyController extends BaseController {
      */
     @ApiOperation(value = "删除传记", notes = "软删除")
     @PostMapping("/remove")
-    public Result<?> removeBiography(@RequestParam(value = "id") @Valid Long id) {
+    public Result<?> removeBiography(@RequestParam(value = "id") @Valid String id) {
         UpdateWrapper<Biography> wrapper = new UpdateWrapper<>();
-        wrapper.eq("owner_id", id)
+        wrapper.eq("id", id)
                 .set("is_deleted", 1);
+        biographyService.update(wrapper);
         return ok("删除成功");
     }
 

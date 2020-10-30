@@ -1,11 +1,11 @@
 package com.example.bio.mapper;
 
-import com.example.bio.model.BioTag;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.bio.model.BioTag;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author zhangfuqi

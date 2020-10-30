@@ -3,19 +3,17 @@ package com.example.bio.security.service;
 import com.example.bio.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author zhangfuqi
  * @date 2020/10/26
  */
 public class UserDetailsImpl implements UserDetails {
-    private Long id;
+    private String id;
 
     private String username;
 
@@ -28,7 +26,7 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Long id, String username, String password, String email, Boolean nonLocked, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetailsImpl(String id, String username, String password, String email, Boolean nonLocked, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -52,7 +50,7 @@ public class UserDetailsImpl implements UserDetails {
         return email;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

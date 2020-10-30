@@ -1,7 +1,6 @@
 package com.example.bio.security.component;
 
 import org.springframework.security.access.ConfigAttribute;
-import org.springframework.stereotype.Service;
 
 import java.util.Map;
 

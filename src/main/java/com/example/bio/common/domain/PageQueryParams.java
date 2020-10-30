@@ -15,5 +15,5 @@ import java.util.Map;
 @Setter
 public class PageQueryParams {
     private Page page;
-    private Map<String, Object> conditions =new HashMap<>();
+    private Map<String, Object> conditions = new HashMap<>();
 }
