@@ -1,7 +1,7 @@
 package com.example.bio.exception;
 
+import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.Result;
-import com.example.bio.common.base.BaseController;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;

@@ -1,22 +1,22 @@
 package com.example.bio.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bio.dto.SignupDto;
+import com.example.bio.exception.Asserts;
 import com.example.bio.mapper.UserMapper;
 import com.example.bio.model.ERole;
 import com.example.bio.model.Role;
 import com.example.bio.model.User;
 import com.example.bio.model.UserActiveToken;
-import com.example.bio.service.MailService;
-import com.example.bio.service.RoleService;
-import com.example.bio.service.UserActiveTokenService;
-import com.example.bio.service.UserService;
+import com.example.bio.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
@@ -36,8 +36,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private RoleService roleService;
 
     private UserActiveTokenService tokenService;
+
     private MailService mailService;
+
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public void setCacheService(UserCacheService cacheService) {
+        this.cacheService = cacheService;
+    }
+
+    private UserCacheService cacheService;
 
     @Autowired
     public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
@@ -66,7 +75,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User getOneByUsername(String username) {
-        return userMapper.getOneByUsername(username);
+        User user = cacheService.getUser(username);
+        if (user != null) {
+            return user;
+        } else {
+            User oneByUsername = userMapper.getOneByUsername(username);
+            cacheService.setUser(oneByUsername);
+            return oneByUsername;
+        }
+//        return userMapper.getOneByUsername(username);
     }
 
     @Override
@@ -91,6 +108,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     @Transactional(rollbackFor = {Error.class, RuntimeException.class})
     public void registerUser(SignupDto signupDto) {
+        if (!verifyAuthCode(signupDto.getAuthCode(), signupDto.getEmail())) {
+            Asserts.fail("验证码错误");
+        }
         User user = new User();
         user.setUsername(signupDto.getUsername());
         user.setEmail(signupDto.getEmail());
@@ -131,5 +151,32 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         token.setUser(user);
         tokenService.addToken(token);
         mailService.sendActiveMail(user, token);
+    }
+
+    @Override
+    public String generateAuthCode(String email) {
+        StringBuilder stringBuilder = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 4; i++) {
+            stringBuilder.append(random.nextInt(10));
+        }
+        cacheService.setAuthCode(email, stringBuilder.toString());
+        return stringBuilder.toString();
+    }
+
+    /**
+     * 验证输入的验证码
+     *
+     * @param authCode
+     * @param email
+     * @return
+     */
+    private boolean verifyAuthCode(String authCode, String email) {
+        if (StrUtil.isNotBlank(authCode)) {
+            String realAuthCode = cacheService.getAuthCode(email);
+            return authCode.equals(realAuthCode);
+        } else {
+            return false;
+        }
     }
 }

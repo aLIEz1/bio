@@ -5,7 +5,6 @@ import com.example.bio.model.ERole;
 import com.example.bio.model.Role;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,13 +32,5 @@ public interface RoleMapper extends BaseMapper<Role> {
      * @return
      */
     void addRole(@Param("userId") String userId, @Param("roles") Set<Role> roles);
-
-    /**
-     * 根据用户id获取role
-     *
-     * @param userId
-     * @return
-     */
-    List<Role> getRoleListByUserId(@Param("userId") String userId);
 
 }

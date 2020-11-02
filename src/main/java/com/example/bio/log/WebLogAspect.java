@@ -39,7 +39,7 @@ import java.util.Map;
 @Slf4j
 public class WebLogAspect {
 
-    @Pointcut("execution(public com.example.bio.common.api.Result com.example.bio.controller.*.*(..))||@annotation(io.swagger.annotations.ApiOperation)")
+    @Pointcut("execution(public * com.example.bio.controller.*.*(..)))")
 
     public void webLog() {
 

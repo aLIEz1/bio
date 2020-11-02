@@ -1,4 +1,4 @@
-package com.example.bio.common.base;
+package com.example.bio.common.api;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;

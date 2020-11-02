@@ -1,7 +1,7 @@
 package com.example.bio.controller;
 
+import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.Result;
-import com.example.bio.common.base.BaseController;
 import com.example.bio.common.domain.PageQueryParams;
 import com.example.bio.service.BiographyService;
 import io.swagger.annotations.Api;

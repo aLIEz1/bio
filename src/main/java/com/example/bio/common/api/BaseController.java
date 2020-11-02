@@ -1,6 +1,5 @@
-package com.example.bio.common.base;
+package com.example.bio.common.api;
 
-import com.example.bio.common.api.ApiController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

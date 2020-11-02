@@ -1,7 +1,7 @@
 package com.example.bio.controller;
 
 
-import com.example.bio.common.base.BaseController;
+import com.example.bio.common.api.BaseController;
 import com.example.bio.service.BioCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

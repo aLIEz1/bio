@@ -2,7 +2,7 @@ package com.example.bio.model;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.example.bio.common.base.BaseEntity;
+import com.example.bio.common.api.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

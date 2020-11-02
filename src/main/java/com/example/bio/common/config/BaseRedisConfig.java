@@ -6,6 +6,10 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.Cache;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
@@ -23,7 +27,8 @@ import java.time.Duration;
  * @author zhangfuqi
  * @date 2020/10/27
  */
-public abstract class BaseRedisConfig {
+@Slf4j
+public abstract class BaseRedisConfig extends CachingConfigurerSupport {
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisSerializer<Object> serializer = redisSerializer();
@@ -56,6 +61,38 @@ public abstract class BaseRedisConfig {
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer())).entryTtl(Duration.ofDays(1));
         return new RedisCacheManager(redisCacheWriter, redisCacheConfiguration);
+    }
+
+    /**
+     * 异常处理 当Redis缓存相关操作发生异常时 打印日志 程序正常走
+     *
+     * @return errors
+     */
+    @Override
+    public CacheErrorHandler errorHandler() {
+
+        return new CacheErrorHandler() {
+            @Override
+            public void handleCacheGetError(RuntimeException e, Cache cache, Object key) {
+                log.warn("Redis occur handleCacheGetError：key: [{}]", key);
+            }
+
+            @Override
+            public void handleCachePutError(RuntimeException e, Cache cache, Object key, Object value) {
+
+                log.warn("Redis occur handleCachePutError：key: [{}]；value: [{}]", key, value);
+            }
+
+            @Override
+            public void handleCacheEvictError(RuntimeException e, Cache cache, Object key) {
+                log.warn("Redis occur handleCacheEvictError：key: [{}]", key);
+            }
+
+            @Override
+            public void handleCacheClearError(RuntimeException e, Cache cache) {
+                log.warn("Redis occur handleCacheClearError");
+            }
+        };
     }
 
     @Bean

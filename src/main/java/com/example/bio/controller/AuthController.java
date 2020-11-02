@@ -1,13 +1,14 @@
 package com.example.bio.controller;
 
+import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.EResult;
 import com.example.bio.common.api.Result;
-import com.example.bio.common.base.BaseController;
 import com.example.bio.dto.ActiveAccountDto;
 import com.example.bio.dto.LoginDto;
 import com.example.bio.dto.SignupDto;
 import com.example.bio.security.service.UserDetailsImpl;
 import com.example.bio.service.UserService;
+import com.example.bio.util.CreateVerifyCode;
 import com.example.bio.util.JwtUtils;
 import com.example.bio.vo.JwtVo;
 import io.swagger.annotations.Api;
@@ -18,12 +19,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -91,6 +90,15 @@ public class AuthController extends BaseController {
         } else {
             return fail(EResult.FAILED);
         }
+    }
+
+    @ApiOperation(value = "获取验证码")
+    @GetMapping("/getAuthCode")
+    public void getAuthCode(@RequestParam String email) throws IOException {
+        String authCode = userService.generateAuthCode(email);
+        CreateVerifyCode createVerifyCode = new CreateVerifyCode(116, 36, 4, 10, authCode);
+        getResponse().setContentType("image/png");
+        createVerifyCode.write(getResponse().getOutputStream());
     }
 
 }

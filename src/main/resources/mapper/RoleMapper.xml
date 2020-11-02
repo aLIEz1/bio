@@ -13,10 +13,4 @@
             values (#{userId}, #{item.id},default,default,default)
         </foreach>
     </insert>
-
-    <select id="getRoleListByUserId" resultType="com.example.bio.model.Role">
-        select *
-        from biography.role
-        where id = (select role_id from biography.user_role where user_id = #{userId})
-    </select>
 </mapper>

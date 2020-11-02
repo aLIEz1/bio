@@ -2,7 +2,6 @@ package com.example.bio.security.service;
 
 import com.example.bio.model.Role;
 import com.example.bio.model.User;
-import com.example.bio.service.RoleService;
 import com.example.bio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -24,16 +24,10 @@ import java.util.stream.Collectors;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private UserService userService;
-    private RoleService roleService;
 
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
-    }
-
-    @Autowired
-    public void setRoleService(RoleService roleService) {
-        this.roleService = roleService;
     }
 
     @Override
@@ -41,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userService.getOneByUsername(username);
         if (user != null) {
-            List<Role> roleList = roleService.getRoleListByUserId(user.getId());
+            Set<Role> roleList = user.getRoles();
             List<GrantedAuthority> authorities = roleList.stream()
                     .map(role -> new SimpleGrantedAuthority(role.getRoleName().name()))
                     .collect(Collectors.toList());

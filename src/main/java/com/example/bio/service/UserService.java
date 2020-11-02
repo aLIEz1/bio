@@ -46,4 +46,12 @@ public interface UserService extends IService<User> {
      */
     void registerUser(SignupDto signupDto);
 
+    /**
+     * 生成验证码
+     *
+     * @param email
+     * @return
+     */
+    String generateAuthCode(String email);
+
 }

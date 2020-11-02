@@ -1,6 +1,6 @@
 server:
   port: 8082
-
+#======================mybatis plus配置======================
 mybatis-plus:
   global-config:
     db-config:
@@ -14,10 +14,26 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 spring:
+  #  ========================redis配置========================
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+    timeout: 1000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1ms
+  #        =====================mysql配置======================
   datasource:
     druid:
       url: jdbc:mysql://localhost:3306/biography?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      #      数据库连接用户名
       username: root
+      #      数据库连接密码
       password: 74521
       driver-class-name: com.mysql.cj.jdbc.Driver
 
@@ -53,6 +69,7 @@ spring:
         reset-enable: false
         url-pattern: /druid/*
 
+  # ================JavaMail配置=======================
   mail:
     host: smtp.qq.com
     username: 1742720898@qq.com
@@ -69,7 +86,19 @@ bio:
     jwtSecret: SecretKey
     jwtExpirationMs: 86400000
 
+redis:
+  database: mall
+  key:
+    user: 'bio:user'
+    authCode: 'bio:authCode'
+  expire:
+    common: 86400 # 24小时
+    authCode: 90 # 验证码超期时间
+
 logging:
+  file:
+    name: bio.log
+    path: C:\Users\super\Desktop\bio\log\
   level:
     org.thymeleaf: info
 

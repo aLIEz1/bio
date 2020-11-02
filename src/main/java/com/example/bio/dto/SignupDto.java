@@ -24,6 +24,17 @@ public class SignupDto {
     @Size(min = 6, max = 40)
     private String password;
 
+    @NotBlank
+    private String authCode;
+
+    public String getAuthCode() {
+        return authCode;
+    }
+
+    public void setAuthCode(String authCode) {
+        this.authCode = authCode;
+    }
+
     public String getUsername() {
         return username;
     }

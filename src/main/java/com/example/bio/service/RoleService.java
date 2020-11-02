@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.bio.model.ERole;
 import com.example.bio.model.Role;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -32,13 +31,5 @@ public interface RoleService extends IService<Role> {
      * @return
      */
     void addRole(String userId, Set<Role> roles);
-
-    /**
-     * 根据用户id获取role
-     *
-     * @param userId
-     * @return
-     */
-    List<Role> getRoleListByUserId(String userId);
 
 }
