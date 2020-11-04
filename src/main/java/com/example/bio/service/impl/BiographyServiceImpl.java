@@ -7,14 +7,16 @@ import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bio.common.domain.PageQueryParams;
 import com.example.bio.dto.BiographyDto;
+import com.example.bio.dto.UpdateBiographyDto;
 import com.example.bio.exception.Asserts;
 import com.example.bio.mapper.BiographyMapper;
 import com.example.bio.model.BioCategory;
 import com.example.bio.model.Biography;
+import com.example.bio.model.User;
 import com.example.bio.security.service.UserDetailsImpl;
 import com.example.bio.service.BioCategoryService;
 import com.example.bio.service.BiographyService;
-import com.example.bio.util.OrderItemUtil;
+import com.example.bio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,10 +39,14 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
     @Autowired
     private BioCategoryService categoryService;
 
+    @Autowired
+    private UserService userService;
+
 
     @Override
-    public void saveBiography(BiographyDto biographyDto) {
+    public void saveBiography(UpdateBiographyDto biographyDto) {
         Biography biography = new Biography();
+        biography.setId(biographyDto.getId());
         biography.setOwnerId(biographyDto.getOwnerId());
         biography.setTitle(biographyDto.getTitle());
         biography.setContent(biographyDto.getContent());
@@ -67,12 +73,11 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
         Object privacyLevel = conditions.get("privacyLevel");
         Object status = conditions.get("status");
         Object categoryName = conditions.get("categoryName");
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        if (userDetails == null) {
+        User currentUser = userService.getCurrentUser();
+        if (currentUser == null) {
             Asserts.fail("未登录，登陆后查看");
         }
-        String id = userDetails.getId();
+        String id = currentUser.getId();
         wrapper.eq("owner_id", id);
         wrapper.eq("is_deleted", 0);
         if (ObjectUtil.isNotNull(privacyLevel)) {
@@ -103,7 +108,7 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
         wrapper.eq("privacy_level", 0)
                 .eq("status", 1)
                 .eq("is_deleted", 0);
-        IPage<Biography> biographyPage = page(pageQueryParams.getPage().addOrder(OrderItemUtil.orderHandler(conditions)));
+        IPage<Biography> biographyPage = page(pageQueryParams.getPage().addOrder(OrderItem.desc("gmt_create")));
         return biographyPage.getRecords();
     }
 
@@ -122,7 +127,33 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
         queryWrapper.eq("privacy_level", 0)
                 .eq("status", 1)
                 .eq("is_deleted", 0);
-        IPage<Biography> biographyIPage = page(pageQueryParams.getPage().addOrder(OrderItemUtil.orderHandler(conditions)), queryWrapper);
+        IPage<Biography> biographyIPage = page(pageQueryParams.getPage().addOrder(OrderItem.desc("gmt_create")), queryWrapper);
         return biographyIPage.getRecords();
+    }
+
+    @Override
+    public Biography getBiographyById(String id) {
+        QueryWrapper<Biography> wrapper = new QueryWrapper<>();
+        User currentUser = userService.getCurrentUser();
+        if (currentUser == null) {
+            Asserts.fail("未登录，登录后查看");
+        }
+        wrapper
+                .eq("owner_id", currentUser.getId())
+                .eq("id", id)
+                .eq("is_deleted", 0);
+
+        return getOne(wrapper);
+    }
+
+    @Override
+    public Biography getOthersBiographyById(String id) {
+        QueryWrapper<Biography> wrapper = new QueryWrapper<>();
+        wrapper.eq("id", id)
+                .eq("is_deleted", 0)
+                .eq("privacy_level", 0)
+                .eq("status", 1);
+
+        return getOne(wrapper);
     }
 }

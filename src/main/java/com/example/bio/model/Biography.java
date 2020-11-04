@@ -68,13 +68,18 @@ public class Biography extends BaseEntity {
     @TableField("note")
     private String note;
 
+    @ApiModelProperty(value = "评论数量")
+    @TableField("comment_num")
+    private Long commentNum;
+
+    @ApiModelProperty(value = "点赞数量")
+    @TableField("likes")
+    private Long likes;
+
     @ApiModelProperty(value = "类别")
     @TableField(exist = false)
     private BioCategory category;
 
-    @ApiModelProperty(value = "评论")
-    @TableField(exist = false)
-    private Set<BioComment> comments;
 
     @ApiModelProperty(value = "标签")
     @TableField(exist = false)

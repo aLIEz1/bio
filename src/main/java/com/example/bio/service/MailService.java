@@ -24,5 +24,5 @@ public interface MailService {
      * @param token
      * @param user
      */
-    void sendActiveMail(User user, UserActiveToken token);
+    void sendActiveMail(User user, String token);
 }

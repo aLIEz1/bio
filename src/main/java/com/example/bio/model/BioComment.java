@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -28,33 +28,24 @@ public class BioComment extends BaseEntity {
     @TableField("bio_id")
     private String bioId;
 
-    @ApiModelProperty(value = "评论者的昵称")
-    @TableField("commentator")
-    private String commentator;
-
-    @ApiModelProperty(value = "评论者邮箱")
-    @TableField("email")
-    private String email;
+    @ApiModelProperty(value = "用户id")
+    @TableField("user_id")
+    private String userId;
 
     @ApiModelProperty(value = "评论的内容")
     @TableField("comment_body")
     private String commentBody;
 
-    @ApiModelProperty(value = "评论创建的时间")
-    @TableField("gmt_comment_create")
-    private Date gmtCommentCreate;
-
     @ApiModelProperty(value = "是否审核通过 0-未审核 1-审核通过")
     @TableField("comment_status")
     private Integer commentStatus;
 
-    @ApiModelProperty(value = "回复内容")
-    @TableField("reply_body")
-    private String replyBody;
+    @ApiModelProperty("父评论id")
+    @TableField("parent_id")
+    private String parentId;
 
-    @ApiModelProperty(value = "回复时间")
-    @TableField("gmt_reply_create")
-    private Date gmtReplyCreate;
-
+    @ApiModelProperty(value = "子评论")
+    @TableField(exist = false)
+    private List<BioComment> childComment;
 
 }

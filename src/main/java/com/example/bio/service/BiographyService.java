@@ -3,6 +3,7 @@ package com.example.bio.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.bio.common.domain.PageQueryParams;
 import com.example.bio.dto.BiographyDto;
+import com.example.bio.dto.UpdateBiographyDto;
 import com.example.bio.model.Biography;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface BiographyService extends IService<Biography> {
      *
      * @param biographyDto
      */
-    void saveBiography(BiographyDto biographyDto);
+    void saveBiography(UpdateBiographyDto biographyDto);
 
     /**
      * 获取私人传记分页
@@ -47,5 +48,21 @@ public interface BiographyService extends IService<Biography> {
      * @return
      */
     List<Biography> getPublicBiographyList(PageQueryParams pageQueryParams);
+
+    /**
+     * 根据id获取私人传记
+     *
+     * @param id
+     * @return
+     */
+    Biography getBiographyById(String id);
+
+    /**
+     * 获取他人传记
+     *
+     * @param id
+     * @return
+     */
+    Biography getOthersBiographyById(String id);
 
 }

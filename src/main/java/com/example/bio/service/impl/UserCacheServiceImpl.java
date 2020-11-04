@@ -21,12 +21,18 @@ public class UserCacheServiceImpl implements UserCacheService {
     private RedisService redisService;
     @Value("${redis.database}")
     private String REDIS_DATABASE;
+
+
     @Value("${redis.expire.common}")
     private Long REDIS_EXPIRE;
+
     @Value("${redis.key.user}")
     private String REDIS_KEY_USER;
+
+
     @Value("${redis.expire.authCode}")
     private Long REDIS_EXPIRE_AUTH_CODE;
+
     @Value("${redis.key.authCode}")
     private String REDIS_KEY_AUTH_CODE;
 
@@ -53,8 +59,8 @@ public class UserCacheServiceImpl implements UserCacheService {
 
     @CacheException
     @Override
-    public void setAuthCode(String emial, String authCode) {
-        String key = REDIS_DATABASE + ":" + REDIS_KEY_AUTH_CODE + ":" + emial;
+    public void setAuthCode(String email, String authCode) {
+        String key = REDIS_DATABASE + ":" + REDIS_KEY_AUTH_CODE + ":" + email;
         redisService.set(key, authCode, REDIS_EXPIRE_AUTH_CODE);
     }
 

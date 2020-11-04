@@ -83,9 +83,9 @@ public class AuthController extends BaseController {
     }
 
     @ApiOperation(value = "激活")
-    @PostMapping("/active")
-    public Result<?> activeUser(@RequestBody @Valid ActiveAccountDto activeAccount) {
-        if (userService.unlockUser(activeAccount.getToken())) {
+    @GetMapping("/active")
+    public Result<?> activeUser(@RequestParam String token) {
+        if (userService.unlockUser(token)) {
             return ok("Your account has been activated");
         } else {
             return fail(EResult.FAILED);

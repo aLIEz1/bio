@@ -44,6 +44,4 @@ public interface UserCacheService {
      * @return
      */
     String getAuthCode(String email);
-
-
 }

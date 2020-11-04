@@ -1,6 +1,7 @@
 package com.example.bio.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.Result;
 import com.example.bio.common.domain.PageQueryParams;
@@ -10,10 +11,8 @@ import com.example.bio.service.BioCategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -45,11 +44,28 @@ public class BioCategoryController extends BaseController {
     }
 
     @ApiOperation(value = "分页获取类别信息",
-            notes = " orderBy 根据什么排序,可选属性(title,views,gmt_create,gmt_modified) 字符串传递,用英文逗号隔开，默认根据创建时间降序" +
-                    " isAsc 是否升序，传入 true 或者 false 不要加引号！！！")
-    @PostMapping("getCategoriesPage")
+            notes = "默认根据创建时间降序排序")
+    @PostMapping("/getCategoriesPage")
     public Result<?> getAllCategoriesPage(@RequestBody PageQueryParams pageQueryParams) {
         return ok(categoryService.getAllCategoriesPage(pageQueryParams));
     }
 
+    @ApiOperation(value = "删除类别信息，只有管理员能删除")
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/delete/{id}")
+    public Result<?> deleteCategoryById(@PathVariable("id") String id) {
+        categoryService.removeById(id);
+        return ok("删除成功");
+    }
+
+    @PutMapping("/update/{id}")
+    public Result<?> updateCategoryById(@PathVariable("id") String id,
+                                        @RequestParam String categoryName) {
+        UpdateWrapper<BioCategory> updateWrapper = new UpdateWrapper<>();
+        updateWrapper
+                .eq("id", id)
+                .set("category_name", categoryName);
+        categoryService.update(updateWrapper);
+        return ok("修改成功");
+    }
 }

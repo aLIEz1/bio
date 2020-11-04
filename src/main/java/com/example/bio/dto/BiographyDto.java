@@ -15,6 +15,7 @@ import java.util.Set;
 @Setter
 public class BiographyDto {
 
+    @NotBlank
     private String ownerId;
 
     @NotBlank

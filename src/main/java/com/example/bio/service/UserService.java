@@ -3,6 +3,7 @@ package com.example.bio.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.bio.dto.SignupDto;
 import com.example.bio.model.User;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -36,6 +37,7 @@ public interface UserService extends IService<User> {
      * @param token
      * @return
      */
+    @Transactional(rollbackFor = {Error.class, RuntimeException.class})
     boolean unlockUser(String token);
 
 
@@ -44,7 +46,15 @@ public interface UserService extends IService<User> {
      *
      * @param signupDto
      */
+    @Transactional(rollbackFor = {Error.class, RuntimeException.class})
     void registerUser(SignupDto signupDto);
+
+    /**
+     * 获取当前登录的用户
+     *
+     * @return
+     */
+    User getCurrentUser();
 
     /**
      * 生成验证码

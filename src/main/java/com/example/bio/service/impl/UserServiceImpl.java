@@ -9,11 +9,13 @@ import com.example.bio.model.ERole;
 import com.example.bio.model.Role;
 import com.example.bio.model.User;
 import com.example.bio.model.UserActiveToken;
+import com.example.bio.security.service.UserDetailsImpl;
 import com.example.bio.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -92,7 +94,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    @Transactional(rollbackFor = {Error.class, RuntimeException.class})
     public boolean unlockUser(String token) {
         UserActiveToken activeToken = tokenService.findByToken(token);
         if (activeToken != null && !activeToken.isExpired()) {
@@ -106,7 +107,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    @Transactional(rollbackFor = {Error.class, RuntimeException.class})
     public void registerUser(SignupDto signupDto) {
         if (!verifyAuthCode(signupDto.getAuthCode(), signupDto.getEmail())) {
             Asserts.fail("验证码错误");
@@ -150,7 +150,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         token.setToken(UUID.randomUUID().toString());
         token.setUser(user);
         tokenService.addToken(token);
-        mailService.sendActiveMail(user, token);
+        mailService.sendActiveMail(user, token.getToken());
+    }
+
+    @Override
+    public User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        if (userDetails != null) {
+            return getOneByUsername(userDetails.getUsername());
+        } else {
+            return null;
+        }
     }
 
     @Override
