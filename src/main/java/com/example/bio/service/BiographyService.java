@@ -23,7 +23,14 @@ public interface BiographyService extends IService<Biography> {
      *
      * @param biographyDto
      */
-    void saveBiography(UpdateBiographyDto biographyDto);
+    void saveBiography(BiographyDto biographyDto);
+
+    /**
+     * 更新传记
+     *
+     * @param biographyDto
+     */
+    void updateBiography(UpdateBiographyDto biographyDto);
 
     /**
      * 获取私人传记分页

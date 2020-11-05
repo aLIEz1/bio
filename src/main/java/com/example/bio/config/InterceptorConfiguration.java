@@ -2,9 +2,7 @@ package com.example.bio.config;
 
 import com.example.bio.common.interceptor.LimitRaterInterceptor;
 import com.example.bio.security.config.IgnoreUrlsConfig;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

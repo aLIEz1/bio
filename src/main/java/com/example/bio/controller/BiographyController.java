@@ -34,7 +34,7 @@ public class BiographyController extends BaseController {
 
     @ApiOperation(value = "新增传记")
     @PostMapping("/add")
-    public Result<?> addBiography(@RequestBody @Valid UpdateBiographyDto biographyDto) {
+    public Result<?> addBiography(@RequestBody @Valid BiographyDto biographyDto) {
         biographyService.saveBiography(biographyDto);
         return ok("发布成功！");
     }
@@ -58,7 +58,7 @@ public class BiographyController extends BaseController {
     @ApiOperation(value = "更新传记")
     @PostMapping("/update")
     public Result<?> updateBiography(@RequestBody @Valid UpdateBiographyDto biographyDto) {
-        biographyService.saveBiography(biographyDto);
+        biographyService.updateBiography(biographyDto);
         return ok("修改成功");
     }
 

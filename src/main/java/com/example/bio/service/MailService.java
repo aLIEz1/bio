@@ -1,7 +1,6 @@
 package com.example.bio.service;
 
 import com.example.bio.model.User;
-import com.example.bio.model.UserActiveToken;
 
 /**
  * @author zhangfuqi

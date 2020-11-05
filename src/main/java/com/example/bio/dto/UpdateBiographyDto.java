@@ -19,9 +19,6 @@ public class UpdateBiographyDto {
     private String id;
 
     @NotBlank
-    private String ownerId;
-
-    @NotBlank
     private String title;
 
     @NotBlank

@@ -107,6 +107,7 @@ redis:
   key:
     user: 'bio:user'
     authCode: 'bio:authCode'
+    category: 'bio:category'
   expire:
     common: 86400 # 24小时
     authCode: 90 # 验证码超期时间

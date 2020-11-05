@@ -13,13 +13,11 @@ import com.example.bio.mapper.BiographyMapper;
 import com.example.bio.model.BioCategory;
 import com.example.bio.model.Biography;
 import com.example.bio.model.User;
-import com.example.bio.security.service.UserDetailsImpl;
 import com.example.bio.service.BioCategoryService;
 import com.example.bio.service.BiographyService;
 import com.example.bio.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,25 +42,28 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
 
 
     @Override
-    public void saveBiography(UpdateBiographyDto biographyDto) {
+    public void saveBiography(BiographyDto biographyDto) {
         Biography biography = new Biography();
-        biography.setId(biographyDto.getId());
-        biography.setOwnerId(biographyDto.getOwnerId());
-        biography.setTitle(biographyDto.getTitle());
-        biography.setContent(biographyDto.getContent());
-        biography.setCategoryId(biographyDto.getCategoryId());
-
-        QueryWrapper<BioCategory> wrapper = new QueryWrapper<>();
-        wrapper.eq("id", biographyDto.getCategoryId());
-        biography.setCategoryName(categoryService.getOne(wrapper).getCategoryName());
-
-        biography.setEnableComment(biographyDto.getEnableComment());
-        biography.setNote(biographyDto.getNote());
-        biography.setPenName(biographyDto.getPenName());
-        biography.setPrivacyLevel(biographyDto.getPrivacyLevel());
-        biography.setStatus(biographyDto.getStatus());
-        biography.setTags(biographyDto.getTags());
+        BeanUtils.copyProperties(biographyDto, biography);
+        biography.setOwnerId(userService.getCurrentUser().getId());
+        biography.setCategoryName(categoryService.getById(biographyDto.getCategoryId()).getCategoryName());
         save(biography);
+
+    }
+
+    @Override
+    public void updateBiography(UpdateBiographyDto biographyDto) {
+        Biography biography = new Biography();
+        BeanUtils.copyProperties(biographyDto, biography);
+        QueryWrapper<Biography> biographyQueryWrapper = new QueryWrapper<>();
+        biographyQueryWrapper
+                .eq("is_deleted", 0);
+        Biography one = getOne(biographyQueryWrapper);
+        if (!one.getOwnerId().equals(userService.getCurrentUser().getId())) {
+            Asserts.fail("没有权限访问");
+        } else {
+            save(biography);
+        }
 
     }
 

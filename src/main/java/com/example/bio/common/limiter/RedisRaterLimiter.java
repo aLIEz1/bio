@@ -1,7 +1,6 @@
 package com.example.bio.common.limiter;
 
 import com.example.bio.common.constant.CommonConstant;
-import com.google.common.util.concurrent.RateLimiter;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RRateLimiter;
 import org.redisson.api.RateIntervalUnit;

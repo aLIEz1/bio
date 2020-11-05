@@ -16,17 +16,13 @@ import java.util.Set;
 public class BiographyDto {
 
     @NotBlank
-    private String ownerId;
-
-    @NotBlank
     private String title;
 
     @NotBlank
     private String content;
 
+    @NotBlank
     private String categoryId;
-
-    private String categoryName;
 
     private String penName;
 
