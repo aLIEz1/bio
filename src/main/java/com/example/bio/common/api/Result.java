@@ -3,6 +3,7 @@ package com.example.bio.common.api;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -12,6 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 

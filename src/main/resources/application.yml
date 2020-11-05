@@ -85,6 +85,22 @@ bio:
   app:
     jwtSecret: SecretKey
     jwtExpirationMs: 86400000
+  #    限流配置
+  ratelimit:
+    # 开启
+    enable: true
+    # 每1秒内
+    timeout: 1000
+    # 总限制200个请求
+    limit: 200
+    # IP限流
+  iplimit:
+    # 开启
+    enable: true
+    # 每1秒内
+    timeout: 1000
+    # 每个ip限制30个请求
+    limit: 30
 
 redis:
   database: mall
@@ -119,3 +135,9 @@ secure:
       - /druid/**
       - /api/auth/**
       - /api/public/**
+
+    limitUrls:
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico

@@ -59,10 +59,8 @@ public abstract class BaseSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public IgnoreUrlsConfig ignoreUrlsConfig() {
-        return new IgnoreUrlsConfig();
-    }
+    @Autowired
+    private IgnoreUrlsConfig ignoreUrlsConfig;
 
     @Bean
     public RestfulAccessDeniedHandler restfulAccessDeniedHandler() {
@@ -90,7 +88,7 @@ public abstract class BaseSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http
                 .authorizeRequests();
-        for (String url : ignoreUrlsConfig().getUrls()) {
+        for (String url : ignoreUrlsConfig.getUrls()) {
             registry.antMatchers(url).permitAll();
         }
         registry.antMatchers(HttpMethod.OPTIONS)
