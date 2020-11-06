@@ -1,5 +1,6 @@
 package com.example.bio.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.example.bio.common.annotation.RateLimiter;
 import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.Result;
@@ -53,19 +54,23 @@ public class TouristController extends BaseController {
     @RateLimiter(rate = 1, rateInterval = 5000)
     @GetMapping("/getBiographyById/{id}")
     public Result<Object> getBiographyById(@PathVariable("id") String id) {
-        Object execute = redisLockTemplate.execute(id, 3, null, TimeUnit.SECONDS, new Callback() {
-            @Override
-            public Object onGetLock() throws InterruptedException {
-                return biographyService.getOthersBiographyById(id);
-            }
+        if (StrUtil.isBlank(id)) {
+            return fail("请输入正确的id");
+        } else {
+            Object execute = redisLockTemplate.execute(id, 3, null, TimeUnit.SECONDS, new Callback() {
+                @Override
+                public Object onGetLock() throws InterruptedException {
+                    return biographyService.getOthersBiographyById(id);
+                }
 
-            @Override
-            public Object onTimeout() throws InterruptedException {
-                return null;
-            }
-        });
-        return ok(execute);
+                @Override
+                public Object onTimeout() throws InterruptedException {
+                    return null;
+                }
+            });
+            return ok(execute);
+        }
+
     }
-
 
 }

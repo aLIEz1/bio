@@ -1,6 +1,7 @@
 package com.example.bio.controller;
 
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.Result;
@@ -47,7 +48,7 @@ public class BiographyController extends BaseController {
      */
     @ApiOperation(value = "删除传记", notes = "软删除")
     @PostMapping("/remove")
-    public Result<?> removeBiography(@RequestParam(value = "id") @Valid String id) {
+    public Result<?> removeBiography(@RequestParam(value = "id") String id) {
         UpdateWrapper<Biography> wrapper = new UpdateWrapper<>();
         wrapper.eq("id", id)
                 .set("is_deleted", 1);
@@ -86,12 +87,18 @@ public class BiographyController extends BaseController {
     @ApiOperation(value = "根据id获取私人传记")
     @GetMapping("/getById/{id}")
     public Result<?> getBiographyById(@PathVariable("id") String id) {
+        if (StrUtil.isBlank(id)) {
+            return fail("请输入正确的id");
+        }
         return ok(biographyService.getBiographyById(id));
     }
 
     @ApiOperation("根据id获取他人传记")
     @GetMapping("/getOthersById/{id}")
     public Result<?> getOthersBiographyById(@PathVariable("id") String id) {
+        if (StrUtil.isBlank(id)) {
+            return fail("请输入正确的id");
+        }
         return ok(biographyService.getOthersBiographyById(id));
     }
 

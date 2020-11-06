@@ -12,6 +12,8 @@ import com.example.bio.security.service.UserDetailsImpl;
 import com.example.bio.service.UserService;
 import com.example.bio.util.CreateVerifyCode;
 import com.example.bio.util.JwtUtils;
+import com.example.bio.util.RegUtil;
+import com.example.bio.util.ResponseUtil;
 import com.example.bio.vo.JwtVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -79,20 +81,20 @@ public class AuthController extends BaseController {
     @PostMapping("/signup")
     public Result<?> registerUser(@RequestBody @Valid SignupDto signupDto) {
         if (userService.getOneByUsername(signupDto.getUsername()) != null) {
-            return fail("Error: Username is already taken!");
+            return fail("用户名已存在");
         }
         if (userService.getOneByEmail(signupDto.getEmail()) != null) {
-            return fail("Error: Email is already in use!");
+            return fail("邮箱已存在");
         }
         userService.registerUser(signupDto);
-        return ok("registered successfully !");
+        return ok("注册成功");
     }
 
     @ApiOperation(value = "激活")
     @GetMapping("/active")
     public Result<?> activeUser(@RequestParam String token) {
         if (userService.unlockUser(token)) {
-            return ok("Your account has been activated");
+            return ok("账户激活成功");
         } else {
             return fail(EResult.FAILED);
         }
@@ -105,11 +107,16 @@ public class AuthController extends BaseController {
         redisLockTemplate.execute("RegisterGetAuthCode", 3, null, TimeUnit.SECONDS, new Callback() {
             @Override
             public Object onGetLock() throws InterruptedException, IOException {
-                String authCode = userService.generateAuthCode(email);
-                CreateVerifyCode createVerifyCode = new CreateVerifyCode(116, 36, 4, 10, authCode);
-                getResponse().setContentType("image/png");
-                createVerifyCode.write(getResponse().getOutputStream());
+                if (RegUtil.email(email)) {
+                    String authCode = userService.generateAuthCode(email);
+                    CreateVerifyCode createVerifyCode = new CreateVerifyCode(116, 36, 4, 10, authCode);
+                    getResponse().setContentType("image/png");
+                    createVerifyCode.write(getResponse().getOutputStream());
+                } else {
+                    ResponseUtil.out(getResponse(), ResponseUtil.resultMap(false, 500, "邮箱格式不正确，请重新输入"));
+                }
                 return null;
+
             }
 
             @Override
