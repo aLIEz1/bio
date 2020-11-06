@@ -1,5 +1,7 @@
 package com.example.bio.vo;
 
+import com.example.bio.common.constant.SecurityConstant;
+
 import java.util.List;
 
 /**
@@ -11,7 +13,7 @@ import java.util.List;
 public class JwtVo {
 
     private String accessToken;
-    private String tokenType = "Bearer";
+    private String tokenType = SecurityConstant.TOKEN_SPLIT;
     private String id;
     private String username;
     private String email;
