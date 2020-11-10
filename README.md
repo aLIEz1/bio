@@ -13,6 +13,7 @@
 |         Redis          |   5.0   |    分布式缓存    |
 |         Druid          |  1.2.1  |   数据库连接池   |
 |         Lombok         | 1.18.12 | 简化对象封装工具 |
+|        RabbitMQ        |  3.8.9  |     消息队列     |
 
 ## 搭建步骤
 
@@ -38,6 +39,11 @@
 - 下载Redis,下载地址：https://github.com/MicrosoftArchive/redis/releases
 - 下载完后解压到指定目录；
 - 在当前地址栏输入cmd后，执行redis的启动命令：`redis-server.exe redis.windows.conf`
+
+### 安装RabbitMQ
+
+- 安装Erlang，下载地址：http://erlang.org/download/otp_win64_21.3.exe
+- 安装RabbitMQ，下载地址：https://dl.bintray.com/rabbitmq/all/rabbitmq-server/3.7.14/rabbitmq-server-3.7.14.exe
 
 ### 启动项目
 
