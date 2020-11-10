@@ -10,7 +10,6 @@ import com.example.bio.dto.BiographyDto;
 import com.example.bio.dto.UpdateBiographyDto;
 import com.example.bio.exception.Asserts;
 import com.example.bio.mapper.BiographyMapper;
-import com.example.bio.model.BioCategory;
 import com.example.bio.model.Biography;
 import com.example.bio.model.User;
 import com.example.bio.service.BioCategoryService;

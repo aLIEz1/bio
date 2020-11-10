@@ -14,6 +14,13 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 spring:
+#  ====================RabbitMQ配置========================
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    publisher-confirm-type: correlated
   #  ========================redis配置========================
   redis:
     database: 0

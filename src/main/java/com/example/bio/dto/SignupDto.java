@@ -2,7 +2,6 @@ package com.example.bio.dto;
 
 import com.example.bio.util.RegUtil;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -14,12 +13,12 @@ import java.util.Set;
 public class SignupDto {
     @NotBlank
     @Size(min = 3, max = 20)
-    @Pattern(regexp = RegUtil.REG_USERNAME,message = "登录账号不能包含特殊字符且长度不能>16")
+    @Pattern(regexp = RegUtil.REG_USERNAME, message = "登录账号不能包含特殊字符且长度不能>16")
     private String username;
 
     @NotBlank
     @Size(max = 50)
-    @Pattern(regexp = RegUtil.REG_EMAIL,message = "邮箱格式不正确")
+    @Pattern(regexp = RegUtil.REG_EMAIL, message = "邮箱格式不正确")
     private String email;
 
     private Set<String> role;

@@ -46,7 +46,7 @@ public class BioCategoryServiceImpl extends ServiceImpl<BioCategoryMapper, BioCa
             return bioCategory;
         } else {
             BioCategory byId = super.getById(id);
-            if (byId.getDelFlag()==1){
+            if (byId.getDelFlag() == 1) {
                 return null;
             }
             categoryCacheService.setCategory(byId);

@@ -8,8 +8,6 @@ import com.example.bio.common.domain.PageQueryParams;
 import com.example.bio.dto.CommentDto;
 import com.example.bio.model.BioComment;
 import com.example.bio.service.BioCommentService;
-import com.example.bio.util.ResponseUtil;
-import com.google.common.annotations.Beta;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

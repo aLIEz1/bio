@@ -2,6 +2,7 @@ package com.example.bio.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.bio.common.component.MyMailSender;
 import com.example.bio.dto.SignupDto;
 import com.example.bio.exception.Asserts;
 import com.example.bio.mapper.UserMapper;
@@ -42,6 +43,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private MailService mailService;
 
     private PasswordEncoder passwordEncoder;
+
+
+    private MyMailSender myMailSender;
+
+    @Autowired
+    public void setMailSender(MyMailSender mailSender) {
+        this.myMailSender = mailSender;
+    }
 
     @Autowired
     public void setCacheService(UserCacheService cacheService) {
@@ -150,7 +159,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         token.setToken(UUID.randomUUID().toString());
         token.setUser(user);
         tokenService.addToken(token);
-        mailService.sendActiveMail(user, token.getToken());
+//        mailService.sendActiveMail(user, token.getToken());
+        myMailSender.sendMail(token);
     }
 
     @Override
