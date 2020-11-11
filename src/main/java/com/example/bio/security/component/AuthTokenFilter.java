@@ -66,7 +66,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         String headerAuth = request.getHeader(SecurityConstant.HEADER);
 
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith(SecurityConstant.TOKEN_SPLIT)) {
-            return headerAuth.substring(7, headerAuth.length());
+            return headerAuth.substring(7);
         }
 
         return null;

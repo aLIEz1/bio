@@ -12,12 +12,12 @@ import java.util.List;
  */
 public class JwtVo {
 
+    private final List<String> roles;
     private String accessToken;
     private String tokenType = SecurityConstant.TOKEN_SPLIT;
     private String id;
     private String username;
     private String email;
-    private List<String> roles;
 
     public JwtVo(String accessToken, String id, String username, String email, List<String> roles) {
         this.accessToken = accessToken;

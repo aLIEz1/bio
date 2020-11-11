@@ -18,6 +18,7 @@ import java.security.SecureRandom;
  */
 public class CreateVerifyCode {
 
+    SecureRandom random = new SecureRandom();
     /**
      * 图片的宽度
      */
@@ -42,8 +43,6 @@ public class CreateVerifyCode {
      * 验证码图片Buffer
      */
     private BufferedImage buffImg = null;
-
-    SecureRandom random = new SecureRandom();
 
     public CreateVerifyCode() {
         creatImage();

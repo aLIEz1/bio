@@ -5,6 +5,7 @@ import com.example.bio.common.domain.PageQueryParams;
 import com.example.bio.dto.BiographyDto;
 import com.example.bio.dto.UpdateBiographyDto;
 import com.example.bio.model.Biography;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public interface BiographyService extends IService<Biography> {
      *
      * @param biographyDto
      */
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     void saveBiography(BiographyDto biographyDto);
 
     /**

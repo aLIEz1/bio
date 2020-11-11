@@ -14,7 +14,7 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 spring:
-#  ====================RabbitMQ配置========================
+  #  ====================RabbitMQ配置========================
   rabbitmq:
     host: 127.0.0.1
     port: 5672
@@ -37,7 +37,7 @@ spring:
   #        =====================mysql配置======================
   datasource:
     druid:
-      url: jdbc:mysql://localhost:3306/biography?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      url: jdbc:mysql://localhost:3306/biography?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
       #      数据库连接用户名
       username: root
       #      数据库连接密码
@@ -63,7 +63,7 @@ spring:
       pool-prepared-statements: true
       #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
       max-pool-prepared-statement-per-connection-size: 20
-      filters: stat,wall
+      filters: stat
       use-global-data-source-stat: true
       # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
       connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
@@ -122,9 +122,12 @@ redis:
 logging:
   file:
     name: bio.log
-    path: C:\Users\super\Desktop\bio\log\
   level:
     org.thymeleaf: info
+    org:
+      redisson:
+        connection:
+          DNSMonitor: info
 
 secure:
   ignored:

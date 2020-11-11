@@ -13,18 +13,18 @@ import java.util.List;
  * @date 2020/10/26
  */
 public class UserDetailsImpl implements UserDetails {
-    private String id;
+    private final String id;
 
-    private String username;
+    private final String username;
 
     @JsonIgnore
-    private String password;
+    private final String password;
 
-    private String email;
+    private final String email;
 
-    private Boolean nonLocked;
+    private final Boolean nonLocked;
 
-    private Collection<? extends GrantedAuthority> authorities;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsImpl(String id, String username, String password, String email, Boolean nonLocked, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;

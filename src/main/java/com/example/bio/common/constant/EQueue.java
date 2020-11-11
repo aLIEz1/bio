@@ -22,6 +22,12 @@ public enum EQueue {
      */
     private final String routeKey;
 
+    EQueue(String exchange, String name, String routeKey) {
+        this.exchange = exchange;
+        this.name = name;
+        this.routeKey = routeKey;
+    }
+
     public String getExchange() {
         return exchange;
     }
@@ -32,11 +38,5 @@ public enum EQueue {
 
     public String getRouteKey() {
         return routeKey;
-    }
-
-    EQueue(String exchange, String name, String routeKey) {
-        this.exchange = exchange;
-        this.name = name;
-        this.routeKey = routeKey;
     }
 }

@@ -10,9 +10,11 @@ import com.example.bio.dto.BiographyDto;
 import com.example.bio.dto.UpdateBiographyDto;
 import com.example.bio.exception.Asserts;
 import com.example.bio.mapper.BiographyMapper;
+import com.example.bio.model.BioTag;
 import com.example.bio.model.Biography;
 import com.example.bio.model.User;
 import com.example.bio.service.BioCategoryService;
+import com.example.bio.service.BioTagService;
 import com.example.bio.service.BiographyService;
 import com.example.bio.service.UserService;
 import org.springframework.beans.BeanUtils;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * <p>
@@ -39,6 +42,9 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BioTagService tagService;
+
 
     @Override
     public void saveBiography(BiographyDto biographyDto) {
@@ -46,22 +52,30 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
         BeanUtils.copyProperties(biographyDto, biography);
         biography.setOwnerId(userService.getCurrentUser().getId());
         biography.setCategoryName(categoryService.getById(biographyDto.getCategoryId()).getCategoryName());
+        Set<BioTag> tags = biographyDto.getTags();
+        tags.forEach(System.out::println);
         save(biography);
+        tagService.addBiographyTags(biography.getId(), tags);
+
 
     }
 
     @Override
     public void updateBiography(UpdateBiographyDto biographyDto) {
         Biography biography = new Biography();
-        BeanUtils.copyProperties(biographyDto, biography);
         QueryWrapper<Biography> biographyQueryWrapper = new QueryWrapper<>();
         biographyQueryWrapper
-                .eq("is_deleted", 0);
+                .eq("is_deleted", 0)
+                .eq("id", biographyDto.getId());
         Biography one = getOne(biographyQueryWrapper);
         if (!one.getOwnerId().equals(userService.getCurrentUser().getId())) {
             Asserts.fail("没有权限访问");
         } else {
-            save(biography);
+            BeanUtils.copyProperties(one, biographyDto);
+            BeanUtils.copyProperties(biographyDto, biography);
+            biography.setOwnerId(userService.getCurrentUser().getId());
+            saveOrUpdate(biography);
+
         }
 
     }

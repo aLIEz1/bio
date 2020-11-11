@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-10-26
  */
 @RestController
-@RequestMapping("/bio/role")
+@RequestMapping("/api/role")
 public class RoleController {
 
 }

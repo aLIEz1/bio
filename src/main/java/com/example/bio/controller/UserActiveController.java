@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-10-26
  */
 @RestController
-@RequestMapping("/bio/user-active")
+@RequestMapping("/api/user-active")
 public class UserActiveController {
 
 }

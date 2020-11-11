@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -33,9 +32,8 @@ public class BioCategoryServiceImpl extends ServiceImpl<BioCategoryMapper, BioCa
     @Override
     public List<BioCategory> getAllCategoriesPage(PageQueryParams pageQueryParams) {
         QueryWrapper<BioCategory> queryWrapper = new QueryWrapper<>();
-        Map<String, Object> conditions = pageQueryParams.getConditions();
         queryWrapper.eq("is_deleted", 0);
-        IPage<BioCategory> page = page(pageQueryParams.getPage().addOrder(OrderItem.desc("gmt_create")));
+        IPage<BioCategory> page = page(pageQueryParams.getPage().addOrder(OrderItem.desc("gmt_create")), queryWrapper);
         return page.getRecords();
     }
 

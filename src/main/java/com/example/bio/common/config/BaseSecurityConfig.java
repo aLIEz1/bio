@@ -30,13 +30,14 @@ public abstract class BaseSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired(required = false)
     private DynamicSecurityService dynamicSecurityService;
+    @Autowired
+    private IgnoreUrlsConfig ignoreUrlsConfig;
 
     @Autowired
     @Qualifier("userDetailsServiceImpl")
     public void setUserDetailsService(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
-
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
@@ -58,9 +59,6 @@ public abstract class BaseSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-    @Autowired
-    private IgnoreUrlsConfig ignoreUrlsConfig;
 
     @Bean
     public RestfulAccessDeniedHandler restfulAccessDeniedHandler() {

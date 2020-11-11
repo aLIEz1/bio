@@ -17,5 +17,5 @@ public enum ERole {
     /**
      * 管理员用户
      */
-    ROLE_ADMIN;
+    ROLE_ADMIN
 }

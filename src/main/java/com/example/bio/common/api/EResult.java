@@ -31,10 +31,10 @@ public enum EResult implements ErrorCode {
      * 没有相关权限
      */
     FORBIDDEN(403, "没有相关权限");
-    private long code;
-    private String message;
+    private final long code;
+    private final String message;
 
-    private EResult(long code, String message) {
+    EResult(long code, String message) {
         this.code = code;
         this.message = message;
     }

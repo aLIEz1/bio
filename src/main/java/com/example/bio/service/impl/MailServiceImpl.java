@@ -24,14 +24,13 @@ public class MailServiceImpl implements MailService {
 
     private JavaMailSender mailSender;
     private TemplateEngine templateEngine;
+    @Value("${spring.mail.from}")
+    private String from;
 
     @Autowired
     public void setTemplateEngine(TemplateEngine templateEngine) {
         this.templateEngine = templateEngine;
     }
-
-    @Value("${spring.mail.from}")
-    private String from;
 
     @Autowired
     public void setMailSender(JavaMailSender mailSender) {

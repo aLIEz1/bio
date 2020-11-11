@@ -8,7 +8,7 @@ import cn.hutool.core.util.IdUtil;
  * @date 2020/10/30
  */
 public class SnowFlakeUtil {
-    private static Snowflake snowflake = IdUtil.createSnowflake(1, 1);
+    private static final Snowflake snowflake = IdUtil.createSnowflake(1, 1);
 
     public static Long nextId() {
         return snowflake.nextId();

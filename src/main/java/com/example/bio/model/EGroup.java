@@ -12,5 +12,5 @@ public enum EGroup {
     /**
      * 亲戚分组
      */
-    GROUP_RELATIVE;
+    GROUP_RELATIVE
 }

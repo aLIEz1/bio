@@ -46,6 +46,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 
     private MyMailSender myMailSender;
+    private UserCacheService cacheService;
 
     @Autowired
     public void setMailSender(MyMailSender mailSender) {
@@ -56,8 +57,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public void setCacheService(UserCacheService cacheService) {
         this.cacheService = cacheService;
     }
-
-    private UserCacheService cacheService;
 
     @Autowired
     public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
