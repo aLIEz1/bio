@@ -42,7 +42,7 @@ public class BioTagServiceImpl extends ServiceImpl<BioTagMapper, BioTag> impleme
     }
 
     @Override
-    public List<BioTag> getTagsByBiographyId(String id) {
+    public Set<BioTag> getTagsByBiographyId(String id) {
         return tagMapper.getTagsByBiographyId(id);
     }
 }

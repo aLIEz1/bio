@@ -56,8 +56,6 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
         tags.forEach(System.out::println);
         save(biography);
         tagService.addBiographyTags(biography.getId(), tags);
-
-
     }
 
     @Override
@@ -103,8 +101,12 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
         if (ObjectUtil.isNotNull(categoryName)) {
             wrapper.eq(true, "category_name", categoryName);
         }
-        IPage<Biography> biographyPage = page(pageQueryParams.getPage().addOrder(OrderItem.desc("gmt_create")));
-        return biographyPage.getRecords();
+        IPage<Biography> biographyPage = page(pageQueryParams.getPage().addOrder(OrderItem.desc("gmt_create")), wrapper);
+        List<Biography> records = biographyPage.getRecords();
+        for (Biography record : records) {
+            record.setTags(tagService.getTagsByBiographyId(record.getId()));
+        }
+        return records;
     }
 
     @Override
@@ -122,8 +124,12 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
         wrapper.eq("privacy_level", 0)
                 .eq("status", 1)
                 .eq("is_deleted", 0);
-        IPage<Biography> biographyPage = page(pageQueryParams.getPage().addOrder(OrderItem.desc("gmt_create")));
-        return biographyPage.getRecords();
+        IPage<Biography> biographyPage = page(pageQueryParams.getPage().addOrder(OrderItem.desc("gmt_create")), wrapper);
+        List<Biography> records = biographyPage.getRecords();
+        for (Biography record : records) {
+            record.setTags(tagService.getTagsByBiographyId(record.getId()));
+        }
+        return records;
     }
 
     @Override
@@ -141,8 +147,12 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
         queryWrapper.eq("privacy_level", 0)
                 .eq("status", 1)
                 .eq("is_deleted", 0);
-        IPage<Biography> biographyIPage = page(pageQueryParams.getPage().addOrder(OrderItem.desc("gmt_create")), queryWrapper);
-        return biographyIPage.getRecords();
+        IPage<Biography> biographyPage = page(pageQueryParams.getPage().addOrder(OrderItem.desc("gmt_create")), queryWrapper);
+        List<Biography> records = biographyPage.getRecords();
+        for (Biography record : records) {
+            record.setTags(tagService.getTagsByBiographyId(record.getId()));
+        }
+        return records;
     }
 
     @Override
@@ -157,7 +167,9 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
                 .eq("id", id)
                 .eq("is_deleted", 0);
 
-        return getOne(wrapper);
+        Biography biography = getOne(wrapper);
+        biography.setTags(tagService.getTagsByBiographyId(biography.getId()));
+        return biography;
     }
 
     @Override
@@ -168,6 +180,8 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
                 .eq("privacy_level", 0)
                 .eq("status", 1);
 
-        return getOne(wrapper);
+        Biography biography = getOne(wrapper);
+        biography.setTags(tagService.getTagsByBiographyId(biography.getId()));
+        return biography;
     }
 }

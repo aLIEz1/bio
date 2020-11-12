@@ -30,5 +30,5 @@ public interface BioTagMapper extends BaseMapper<BioTag> {
      * @param id
      * @return
      */
-    List<BioTag> getTagsByBiographyId(@Param("id") String id);
+    Set<BioTag> getTagsByBiographyId(@Param("id") String id);
 }

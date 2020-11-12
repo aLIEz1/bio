@@ -39,6 +39,6 @@ public interface BioTagService extends IService<BioTag> {
      * @param id
      * @return
      */
-    List<BioTag> getTagsByBiographyId(String id);
+    Set<BioTag> getTagsByBiographyId(String id);
 
 }
