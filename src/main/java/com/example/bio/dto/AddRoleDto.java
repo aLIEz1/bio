@@ -1,7 +1,5 @@
 package com.example.bio.dto;
 
-import com.example.bio.model.Role;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
