@@ -1,6 +1,7 @@
 package com.example.bio.controller;
 
 
+import com.example.bio.common.api.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/user-info")
-public class UserInfoController {
+public class UserInfoController extends BaseController {
 
 }
