@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +20,8 @@ import java.time.LocalDateTime;
  * @since 2020-10-26
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @TableName("user_active_token")
 @ApiModel(value = "UserActiveToken对象", description = "")
 public class UserActiveToken extends BaseEntity {
@@ -32,6 +34,7 @@ public class UserActiveToken extends BaseEntity {
     private String token;
 
     @ApiModelProperty(value = "关联用户表id")
+    @TableField(exist = false)
     private User user;
 
     public void setExpiryDate(LocalDateTime expiryDate) {

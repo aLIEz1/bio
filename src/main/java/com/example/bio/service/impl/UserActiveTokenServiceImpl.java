@@ -35,8 +35,4 @@ public class UserActiveTokenServiceImpl extends ServiceImpl<UserActiveTokenMappe
         return tokenMapper.findByToken(token);
     }
 
-    @Override
-    public void removeToken(String id) {
-        tokenMapper.removeToken(id);
-    }
 }

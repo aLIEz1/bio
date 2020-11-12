@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.Date;
 
@@ -19,7 +20,8 @@ import java.util.Date;
  * @since 2020-10-26
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @TableName("user_info")
 @ApiModel(value = "UserInfo对象", description = "")
 public class UserInfo extends BaseEntity {

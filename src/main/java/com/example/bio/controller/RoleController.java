@@ -1,12 +1,15 @@
 package com.example.bio.controller;
 
 
+import cn.hutool.core.util.StrUtil;
 import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.Result;
 import com.example.bio.dto.AddRoleDto;
 import com.example.bio.model.ERole;
 import com.example.bio.model.Role;
+import com.example.bio.model.User;
 import com.example.bio.service.RoleService;
+import com.example.bio.service.UserCacheService;
 import com.example.bio.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,6 +41,15 @@ public class RoleController extends BaseController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserCacheService userCacheService;
+
+    /**
+     * 添加后更新缓存
+     *
+     * @param addRoleDto
+     * @return
+     */
     @ApiOperation(value = "添加角色")
     @PostMapping("/addRole")
     public Result<?> addRolesForUser(@RequestBody @Valid AddRoleDto addRoleDto) {
@@ -58,8 +70,10 @@ public class RoleController extends BaseController {
                     roles.add(userRole);
             }
         });
-        if (userService.getById(addRoleDto.getUserId()) != null) {
+        User user = userService.getById(addRoleDto.getUserId());
+        if (user != null) {
             roleService.addRole(addRoleDto.getUserId(), roles);
+            userCacheService.deleteUserCache(user.getUsername());
             return ok("添加成功");
         } else {
             return fail("未找到用户");
@@ -74,9 +88,12 @@ public class RoleController extends BaseController {
     }
 
     @GetMapping("/getUserRolesById/{id}")
-    public Result<?> getUserRolesById(@PathVariable("id") String id){
-        //TODO 根据用户id查询用户角色
-        return null;
+    public Result<?> getUserRolesById(@PathVariable("id") String id) {
+        if (StrUtil.isNotBlank(id)) {
+            return ok(roleService.getRoleByUserId(id));
+        } else {
+            return fail("请输入正确的id");
+        }
     }
 
 }

@@ -26,9 +26,4 @@
           and a.token = #{token}
     </select>
 
-    <delete id="removeToken">
-        delete
-        from biography.user_active_token
-        where id = #{id}
-    </delete>
 </mapper>

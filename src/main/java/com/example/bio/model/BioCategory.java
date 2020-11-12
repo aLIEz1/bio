@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * <p>
@@ -17,7 +18,8 @@ import lombok.EqualsAndHashCode;
  * @since 2020-10-26
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @TableName("bio_category")
 @ApiModel(value = "BioCategory对象", description = "")
 public class BioCategory extends BaseEntity {

@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.Set;
 
@@ -19,7 +20,8 @@ import java.util.Set;
  * @since 2020-10-26
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @TableName("biography")
 @ApiModel(value = "Biography对象", description = "")
 public class Biography extends BaseEntity {

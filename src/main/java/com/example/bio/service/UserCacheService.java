@@ -10,9 +10,9 @@ public interface UserCacheService {
     /**
      * 删除用户缓存
      *
-     * @param id
+     * @param username
      */
-    void deleteUserCache(String id);
+    void deleteUserCache(String username);
 
     /**
      * 从缓存中获取用户

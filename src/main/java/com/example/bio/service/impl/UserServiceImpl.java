@@ -1,6 +1,8 @@
 package com.example.bio.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bio.common.component.MyMailSender;
 import com.example.bio.dto.SignupDto;
@@ -11,7 +13,10 @@ import com.example.bio.model.Role;
 import com.example.bio.model.User;
 import com.example.bio.model.UserActiveToken;
 import com.example.bio.security.service.UserDetailsImpl;
-import com.example.bio.service.*;
+import com.example.bio.service.RoleService;
+import com.example.bio.service.UserActiveTokenService;
+import com.example.bio.service.UserCacheService;
+import com.example.bio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,18 +39,14 @@ import java.util.UUID;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
-    private UserMapper userMapper;
-
     private RoleService roleService;
 
     private UserActiveTokenService tokenService;
 
-    private MailService mailService;
-
     private PasswordEncoder passwordEncoder;
 
-
     private MyMailSender myMailSender;
+
     private UserCacheService cacheService;
 
     @Autowired
@@ -64,18 +65,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Autowired
-    public void setMailService(MailService mailService) {
-        this.mailService = mailService;
-    }
-
-    @Autowired
     public void setTokenService(UserActiveTokenService tokenService) {
         this.tokenService = tokenService;
-    }
-
-    @Autowired
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
     }
 
     @Autowired
@@ -89,24 +80,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (user != null) {
             return user;
         } else {
-            User oneByUsername = userMapper.getOneByUsername(username);
-            cacheService.setUser(oneByUsername);
-            return oneByUsername;
+            QueryWrapper<User> wrapper = new QueryWrapper<>();
+            wrapper.eq("username", username)
+                    .eq("is_deleted", 0);
+            User one = getOne(wrapper);
+            one.setRoles(roleService.getRoleByUserId(one.getId()));
+            cacheService.setUser(one);
+            return one;
         }
-//        return userMapper.getOneByUsername(username);
-    }
-
-    @Override
-    public User getOneByEmail(String email) {
-        return userMapper.getOneByEmail(email);
     }
 
     @Override
     public boolean unlockUser(String token) {
         UserActiveToken activeToken = tokenService.findByToken(token);
         if (activeToken != null && !activeToken.isExpired()) {
-            userMapper.unlockUser(activeToken.getUser());
-            tokenService.removeToken(activeToken.getId());
+            UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+            updateWrapper
+                    .eq("id", activeToken.getUser().getId())
+                    .eq("is_deleted", 0)
+                    .set("is_locked", 0);
+            update(updateWrapper);
+            tokenService.removeById(activeToken.getId());
             return true;
         } else {
             return false;
@@ -158,7 +152,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         token.setToken(UUID.randomUUID().toString());
         token.setUser(user);
         tokenService.addToken(token);
-//        mailService.sendActiveMail(user, token.getToken());
         myMailSender.sendMail(token);
     }
 

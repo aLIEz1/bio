@@ -13,4 +13,21 @@
             values (#{userId}, #{item.id},default,default,default)
         </foreach>
     </insert>
+
+    <select id="getRoleByUserId" resultType="com.example.bio.model.Role">
+        select r.id,
+               r.role_name,
+               r.is_deleted,
+               r.gmt_create,
+               r.gmt_modified,
+               ur.is_deleted,
+               ur.user_id,
+               ur.role_id
+        from biography.role r,
+             biography.user_role ur
+        where r.is_deleted = 0
+          and ur.is_deleted = 0
+          and r.id = ur.role_id
+          and ur.user_id = #{userId}
+    </select>
 </mapper>

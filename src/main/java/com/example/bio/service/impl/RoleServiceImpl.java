@@ -37,4 +37,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     public void addRole(String userId, Set<Role> roles) {
         roleMapper.addRole(userId, roles);
     }
+
+    @Override
+    public Set<Role> getRoleByUserId(String userId) {
+        return roleMapper.getRoleByUserId(userId);
+    }
 }

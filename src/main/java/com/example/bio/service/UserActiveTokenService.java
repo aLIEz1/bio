@@ -28,12 +28,5 @@ public interface UserActiveTokenService extends IService<UserActiveToken> {
      */
     UserActiveToken findByToken(@Param("token") String token);
 
-    /**
-     * 删除token记录
-     *
-     * @param id
-     */
-    void removeToken(@Param("id") String id);
-
 
 }

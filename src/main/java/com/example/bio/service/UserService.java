@@ -24,14 +24,6 @@ public interface UserService extends IService<User> {
     User getOneByUsername(String username);
 
     /**
-     * 根据邮箱查询用户
-     *
-     * @param email
-     * @return
-     */
-    User getOneByEmail(String email);
-
-    /**
      * 解锁用户
      *
      * @param token

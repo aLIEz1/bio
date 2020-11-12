@@ -32,4 +32,12 @@ public interface RoleService extends IService<Role> {
      */
     void addRole(String userId, Set<Role> roles);
 
+    /**
+     * 根据userId获取用户角色
+     *
+     * @param userId
+     * @return
+     */
+    Set<Role> getRoleByUserId(String userId);
+
 }

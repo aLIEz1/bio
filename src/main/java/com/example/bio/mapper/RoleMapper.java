@@ -33,4 +33,12 @@ public interface RoleMapper extends BaseMapper<Role> {
      */
     void addRole(@Param("userId") String userId, @Param("roles") Set<Role> roles);
 
+    /**
+     * 根据userId获取用户角色
+     *
+     * @param userId
+     * @return
+     */
+    Set<Role> getRoleByUserId(@Param("userId") String userId);
+
 }

@@ -1,5 +1,6 @@
 package com.example.bio.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.bio.common.annotation.RateLimiter;
 import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.EResult;
@@ -8,6 +9,7 @@ import com.example.bio.common.lock.Callback;
 import com.example.bio.common.lock.RedisLockTemplateImpl;
 import com.example.bio.dto.LoginDto;
 import com.example.bio.dto.SignupDto;
+import com.example.bio.model.User;
 import com.example.bio.security.service.UserDetailsImpl;
 import com.example.bio.service.UserService;
 import com.example.bio.util.CreateVerifyCode;
@@ -80,10 +82,18 @@ public class AuthController extends BaseController {
     @ApiOperation(value = "注册后发送激活邮件")
     @PostMapping("/signup")
     public Result<?> registerUser(@RequestBody @Valid SignupDto signupDto) {
-        if (userService.getOneByUsername(signupDto.getUsername()) != null) {
+        QueryWrapper<User> usernameWrapper = new QueryWrapper<>();
+        usernameWrapper
+                .eq("username", signupDto.getUsername())
+                .eq("is_deleted", 0);
+        if (userService.getOne(usernameWrapper) != null) {
             return fail("用户名已存在");
         }
-        if (userService.getOneByEmail(signupDto.getEmail()) != null) {
+        QueryWrapper<User> emailWrapper = new QueryWrapper<>();
+        emailWrapper
+                .eq("email", signupDto.getEmail())
+                .eq("is_deleted", 0);
+        if (userService.getOne(emailWrapper) != null) {
             return fail("邮箱已存在");
         }
         userService.registerUser(signupDto);
