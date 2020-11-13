@@ -5,6 +5,11 @@ package com.example.bio.common.constant;
  * @date 2020/11/5
  */
 public interface CommonConstant {
+
+    /**
+     * 用户默认头像
+     */
+    String USER_DEFAULT_AVATAR = "https://ooo.0o0.ooo/2019/04/28/5cc5a71a6e3b6.png";
     /**
      * 限流前缀
      */

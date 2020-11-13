@@ -3,6 +3,7 @@ package com.example.bio.model;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.bio.common.api.BaseEntity;
+import com.example.bio.common.constant.CommonConstant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -28,7 +29,7 @@ public class UserInfo extends BaseEntity {
 
     @ApiModelProperty(value = "关联的用户id")
     @TableField("user_id")
-    private Long userId;
+    private String userId;
 
     @ApiModelProperty(value = "生日")
     @TableField("birthday")

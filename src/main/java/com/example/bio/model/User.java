@@ -3,6 +3,7 @@ package com.example.bio.model;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.bio.common.api.BaseEntity;
+import com.example.bio.common.constant.CommonConstant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -33,6 +34,10 @@ public class User extends BaseEntity {
     @ApiModelProperty(value = "密码")
     @TableField("password")
     private String password;
+
+    @ApiModelProperty(value = "用户头像")
+    @TableField(value = "avatar")
+    private String avatar = CommonConstant.USER_DEFAULT_AVATAR;
 
     @ApiModelProperty(value = "邮箱")
     @TableField("email")
