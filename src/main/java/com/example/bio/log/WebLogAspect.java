@@ -3,6 +3,7 @@ package com.example.bio.log;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.json.JSONUtil;
+import com.example.bio.util.RequestUtil;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import net.logstash.logback.marker.Markers;
@@ -73,7 +74,7 @@ public class WebLogAspect {
             long endTime = System.currentTimeMillis();
             String urlStr = request.getRequestURL().toString();
             webLog.setBasePath(StrUtil.removeSuffix(urlStr, URLUtil.url(urlStr).getPath()));
-            webLog.setIp(request.getRemoteUser());
+            webLog.setIp(RequestUtil.getRequestIp(request));
             webLog.setMethod(request.getMethod());
             webLog.setParameter(getParameter(method, joinPoint.getArgs()));
             webLog.setResult(result);
@@ -82,6 +83,7 @@ public class WebLogAspect {
             webLog.setUri(request.getRequestURI());
             webLog.setUrl(request.getRequestURL().toString());
             Map<String, Object> logMap = new HashMap<>();
+            logMap.put("ip", webLog.getIp());
             logMap.put("url", webLog.getUrl());
             logMap.put("method", webLog.getMethod());
             logMap.put("parameter", webLog.getParameter());

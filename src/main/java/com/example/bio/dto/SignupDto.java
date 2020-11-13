@@ -5,7 +5,6 @@ import com.example.bio.util.RegUtil;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Set;
 
 /**
  * @author super
@@ -20,8 +19,6 @@ public class SignupDto {
     @Size(max = 50)
     @Pattern(regexp = RegUtil.REG_EMAIL, message = "邮箱格式不正确")
     private String email;
-
-    private Set<String> role;
 
     @NotBlank
     @Size(min = 6, max = 40)
@@ -60,13 +57,5 @@ public class SignupDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<String> getRole() {
-        return this.role;
-    }
-
-    public void setRole(Set<String> role) {
-        this.role = role;
     }
 }

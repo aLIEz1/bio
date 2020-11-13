@@ -118,29 +118,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setEmail(signupDto.getEmail());
         user.setPassword(passwordEncoder.encode(signupDto.getPassword()));
 
-        Set<String> strRoles = signupDto.getRole();
         Set<Role> roles = new HashSet<>();
 
-        if (strRoles == null) {
-            Role userRole = roleService.getByRoleName(ERole.ROLE_USER);
-            roles.add(userRole);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin":
-                        Role adminRole = roleService.getByRoleName(ERole.ROLE_ADMIN);
-                        roles.add(adminRole);
-                        break;
-                    case "company":
-                        Role companyRole = roleService.getByRoleName(ERole.ROLE_COMPANY);
-                        roles.add(companyRole);
-                        break;
-                    default:
-                        Role userRole = roleService.getByRoleName(ERole.ROLE_USER);
-                        roles.add(userRole);
-                }
-            });
-        }
+        Role userRole = roleService.getByRoleName(ERole.ROLE_USER);
+        roles.add(userRole);
         user.setInvitationCode(UUID.randomUUID().toString());
         //注册时设置锁定，需要验证邮箱方可解除锁定
         user.setIsLocked(1);
