@@ -44,4 +44,20 @@ public interface UserCacheService {
      * @return
      */
     String getAuthCode(String email);
+
+    /**
+     * 向缓存中存放重置密码的token
+     *
+     * @param email
+     * @param token
+     */
+    void setResetPasswordToken(String email, String token);
+
+    /**
+     * 从缓存中取出重置密码的token
+     *
+     * @param email
+     * @return
+     */
+    String getResetPasswordToken(String email);
 }

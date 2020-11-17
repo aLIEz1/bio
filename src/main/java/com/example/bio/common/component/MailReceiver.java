@@ -1,5 +1,6 @@
 package com.example.bio.common.component;
 
+import com.example.bio.model.PasswordResetToken;
 import com.example.bio.model.UserActiveToken;
 import com.example.bio.service.MailService;
 import lombok.extern.slf4j.Slf4j;
@@ -14,15 +15,22 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-@RabbitListener(queues = "bio.mail")
 public class MailReceiver {
     @Autowired
     private MailService mailService;
 
+    @RabbitListener(queues = "bio.mail")
     @RabbitHandler
     public void handle(UserActiveToken activeToken) {
         log.info("receive mail userId:{}", activeToken.getUser().getId());
         mailService.sendActiveMail(activeToken.getUser(), activeToken.getToken());
+    }
+
+    @RabbitListener(queues = "bio.reset.mail")
+    @RabbitHandler
+    public void handleReset(PasswordResetToken resetToken) {
+        log.info("receive mail :{}", resetToken.getEmail());
+        mailService.sendResetPasswordEmail(resetToken.getEmail(), resetToken.getToken());
     }
 
 }

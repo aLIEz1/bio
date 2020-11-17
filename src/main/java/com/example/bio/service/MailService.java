@@ -24,4 +24,11 @@ public interface MailService {
      * @param user
      */
     void sendActiveMail(User user, String token);
+
+    /**
+     * 发送重置密码邮件
+     * @param email
+     * @param token
+     */
+    void sendResetPasswordEmail(String email,String token);
 }

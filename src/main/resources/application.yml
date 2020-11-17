@@ -118,16 +118,6 @@ bio:
     # 每个ip限制30个请求
     limit: 30
 
-redis:
-  database: mall
-  key:
-    user: 'bio:user'
-    authCode: 'bio:authCode'
-    category: 'bio:category'
-  expire:
-    common: 86400 # 24小时
-    authCode: 90 # 验证码超期时间
-
 min:
   io:
     endpoint: http://127.0.0.1:9000

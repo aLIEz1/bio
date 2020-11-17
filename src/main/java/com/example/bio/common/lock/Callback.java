@@ -7,11 +7,13 @@ import java.io.IOException;
  * @date 2020/11/5
  */
 public interface Callback {
+
     /**
      * 成功获取锁后执行方法
      *
      * @return
      * @throws InterruptedException
+     * @throws IOException
      */
     Object onGetLock() throws InterruptedException, IOException;
 

@@ -28,11 +28,33 @@ public class RabbitMqConfig {
         return new Queue(EQueue.QUEUE_MAIL.getName());
     }
 
+
     @Bean
-    Binding mailBinding(DirectExchange directExchange, Queue queue) {
+    DirectExchange mailResetDirect() {
+        return ExchangeBuilder
+                .directExchange(EQueue.QUEUE_MAIL.getExchange())
+                .durable(true)
+                .build();
+    }
+
+    @Bean
+    public Queue mailResetQueue() {
+        return new Queue(EQueue.QUEUE_RESET_MAIL.getName());
+    }
+
+    @Bean
+    Binding mailBinding(DirectExchange mailDirect, Queue mailQueue) {
         return BindingBuilder
-                .bind(queue)
-                .to(directExchange)
+                .bind(mailQueue)
+                .to(mailDirect)
                 .with(EQueue.QUEUE_MAIL.getRouteKey());
+    }
+
+    @Bean
+    Binding resetMailBinding(DirectExchange mailResetDirect, Queue mailResetQueue) {
+        return BindingBuilder
+                .bind(mailResetQueue)
+                .to(mailResetDirect)
+                .with(EQueue.QUEUE_RESET_MAIL.getRouteKey());
     }
 }

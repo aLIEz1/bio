@@ -56,4 +56,11 @@ public interface UserService extends IService<User> {
      */
     String generateAuthCode(String email);
 
+    /**
+     * 发送重置密码邮件
+     *
+     * @param email
+     */
+    void getResetPasswordToken(String email);
+
 }

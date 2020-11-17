@@ -8,7 +8,12 @@ public enum EQueue {
     /**
      * 消息通知队列
      */
-    QUEUE_MAIL("bio.mail.direct", "bio.mail", "bio.queue.mail");
+    QUEUE_MAIL("bio.mail.direct", "bio.mail", "bio.queue.mail"),
+    /**
+     * 重置密码队列
+     */
+    QUEUE_RESET_MAIL("bio.mail.direct", "bio.reset.mail", "bio.queue.reset.mail");
+
     /**
      * 交换名称
      */

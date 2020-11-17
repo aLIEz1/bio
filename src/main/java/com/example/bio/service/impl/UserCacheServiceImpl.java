@@ -1,12 +1,12 @@
 package com.example.bio.service.impl;
 
 import com.example.bio.common.annotation.CacheException;
+import com.example.bio.common.constant.CacheConstant;
 import com.example.bio.model.User;
 import com.example.bio.service.RedisService;
 import com.example.bio.service.UserCacheService;
 import com.example.bio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,55 +19,53 @@ public class UserCacheServiceImpl implements UserCacheService {
     private UserService userService;
     @Autowired
     private RedisService redisService;
-    @Value("${redis.database}")
-    private String REDIS_DATABASE;
-
-
-    @Value("${redis.expire.common}")
-    private Long REDIS_EXPIRE;
-
-    @Value("${redis.key.user}")
-    private String REDIS_KEY_USER;
-
-
-    @Value("${redis.expire.authCode}")
-    private Long REDIS_EXPIRE_AUTH_CODE;
-
-    @Value("${redis.key.authCode}")
-    private String REDIS_KEY_AUTH_CODE;
 
     @Override
     public void deleteUserCache(String username) {
         User user = userService.getOneByUsername(username);
         if (user != null) {
-            String key = REDIS_DATABASE + ":" + REDIS_KEY_USER + ":" + username;
+            String key = CacheConstant.REDIS_DATABASE + ":" + CacheConstant.REDIS_KEY_USER + ":" + username;
             redisService.del(key);
         }
     }
 
     @Override
     public User getUser(String username) {
-        String key = REDIS_DATABASE + ":" + REDIS_KEY_USER + ":" + username;
+        String key = CacheConstant.REDIS_DATABASE + ":" + CacheConstant.REDIS_KEY_USER + ":" + username;
         return (User) redisService.get(key);
     }
 
     @Override
     public void setUser(User user) {
-        String key = REDIS_DATABASE + ":" + REDIS_KEY_USER + ":" + user.getUsername();
-        redisService.set(key, user, REDIS_EXPIRE);
+        String key = CacheConstant.REDIS_DATABASE + ":" + CacheConstant.REDIS_KEY_USER + ":" + user.getUsername();
+        redisService.set(key, user, CacheConstant.REDIS_EXPIRE);
     }
 
     @CacheException
     @Override
     public void setAuthCode(String email, String authCode) {
-        String key = REDIS_DATABASE + ":" + REDIS_KEY_AUTH_CODE + ":" + email;
-        redisService.set(key, authCode, REDIS_EXPIRE_AUTH_CODE);
+        String key = CacheConstant.REDIS_DATABASE + ":" + CacheConstant.REDIS_KEY_AUTH_CODE + ":" + email;
+        redisService.set(key, authCode, CacheConstant.REDIS_EXPIRE_AUTH_CODE);
     }
 
     @CacheException
     @Override
     public String getAuthCode(String email) {
-        String key = REDIS_DATABASE + ":" + REDIS_KEY_AUTH_CODE + ":" + email;
+        String key = CacheConstant.REDIS_DATABASE + ":" + CacheConstant.REDIS_KEY_AUTH_CODE + ":" + email;
+        return (String) redisService.get(key);
+    }
+
+    @CacheException
+    @Override
+    public void setResetPasswordToken(String email, String token) {
+        String key = CacheConstant.REDIS_DATABASE + ":" + CacheConstant.REDIS_KEY_RESET_PASSWORD + ":" + email;
+        redisService.set(key, token, CacheConstant.REDIS_EXPIRE_RESET_PASSWORD);
+    }
+
+    @CacheException
+    @Override
+    public String getResetPasswordToken(String email) {
+        String key = CacheConstant.REDIS_DATABASE + ":" + CacheConstant.REDIS_KEY_RESET_PASSWORD + ":" + email;
         return (String) redisService.get(key);
     }
 }

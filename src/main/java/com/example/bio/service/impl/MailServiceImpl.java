@@ -65,4 +65,12 @@ public class MailServiceImpl implements MailService {
         String content = templateEngine.process("welcome", context);
         sendHtmlMessage(user.getEmail(), "welcome to autobiography", content);
     }
+
+    @Override
+    public void sendResetPasswordEmail(String email, String token) {
+        Context context = new Context();
+        context.setVariable("token", token);
+        String content = templateEngine.process("reset", context);
+        sendHtmlMessage(email, "Reset Your Password", content);
+    }
 }

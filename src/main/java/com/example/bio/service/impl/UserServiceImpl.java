@@ -1,5 +1,6 @@
 package com.example.bio.service.impl;
 
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
@@ -8,10 +9,7 @@ import com.example.bio.common.component.MyMailSender;
 import com.example.bio.dto.SignupDto;
 import com.example.bio.exception.Asserts;
 import com.example.bio.mapper.UserMapper;
-import com.example.bio.model.ERole;
-import com.example.bio.model.Role;
-import com.example.bio.model.User;
-import com.example.bio.model.UserActiveToken;
+import com.example.bio.model.*;
 import com.example.bio.security.service.UserDetailsImpl;
 import com.example.bio.service.RoleService;
 import com.example.bio.service.UserActiveTokenService;
@@ -156,6 +154,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         cacheService.setAuthCode(email, stringBuilder.toString());
         return stringBuilder.toString();
+    }
+
+    @Override
+    public void getResetPasswordToken(String email) {
+        String token = IdUtil.fastSimpleUUID().substring(0, 5);
+        cacheService.setResetPasswordToken(email, token);
+        myMailSender.sendResetPasswordEmail(new PasswordResetToken(email, token));
     }
 
     /**

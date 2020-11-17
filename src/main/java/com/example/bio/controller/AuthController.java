@@ -1,5 +1,6 @@
 package com.example.bio.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.bio.common.annotation.RateLimiter;
 import com.example.bio.common.api.BaseController;
@@ -8,6 +9,7 @@ import com.example.bio.common.api.Result;
 import com.example.bio.common.lock.Callback;
 import com.example.bio.common.lock.RedisLockTemplateImpl;
 import com.example.bio.dto.LoginDto;
+import com.example.bio.dto.ResetPasswordDto;
 import com.example.bio.dto.SignupDto;
 import com.example.bio.model.User;
 import com.example.bio.security.service.UserDetailsImpl;
@@ -135,6 +137,37 @@ public class AuthController extends BaseController {
             }
         });
 
+    }
+
+    @ApiOperation(value = "重置密码")
+    @PostMapping("/resetPassword")
+    public Result<?> resetPassword(@RequestBody @Valid ResetPasswordDto resetPasswordDto) {
+        //TODO:重置密码实现
+        return null;
+    }
+
+    @ApiOperation(value = "获取邮箱验证码，5分钟可以获取一次")
+    @RateLimiter(rate = 1, rateInterval = 300000)
+    @GetMapping("/getResetPasswordToken")
+    public void getResetPasswordToken(@RequestParam String email) {
+        redisLockTemplate.execute("getResetPasswordToken", 3, null, TimeUnit.SECONDS, new Callback() {
+            @Override
+            public Object onGetLock() throws InterruptedException, IOException {
+                if (StrUtil.isNotBlank(email)) {
+                    userService.getResetPasswordToken(email);
+                    ResponseUtil.out(getResponse(), ResponseUtil.resultMap(false, 200, "邮件已发送，请检查邮箱"));
+
+                } else {
+                    ResponseUtil.out(getResponse(), ResponseUtil.resultMap(false, 500, "邮箱格式不正确，请重新输入"));
+                }
+                return null;
+            }
+
+            @Override
+            public Object onTimeout() throws InterruptedException {
+                return null;
+            }
+        });
     }
 
 }
