@@ -1,6 +1,7 @@
 package com.example.bio.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.bio.dto.ResetPasswordDto;
 import com.example.bio.dto.SignupDto;
 import com.example.bio.model.User;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,5 +63,12 @@ public interface UserService extends IService<User> {
      * @param email
      */
     void getResetPasswordToken(String email);
+
+    /**
+     * 重置密码
+     *
+     * @param resetPasswordDto
+     */
+    void resetPassword(ResetPasswordDto resetPasswordDto);
 
 }

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bio.common.component.MyMailSender;
+import com.example.bio.dto.ResetPasswordDto;
 import com.example.bio.dto.SignupDto;
 import com.example.bio.exception.Asserts;
 import com.example.bio.mapper.UserMapper;
@@ -158,9 +159,46 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public void getResetPasswordToken(String email) {
-        String token = IdUtil.fastSimpleUUID().substring(0, 5);
-        cacheService.setResetPasswordToken(email, token);
-        myMailSender.sendResetPasswordEmail(new PasswordResetToken(email, token));
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("email", email)
+                .eq("is_locked", 0)
+                .eq("is_deleted", 0);
+        User user = getOne(wrapper);
+        if (user != null) {
+            String token = IdUtil.fastSimpleUUID().substring(0, 5);
+            cacheService.setResetPasswordToken(email, token);
+            myMailSender.sendResetPasswordEmail(new PasswordResetToken(email, token));
+        } else {
+            Asserts.fail("该用户不存在！");
+        }
+
+    }
+
+    @Override
+    public void resetPassword(ResetPasswordDto resetPasswordDto) {
+        String token = cacheService.getResetPasswordToken(resetPasswordDto.getEmailAddress());
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("email", resetPasswordDto.getEmailAddress())
+                .eq("is_locked", 0)
+                .eq("is_deleted", 0);
+        User user = getOne(wrapper);
+        if (user != null) {
+            if (resetPasswordDto.getTokenSecret().equals(token)) {
+                UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+                updateWrapper
+                        .eq("id", user.getId())
+                        .set("password", passwordEncoder.encode(resetPasswordDto.getPassword()));
+                update(updateWrapper);
+                cacheService.deleteUserCache(user.getUsername());
+                cacheService.deleteResetPasswordToken(user.getEmail());
+            } else {
+                Asserts.fail("token错误或者过期");
+            }
+        } else {
+            Asserts.fail("该用户不存在");
+        }
+
+
     }
 
     /**

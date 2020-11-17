@@ -68,4 +68,11 @@ public class UserCacheServiceImpl implements UserCacheService {
         String key = CacheConstant.REDIS_DATABASE + ":" + CacheConstant.REDIS_KEY_RESET_PASSWORD + ":" + email;
         return (String) redisService.get(key);
     }
+
+    @CacheException
+    @Override
+    public void deleteResetPasswordToken(String email) {
+        String key = CacheConstant.REDIS_DATABASE + ":" + CacheConstant.REDIS_KEY_RESET_PASSWORD + ":" + email;
+        redisService.del(key);
+    }
 }

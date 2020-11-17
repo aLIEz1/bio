@@ -1,12 +1,14 @@
 package com.example.bio.dto;
 
+import com.example.bio.common.constraint.FieldMatch;
+
 import javax.validation.constraints.NotBlank;
 
 /**
  * @author zhangfuqi
  * @date 2020/11/16
- * TODO:实现两次输入密码验证逻辑
  */
+@FieldMatch(first = "password", second = "confirmationPassword", message = "两次输入必须一致")
 public class ResetPasswordDto {
 
     @NotBlank

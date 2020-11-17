@@ -142,12 +142,12 @@ public class AuthController extends BaseController {
     @ApiOperation(value = "重置密码")
     @PostMapping("/resetPassword")
     public Result<?> resetPassword(@RequestBody @Valid ResetPasswordDto resetPasswordDto) {
-        //TODO:重置密码实现
-        return null;
+        userService.resetPassword(resetPasswordDto);
+        return ok("修改成功，请登录");
     }
 
-    @ApiOperation(value = "获取邮箱验证码，5分钟可以获取一次")
-    @RateLimiter(rate = 1, rateInterval = 300000)
+    @ApiOperation(value = "获取邮箱验证码，30秒可以获取一次")
+    @RateLimiter(rate = 1, rateInterval = 30000)
     @GetMapping("/getResetPasswordToken")
     public void getResetPasswordToken(@RequestParam String email) {
         redisLockTemplate.execute("getResetPasswordToken", 3, null, TimeUnit.SECONDS, new Callback() {

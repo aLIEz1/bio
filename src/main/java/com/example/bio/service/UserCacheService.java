@@ -60,4 +60,11 @@ public interface UserCacheService {
      * @return
      */
     String getResetPasswordToken(String email);
+
+    /**
+     * 从缓存中移除重置密码token
+     *
+     * @param email
+     */
+    void deleteResetPasswordToken(String email);
 }

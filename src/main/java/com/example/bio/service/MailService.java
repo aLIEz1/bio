@@ -27,8 +27,9 @@ public interface MailService {
 
     /**
      * 发送重置密码邮件
+     *
      * @param email
      * @param token
      */
-    void sendResetPasswordEmail(String email,String token);
+    void sendResetPasswordEmail(String email, String token);
 }
