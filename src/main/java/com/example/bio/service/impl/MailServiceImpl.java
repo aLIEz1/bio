@@ -61,7 +61,7 @@ public class MailServiceImpl implements MailService {
     @Override
     public void sendActiveMail(User user, String token) {
         Context context = new Context();
-        context.setVariable("requestURL", "http://localhost:8080/reset?token=" + token);
+        context.setVariable("requestURL", "http://192.168.31.24:8082/api/auth/active?token=" + token);
         String content = templateEngine.process("welcome", context);
         sendHtmlMessage(user.getEmail(), "welcome to autobiography", content);
     }

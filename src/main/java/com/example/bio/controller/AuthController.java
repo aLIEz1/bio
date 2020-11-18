@@ -4,7 +4,6 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.bio.common.annotation.RateLimiter;
 import com.example.bio.common.api.BaseController;
-import com.example.bio.common.api.EResult;
 import com.example.bio.common.api.Result;
 import com.example.bio.common.lock.Callback;
 import com.example.bio.common.lock.RedisLockTemplateImpl;
@@ -28,6 +27,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -104,12 +104,19 @@ public class AuthController extends BaseController {
 
     @ApiOperation(value = "激活")
     @GetMapping("/active")
-    public Result<?> activeUser(@RequestParam String token) {
-        if (userService.unlockUser(token)) {
-            return ok("账户激活成功");
+    public ModelAndView activeUser(@RequestParam String token) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (StrUtil.isNotBlank(token)) {
+            if (userService.unlockUser(token)) {
+                modelAndView.setViewName("activated");
+            } else {
+                modelAndView.setViewName("tokenError");
+            }
         } else {
-            return fail(EResult.FAILED);
+            modelAndView.setViewName("tokenNotFound");
         }
+        return modelAndView;
+
     }
 
     @ApiOperation(value = "获取验证码")
