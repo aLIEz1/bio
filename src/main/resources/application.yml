@@ -14,6 +14,12 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 spring:
+  #  ==================elasticsearch配置=========================
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+
   #  ============图像上传配置===============================
   servlet:
     multipart:

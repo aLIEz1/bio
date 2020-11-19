@@ -1,5 +1,6 @@
 package com.example.bio.service.impl;
 
+import com.example.bio.common.constant.CommonConstant;
 import com.example.bio.model.User;
 import com.example.bio.service.MailService;
 import lombok.extern.slf4j.Slf4j;
@@ -61,7 +62,7 @@ public class MailServiceImpl implements MailService {
     @Override
     public void sendActiveMail(User user, String token) {
         Context context = new Context();
-        context.setVariable("requestURL", "http://192.168.31.24:8082/api/auth/active?token=" + token);
+        context.setVariable("requestURL", CommonConstant.ACTIVE_MAIL_URL + token);
         String content = templateEngine.process("welcome", context);
         sendHtmlMessage(user.getEmail(), "welcome to autobiography", content);
     }

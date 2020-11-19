@@ -19,4 +19,9 @@ public interface CommonConstant {
      * 限流标识
      */
     String LIMIT_ALL = "BIO_LIMIT_ALL";
+
+    /**
+     * 邮箱激活码链接
+     */
+    String ACTIVE_MAIL_URL = "http://192.168.31.24:8082/api/auth/active?token=";
 }
