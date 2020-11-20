@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,6 +32,11 @@ public class EsBiographyServiceImpl implements EsBiographyService {
     private EsBiographyRepository esBiographyRepository;
 
     @Override
+    public Iterable<EsBiography> getAll() {
+        return esBiographyRepository.findAll();
+    }
+
+    @Override
     public int importAll() {
         QueryWrapper<Biography> wrapper = new QueryWrapper<>();
         wrapper
@@ -44,9 +48,10 @@ public class EsBiographyServiceImpl implements EsBiographyService {
         List<EsBiography> esBiographies = new ArrayList<>();
         for (Biography biography : biographyList) {
             EsBiography esBiography = new EsBiography();
-            BeanUtils.copyProperties(biography, esBiographies);
+            BeanUtils.copyProperties(biography, esBiography);
             esBiographies.add(esBiography);
         }
+        esBiographyRepository.saveAll(esBiographies);
         return esBiographies.size();
     }
 
@@ -69,8 +74,7 @@ public class EsBiographyServiceImpl implements EsBiographyService {
 
     @Override
     public Page<EsBiography> search(String keyword, Integer pageNum, Integer pageSize) {
-        Sort sort;
         Pageable pageable = PageRequest.of(pageNum, pageSize);
-        return esBiographyRepository.findByTitleOrContentOrPenNameOrCategoryName(keyword, keyword, keyword, keyword, pageable);
+        return esBiographyRepository.findByTitleLikeOrContentContainsOrPenNameContainsOrCategoryIdContains(keyword, keyword, keyword, keyword, pageable);
     }
 }

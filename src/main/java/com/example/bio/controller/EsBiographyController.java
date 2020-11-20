@@ -25,6 +25,12 @@ public class EsBiographyController extends BaseController {
     @Autowired
     private EsBiographyService esBiographyService;
 
+    @ApiOperation(value = "获取全部信息")
+    @GetMapping("/getAll")
+    public Result<?> getAll(){
+        return ok(esBiographyService.getAll());
+    }
+
     @ApiOperation(value = "导入到es")
     @PostMapping("/importAll")
     public Result<?> importAll() {

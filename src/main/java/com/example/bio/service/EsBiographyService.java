@@ -11,6 +11,13 @@ import java.util.List;
  */
 public interface EsBiographyService {
     /**
+     * 获取全部信息
+     *
+     * @return
+     */
+    Iterable<EsBiography> getAll();
+
+    /**
      * 从数据库中导入所有自传到ES
      *
      * @return int
