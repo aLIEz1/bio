@@ -11,6 +11,8 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
+ * 两次密码匹配验证注解
+ *
  * @author zhangfuqi
  * @date 2020/11/17
  */

@@ -14,6 +14,63 @@
 |         Druid          |  1.2.1  |   数据库连接池   |
 |         Lombok         | 1.18.12 | 简化对象封装工具 |
 |        RabbitMQ        |  3.8.9  |     消息队列     |
+|     Elasticsearch      | 7.10.0  |     搜索引擎     |
+
+## 文件目录
+
+```
+├─bio.log # 日志目录
+│  ├─debug
+│  └─error
+├─db # 数据库目录
+├─src
+│  ├─main
+│  │  ├─java
+│  │  │  └─com
+│  │  │      └─example
+│  │  │          └─bio
+│  │  │              ├─common # 公用类
+│  │  │              │  ├─annotation # 通用注解
+│  │  │              │  ├─api # 对结果集封装
+│  │  │              │  ├─aspect # Redis缓存切面
+│  │  │              │  ├─component # RabbitMQ sender receiver
+│  │  │              │  ├─config # 通用配置
+│  │  │              │  ├─constant # 常量类
+│  │  │              │  ├─constraint # 约束
+│  │  │              │  ├─domain # 公用属性
+│  │  │              │  ├─interceptor # 限流拦截器
+│  │  │              │  ├─limiter # Redis限流实现
+│  │  │              │  └─lock # Redission分布式锁实现限流
+│  │  │              ├─config # 配置类
+│  │  │              ├─controller # 前端控制器
+│  │  │              ├─dto # 数据传输对象
+│  │  │              ├─exception # 异常处理
+│  │  │              ├─log # 日志处理
+│  │  │              ├─mapper # mybatis-plus mapper接口
+│  │  │              │  └─elasticsearch # elasticsearch repo
+│  │  │              ├─model # 实体类
+│  │  │              │  └─elasticsearch # elasticsearch 实体类
+│  │  │              ├─security # 安全配置
+│  │  │              │  ├─component # 权限过滤等组件
+│  │  │              │  ├─config # 配置类
+│  │  │              │  └─service # 安全服务类
+│  │  │              ├─service # 服务
+│  │  │              │  └─impl # 服务实现
+│  │  │              ├─util # 工具类
+│  │  │              └─vo # 数据展示对象
+│  │  └─resources # 资源目录
+│  │      ├─mapper # mapper.xml目录
+│  │      ├─static # 静态资源
+│  │      └─templates # thymeleaf 网页模板
+│  └─test # 测试
+│      └─java
+│          └─com
+│              └─example
+│                  └─bio
+
+```
+
+
 
 ## 搭建步骤
 
@@ -44,6 +101,18 @@
 
 - 安装Erlang，下载地址：http://erlang.org/download/otp_win64_21.3.exe
 - 安装RabbitMQ，下载地址：https://dl.bintray.com/rabbitmq/all/rabbitmq-server/3.7.14/rabbitmq-server-3.7.14.exe
+
+### 安装Elasticsearch
+
+- 下载Elasticsearch，下载地址：https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.10.0-windows-x86_64.zip 
+
+- 下载完解压到指定目录
+
+- 打开bin目录，在当前地址栏输入cmd后，输入命令 `elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.10.0/elasticsearch-analysis-ik-7.10.0.zip`
+
+- 提示安装完成后输入命令``elasticsearch`
+
+  
 
 ### 启动项目
 
