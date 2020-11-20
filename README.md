@@ -110,7 +110,7 @@
 
 - 打开bin目录，在当前地址栏输入cmd后，输入命令 `elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.10.0/elasticsearch-analysis-ik-7.10.0.zip`
 
-- 提示安装完成后输入命令``elasticsearch`
+- 提示安装完成后输入命令`elasticsearch`
 
   
 
