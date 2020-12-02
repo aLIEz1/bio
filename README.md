@@ -1,4 +1,5 @@
 # 自传项目后端API接口
+[![Build Status](https://travis-ci.com/aLIEz1/bio.svg?token=QfoSAd13NxgfgoqsozMM&branch=master)](https://travis-ci.com/aLIEz1/bio)
 
 > 主要使用的技术
 
