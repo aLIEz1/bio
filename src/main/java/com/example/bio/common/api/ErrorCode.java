@@ -7,14 +7,14 @@ public interface ErrorCode {
     /**
      * 获取code
      *
-     * @return
+     * @return code
      */
     long getCode();
 
     /**
      * 获取msg
      *
-     * @return
+     * @return message
      */
     String getMessage();
 }

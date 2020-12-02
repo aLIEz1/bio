@@ -29,9 +29,14 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/bio")
 public class BiographyController extends BaseController {
-    @Autowired
+
     private BiographyService biographyService;
 
+    @Autowired
+
+    public void setBiographyService(BiographyService biographyService) {
+        this.biographyService = biographyService;
+    }
 
     @ApiOperation(value = "新增传记")
     @PostMapping("/add")
@@ -43,8 +48,8 @@ public class BiographyController extends BaseController {
     /**
      * 用户删除，软删除
      *
-     * @param id
-     * @return
+     * @param id 传记id
+     * @return 删除成功或者失败信息
      */
     @ApiOperation(value = "删除传记", notes = "软删除")
     @PostMapping("/remove")
@@ -66,8 +71,8 @@ public class BiographyController extends BaseController {
     /**
      * 通过SecurityContextHolder获取到当前登录用户的id查看私人传记
      *
-     * @param pageQueryParams
-     * @return
+     * @param pageQueryParams 分页查询信息
+     * @return 分页后的传记列表
      */
     @ApiOperation(value = "分页获取私人传记",
             notes = "conditions中可传入的数据有 privacyLevel 0 表示公开，1表示私密,status 0 表示未发布 1表示已发布,categoryName 类别名称 " +

@@ -35,20 +35,32 @@ import java.util.Set;
 @RequestMapping("/api/role")
 public class RoleController extends BaseController {
 
-    @Autowired
     private RoleService roleService;
 
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private UserCacheService userCacheService;
+
+    @Autowired
+    public void setRoleService(RoleService roleService) {
+        this.roleService = roleService;
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    @Autowired
+    public void setUserCacheService(UserCacheService userCacheService) {
+        this.userCacheService = userCacheService;
+    }
 
     /**
      * 添加后更新缓存
      *
-     * @param addRoleDto
-     * @return
+     * @param addRoleDto 添加role的是数据传输对象
+     * @return 成功或者失败信息
      */
     @ApiOperation(value = "添加角色")
     @PostMapping("/addRole")

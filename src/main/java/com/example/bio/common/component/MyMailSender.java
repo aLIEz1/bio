@@ -15,8 +15,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class MyMailSender {
-    @Autowired
     private AmqpTemplate amqpTemplate;
+
+    @Autowired
+    public void setAmqpTemplate(AmqpTemplate amqpTemplate) {
+        this.amqpTemplate = amqpTemplate;
+    }
 
     public void sendMail(UserActiveToken activeToken) {
         amqpTemplate.convertAndSend(EQueue.QUEUE_MAIL.getExchange(), EQueue.QUEUE_MAIL.getRouteKey(), activeToken, message -> message);

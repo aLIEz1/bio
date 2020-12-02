@@ -24,4 +24,6 @@ public interface CommonConstant {
      * 邮箱激活码链接
      */
     String ACTIVE_MAIL_URL = "http://192.168.31.24:8082/api/auth/active?token=";
+
+    Integer BUFFER_SIZE=1024;
 }

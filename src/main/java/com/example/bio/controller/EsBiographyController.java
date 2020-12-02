@@ -22,12 +22,16 @@ import java.util.List;
 @RequestMapping("/api/esBiography")
 public class EsBiographyController extends BaseController {
 
-    @Autowired
     private EsBiographyService esBiographyService;
+
+    @Autowired
+    public void setEsBiographyService(EsBiographyService esBiographyService) {
+        this.esBiographyService = esBiographyService;
+    }
 
     @ApiOperation(value = "获取全部信息")
     @GetMapping("/getAll")
-    public Result<?> getAll(){
+    public Result<?> getAll() {
         return ok(esBiographyService.getAll());
     }
 

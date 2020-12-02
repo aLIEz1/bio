@@ -44,22 +44,37 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/auth")
 public class AuthController extends BaseController {
 
-    @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private JwtUtils jwtUtils;
 
-    @Autowired
     private RedisLockTemplateImpl redisLockTemplate;
 
+    @Autowired
+    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    @Autowired
+    public void setJwtUtils(JwtUtils jwtUtils) {
+        this.jwtUtils = jwtUtils;
+    }
+
+    @Autowired
+    public void setRedisLockTemplate(RedisLockTemplateImpl redisLockTemplate) {
+        this.redisLockTemplate = redisLockTemplate;
+    }
 
     @ApiOperation(value = "登录后返回token")
-    @PostMapping("/signin")
-    public Result<?> login(@RequestBody @Valid LoginDto loginDto) {
+    @PostMapping("/signIn")
+    public Result<JwtVo> login(@RequestBody @Valid LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword())
         );
@@ -122,10 +137,10 @@ public class AuthController extends BaseController {
     @ApiOperation(value = "获取验证码")
     @GetMapping("/getAuthCode")
     @RateLimiter(rate = 1, rateInterval = 10000)
-    public void getAuthCode(@RequestParam String email) throws IOException {
+    public void getAuthCode(@RequestParam String email) {
         redisLockTemplate.execute("RegisterGetAuthCode", 3, null, TimeUnit.SECONDS, new Callback() {
             @Override
-            public Object onGetLock() throws InterruptedException, IOException {
+            public Object onGetLock() throws IOException {
                 if (RegUtil.email(email)) {
                     String authCode = userService.generateAuthCode(email);
                     CreateVerifyCode createVerifyCode = new CreateVerifyCode(116, 36, 4, 10, authCode);
@@ -139,7 +154,7 @@ public class AuthController extends BaseController {
             }
 
             @Override
-            public Object onTimeout() throws InterruptedException {
+            public Object onTimeout() {
                 return null;
             }
         });
@@ -159,7 +174,7 @@ public class AuthController extends BaseController {
     public void getResetPasswordToken(@RequestParam String email) {
         redisLockTemplate.execute("getResetPasswordToken", 3, null, TimeUnit.SECONDS, new Callback() {
             @Override
-            public Object onGetLock() throws InterruptedException, IOException {
+            public Object onGetLock() {
                 if (StrUtil.isNotBlank(email)) {
                     userService.getResetPasswordToken(email);
                     ResponseUtil.out(getResponse(), ResponseUtil.resultMap(false, 200, "邮件已发送，请检查邮箱"));
@@ -171,7 +186,7 @@ public class AuthController extends BaseController {
             }
 
             @Override
-            public Object onTimeout() throws InterruptedException {
+            public Object onTimeout() {
                 return null;
             }
         });

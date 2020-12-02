@@ -28,13 +28,26 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/api/public")
 public class TouristController extends BaseController {
-    @Autowired
     private BiographyService biographyService;
-    @Autowired
+
     private RedisLockTemplateImpl redisLockTemplate;
 
-    @Autowired
     private EsBiographyService esBiographyService;
+
+    @Autowired
+    public void setBiographyService(BiographyService biographyService) {
+        this.biographyService = biographyService;
+    }
+
+    @Autowired
+    public void setRedisLockTemplate(RedisLockTemplateImpl redisLockTemplate) {
+        this.redisLockTemplate = redisLockTemplate;
+    }
+
+    @Autowired
+    public void setEsBiographyService(EsBiographyService esBiographyService) {
+        this.esBiographyService = esBiographyService;
+    }
 
     @ApiOperation(value = "分页获取公开传记列表", notes = "conditions中可传入的数据有ownerId,表示其他用户的id, categoryName 类别名称" +
             "默认根据创建时间降序排序")
@@ -43,12 +56,12 @@ public class TouristController extends BaseController {
     public Result<?> getPublicBiographyList(@RequestBody PageQueryParams pageQueryParams) {
         Object execute = redisLockTemplate.execute("touristGetBiographiesPage", 3, null, TimeUnit.SECONDS, new Callback() {
             @Override
-            public Object onGetLock() throws InterruptedException {
+            public Object onGetLock() {
                 return biographyService.getPublicBiographyList(pageQueryParams);
             }
 
             @Override
-            public Object onTimeout() throws InterruptedException {
+            public Object onTimeout() {
                 return null;
             }
         });
@@ -65,12 +78,12 @@ public class TouristController extends BaseController {
         } else {
             Object execute = redisLockTemplate.execute(id, 3, null, TimeUnit.SECONDS, new Callback() {
                 @Override
-                public Object onGetLock() throws InterruptedException {
+                public Object onGetLock() {
                     return biographyService.getOthersBiographyById(id);
                 }
 
                 @Override
-                public Object onTimeout() throws InterruptedException {
+                public Object onTimeout() {
                     return null;
                 }
             });

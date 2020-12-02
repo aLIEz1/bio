@@ -5,6 +5,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.Result;
+import com.example.bio.common.constant.CommonConstant;
 import com.example.bio.model.User;
 import com.example.bio.service.FileService;
 import com.example.bio.service.UserService;
@@ -35,11 +36,19 @@ import java.security.NoSuchAlgorithmException;
 @RequestMapping("/api/user")
 public class UserController extends BaseController {
 
-    @Autowired
     private FileService fileService;
 
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public void setFileService(FileService fileService) {
+        this.fileService = fileService;
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @ApiOperation(value = "上传头像")
     @PostMapping("/uploadAvatar")
@@ -61,9 +70,9 @@ public class UserController extends BaseController {
             getResponse().setContentType("image/png");
             getResponse().setCharacterEncoding("utf-8");
             ServletOutputStream outputStream = getResponse().getOutputStream();
-            int len = 0;
-            byte[] buf = new byte[1024];
-            while ((len = inputStream.read(buf, 0, 1024)) != -1) {
+            int len;
+            byte[] buf = new byte[CommonConstant.BUFFER_SIZE];
+            while ((len = inputStream.read(buf, 0, CommonConstant.BUFFER_SIZE)) != -1) {
                 outputStream.write(buf, 0, len);
             }
             outputStream.close();

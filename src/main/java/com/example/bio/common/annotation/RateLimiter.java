@@ -15,28 +15,28 @@ public @interface RateLimiter {
     /**
      * 自定义限流切入点 name 默认类引用路径+方法名
      *
-     * @return
+     * @return name
      */
     String name() default "";
 
     /**
      * 限流速率（时间间隔内最大请求个数）
      *
-     * @return
+     * @return rate
      */
     long rate() default 5;
 
     /**
      * 速率间隔 单位毫秒
      *
-     * @return
+     * @return interval
      */
     long rateInterval() default 1000;
 
     /**
      * 是否启用IP限流（加上IP作为name标识）
      *
-     * @return
+     * @return ipLimit
      */
     boolean ipLimit() default false;
 }

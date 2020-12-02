@@ -29,8 +29,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/bio-tag")
 public class BioTagController extends BaseController {
 
-    @Autowired
     private BioTagService tagService;
+
+    @Autowired
+    public void setTagService(BioTagService tagService) {
+        this.tagService = tagService;
+    }
 
     @ApiOperation(value = "新增标签")
     @PostMapping("/add")

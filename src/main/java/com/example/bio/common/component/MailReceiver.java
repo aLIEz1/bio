@@ -16,8 +16,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class MailReceiver {
-    @Autowired
     private MailService mailService;
+
+    @Autowired
+    public void setMailService(MailService mailService) {
+        this.mailService = mailService;
+    }
 
     @RabbitListener(queues = "bio.mail")
     @RabbitHandler

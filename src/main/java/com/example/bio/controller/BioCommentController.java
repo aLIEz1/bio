@@ -28,8 +28,12 @@ import java.util.List;
 @RequestMapping("/api/bio-comment")
 public class BioCommentController extends BaseController {
 
-    @Autowired
     private BioCommentService commentService;
+
+    @Autowired
+    public void setCommentService(BioCommentService commentService) {
+        this.commentService = commentService;
+    }
 
     @ApiOperation(value = "分页查询评论列表", notes = "bioId为必填项")
     @PostMapping("/getCommentsPage")

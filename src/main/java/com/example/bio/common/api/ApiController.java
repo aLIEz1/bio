@@ -13,7 +13,7 @@ public class ApiController {
         return ResultUtil.buildSuccess(data);
     }
 
-    protected Result<String> ok(String msg) {
+    protected Result<Object> ok(String msg) {
         return ResultUtil.buildSuccess(msg);
     }
 

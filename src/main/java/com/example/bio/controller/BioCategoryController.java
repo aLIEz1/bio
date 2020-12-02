@@ -30,10 +30,12 @@ import javax.validation.Valid;
 @RequestMapping("/api/bio-category")
 public class BioCategoryController extends BaseController {
 
-
-    @Autowired
     private BioCategoryService categoryService;
 
+    @Autowired
+    public void setCategoryService(BioCategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @ApiOperation(value = "新增传记类别")
     @PostMapping("/add")
