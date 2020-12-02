@@ -8,6 +8,8 @@ notifications:
     on_success: always
     on_error: always
 
+script:
+  - mvn -B package --file pom.xml -Dmaven.test.skip=true
 before_script:
   - echo "MAVEN_OPTS='-Xms1024m -Xmx3072m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=384m'" > ~/.mavenrc
 
