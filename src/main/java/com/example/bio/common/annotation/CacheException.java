@@ -11,6 +11,7 @@ import java.lang.annotation.*;
  *  龍哥===
  *  66666666666
  *  牛逼
+ *  00000000
  * 自定义注解，有该注解的缓存方法会抛出异常
  *
  * @author zhangfuqi
