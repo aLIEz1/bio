@@ -3,17 +3,6 @@ package com.example.bio.common.annotation;
 import java.lang.annotation.*;
 
 /**
- *  羞羞大牛逼
- *  秀秀龙牛逼
- *  大哥才是真的牛逼
- *  龙哥才是真真正正的牛逼
- *  6666666
- *  龍哥===
- *  66666666666
- *  牛逼
- *  00000000
- *  123456
- *  我覺得大哥説的極是
  * 自定义注解，有该注解的缓存方法会抛出异常
  *
  * @author zhangfuqi
