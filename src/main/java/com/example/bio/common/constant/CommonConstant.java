@@ -25,5 +25,16 @@ public interface CommonConstant {
      */
     String ACTIVE_MAIL_URL = "http://192.168.31.24:8082/api/auth/active?token=";
 
-    Integer BUFFER_SIZE=1024;
+    /**
+     * 缓冲区大小
+     */
+    Integer BUFFER_SIZE = 1024;
+    /**
+     * es配置url
+     */
+    String ES_HOST_AND_PORT = "localhost:9200";
+    /**
+     * Redisson配置地址
+     */
+    String REDISSON_ADDRESS = "redis://localhost:6379";
 }

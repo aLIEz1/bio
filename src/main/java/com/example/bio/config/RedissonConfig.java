@@ -1,5 +1,6 @@
 package com.example.bio.config;
 
+import com.example.bio.common.constant.CommonConstant;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -17,7 +18,7 @@ public class RedissonConfig {
         Config config = new Config();
         config
                 .useSingleServer()
-                .setAddress("redis://localhost:6379")
+                .setAddress(CommonConstant.REDISSON_ADDRESS)
                 .setDatabase(0)
                 .setDnsMonitoringInterval(50000L);
         return Redisson.create(config);

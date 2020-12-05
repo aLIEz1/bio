@@ -1,5 +1,6 @@
 package com.example.bio.config;
 
+import com.example.bio.common.constant.CommonConstant;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +19,7 @@ public class RestClientConfig extends AbstractElasticsearchConfiguration {
     @Bean
     public RestHighLevelClient elasticsearchClient() {
         final ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-                .connectedTo("localhost:9200")
+                .connectedTo(CommonConstant.ES_HOST_AND_PORT)
                 .build();
 
         return RestClients.create(clientConfiguration).rest();
