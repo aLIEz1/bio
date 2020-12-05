@@ -13,6 +13,7 @@ import java.lang.annotation.*;
  *  牛逼
  *  00000000
  *  123456
+ *  我覺得大哥説的極是
  * 自定义注解，有该注解的缓存方法会抛出异常
  *
  * @author zhangfuqi
