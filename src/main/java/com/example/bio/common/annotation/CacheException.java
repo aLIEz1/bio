@@ -5,6 +5,7 @@ import java.lang.annotation.*;
 /**
  *  羞羞大牛逼
  *  秀秀龙牛逼
+ *  大哥才是真的牛逼
  * 自定义注解，有该注解的缓存方法会抛出异常
  *
  * @author zhangfuqi
