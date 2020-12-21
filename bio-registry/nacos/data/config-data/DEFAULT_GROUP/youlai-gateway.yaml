@@ -1,0 +1,51 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: 'http://localhost:9999/youlai-auth/oauth/public_key'
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password: 
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 启用服务发现
+          lower-case-service-id: true
+      routes:
+        - id: youlai-auth
+          uri: lb://youlai-auth
+          predicates:
+            - Path=/youlai-auth/**
+          filters:
+            - StripPrefix=1
+        - id: youlai-admin
+          uri: lb://youlai-admin
+          predicates:
+            - Path=/youlai-admin/**
+          #实现路径的过滤，比如讲localhost:8080/youlai-admin/user,过滤为localhost:8080/user
+          filters:
+            - StripPrefix=1
+        - id: mall-sms
+          uri: lb://mall-sms
+          predicates:
+            - Path=/youlai-mall-sms/**
+          #实现路径的过滤，比如讲localhost:8080/youlai-admin/user,过滤为localhost:8080/user
+          filters:
+            - StripPrefix=1
+        - id: mall-pms
+          uri: lb://mall-pms
+          predicates:
+            - Path=/youlai-mall-pms/**
+          #实现路径的过滤，比如讲localhost:8080/youlai-admin/user,过滤为localhost:8080/user
+          filters:
+            - StripPrefix=1
+
+# 配置白名单路径
+whitelist:
+  urls:
+      - "/youlai-auth/oauth/token"
+      - "/youlai-auth/oauth/public_key"
