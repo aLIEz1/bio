@@ -34,3 +34,6 @@ build/
 bio.log/
 log/
 src/main/resources/static/
+
+### NACOS ###
+/bio-registry/nacos/logs/

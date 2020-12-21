@@ -2,3 +2,19 @@
 
 2020-12-21 21:28:20,453 INFO listen for service meta change
 
+2020-12-21 23:18:24,919 INFO open empty service auto clean job, initialDelay : 50000 ms, period : 30000 ms
+
+2020-12-21 23:18:24,920 INFO listen for service meta change
+
+2020-12-21 23:24:45,800 INFO creating empty service public:DEFAULT_GROUP@@bio-admin
+
+2020-12-21 23:24:45,836 INFO [NEW-SERVICE] {"name":"DEFAULT_GROUP@@bio-admin","protectThreshold":0.0,"groupName":"DEFAULT_GROUP","metadata":{},"finalizeCount":0,"owners":[],"resetWeight":false,"enabled":true,"selector":{"type":"none"},"namespaceId":"public","ipDeleteTimeout":30000,"lastModifiedMillis":1608564285804,"checksum":"e64511d5d90e8ad2a8f8d41d95b966a9","clusterMap":{},"empty":true}
+
+2020-12-21 23:24:45,842 WARN cluster: DEFAULT not found, ip: {"instanceId":"192.168.123.207#8080#DEFAULT#DEFAULT_GROUP@@bio-admin","ip":"192.168.123.207","port":8080,"weight":1.0,"healthy":true,"enabled":true,"ephemeral":true,"clusterName":"DEFAULT","serviceName":"DEFAULT_GROUP@@bio-admin","metadata":{"preserved.register.source":"SPRING_CLOUD"},"lastBeat":1608564285785,"marked":false,"app":"unknown","instanceHeartBeatInterval":5000,"ipDeleteTimeout":30000,"instanceHeartBeatTimeOut":15000}, will create new cluster with default configuration.
+
+2020-12-21 23:24:45,853 INFO [NACOS-RAFT] datum is changed, key: com.alibaba.nacos.naming.iplist.ephemeral.public##DEFAULT_GROUP@@bio-admin, value: {"instanceList":[{"instanceId":"192.168.123.207#8080#DEFAULT#DEFAULT_GROUP@@bio-admin","ip":"192.168.123.207","port":8080,"weight":1.0,"healthy":true,"enabled":true,"ephemeral":true,"clusterName":"DEFAULT","serviceName":"DEFAULT_GROUP@@bio-admin","metadata":{"preserved.register.source":"SPRING_CLOUD"},"lastBeat":1608564285785,"marked":false,"app":"unknown","instanceHeartBeatInterval":5000,"ipDeleteTimeout":30000,"instanceHeartBeatTimeOut":15000}]}
+
+2020-12-21 23:26:05,958 INFO [AUTO-DELETE-IP] service: DEFAULT_GROUP@@bio-admin, ip: {"instanceId":"192.168.123.207#8080#DEFAULT#DEFAULT_GROUP@@bio-admin","ip":"192.168.123.207","port":8080,"weight":1.0,"healthy":false,"enabled":true,"ephemeral":true,"clusterName":"DEFAULT","serviceName":"DEFAULT_GROUP@@bio-admin","metadata":{"preserved.register.source":"SPRING_CLOUD"},"lastBeat":1608564330991,"marked":false,"app":"unknown","instanceHeartBeatInterval":5000,"ipDeleteTimeout":30000,"instanceHeartBeatTimeOut":15000}
+
+2020-12-21 23:26:06,149 INFO [NACOS-RAFT] datum is changed, key: com.alibaba.nacos.naming.iplist.ephemeral.public##DEFAULT_GROUP@@bio-admin, value: {"instanceList":[]}
+

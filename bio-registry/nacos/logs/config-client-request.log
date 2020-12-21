@@ -1,9 +1,8 @@
-2020-12-07 12:32:40,458|183|true|0:0:0:0:0:0:0:1|publish|cloud-bio-admin.yaml|DEFAULT_GROUP||f194157b19f63485898ceed7d160ae00|null
-2020-12-07 12:33:06,569|19|true|0:0:0:0:0:0:0:1|publish|cloud-bio-auth.yaml|DEFAULT_GROUP||dd6248e2627c463713e832382aa184e1|null
-2020-12-07 12:35:04,763|16|true|0:0:0:0:0:0:0:1|publish|cloud-bio-gateway.yaml|DEFAULT_GROUP||935570e75b1bc9bce3679d12a252bc28|null
-2020-12-07 12:35:36,903|0|null|127.0.0.1|get|cloud-bio-gateway|DEFAULT_GROUP|||unknown
-2020-12-07 12:35:37,827|924|null|127.0.0.1|get|cloud-bio-gateway.yaml|DEFAULT_GROUP||935570e75b1bc9bce3679d12a252bc28|unknown
-2020-12-07 12:37:13,883|0|null|127.0.0.1|get|cloud-bio-gateway|DEFAULT_GROUP|||unknown
-2020-12-07 12:37:13,893|2|null|127.0.0.1|get|cloud-bio-gateway.yaml|DEFAULT_GROUP||935570e75b1bc9bce3679d12a252bc28|unknown
-2020-12-07 12:38:45,458|0|null|127.0.0.1|get|cloud-bio-gateway|DEFAULT_GROUP|||unknown
-2020-12-07 12:38:45,474|0|null|127.0.0.1|get|cloud-bio-gateway.yaml|DEFAULT_GROUP||935570e75b1bc9bce3679d12a252bc28|unknown
+2020-12-21 23:21:41,844|838|true|0:0:0:0:0:0:0:1|publish|bio-admin|DEFAULT_GROUP||45c451285152720a98681c02a222119c|null
+2020-12-21 23:22:28,264|616|null|127.0.0.1|get|bio-admin|DEFAULT_GROUP||45c451285152720a98681c02a222119c|unknown
+2020-12-21 23:22:28,296|2|null|127.0.0.1|get|bio-admin.yaml|DEFAULT_GROUP|||unknown
+2020-12-21 23:24:40,571|1|null|127.0.0.1|get|bio-admin|DEFAULT_GROUP||45c451285152720a98681c02a222119c|unknown
+2020-12-21 23:24:40,586|0|null|127.0.0.1|get|bio-admin.yaml|DEFAULT_GROUP|||unknown
+2020-12-21 23:24:46,470|0|nohangup|127.0.0.1|polling|2|87|0
+2020-12-21 23:25:16,176|29502|timeout|127.0.0.1|polling|2|87
+2020-12-21 23:25:45,685|29504|timeout|127.0.0.1|polling|2|87

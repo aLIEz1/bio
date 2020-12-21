@@ -1,20 +1,10 @@
-2020-12-02 14:14:49,466 INFO DEFAULT_GROUP@@cloud-bio-auth {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [10.2.190.19:8080:unknown:DEFAULT_1.0_true_false_DEFAULT]
+2020-12-21 23:24:45,855 INFO DEFAULT_GROUP@@bio-admin {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.123.207:8080:unknown:DEFAULT_1.0_true_false_DEFAULT]
 
-2020-12-02 14:14:49,471 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@cloud-bio-auth, ips: 10.2.190.19:8080_true,
+2020-12-21 23:24:45,858 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@bio-admin, ips: 192.168.123.207:8080_true,
 
-2020-12-02 14:17:19,691 INFO {POS} {IP-DISABLED} valid: 10.2.190.19:8080@DEFAULT@DEFAULT_GROUP@@cloud-bio-auth, region: unknown, msg: client timeout after 15000, last beat: 1606889819796
+2020-12-21 23:25:50,917 INFO {POS} {IP-DISABLED} valid: 192.168.123.207:8080@DEFAULT@DEFAULT_GROUP@@bio-admin, region: unknown, msg: client timeout after 15000, last beat: 1608564330991
 
-2020-12-02 14:17:34,971 INFO DEFAULT_GROUP@@cloud-bio-auth {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [10.2.190.19:8080:unknown:DEFAULT_1.0_false_false_DEFAULT]
+2020-12-21 23:26:06,150 INFO DEFAULT_GROUP@@bio-admin {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.123.207:8080:unknown:DEFAULT_1.0_false_false_DEFAULT]
 
-2020-12-02 14:17:34,971 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@cloud-bio-auth, ips: 
-
-2020-12-02 14:29:17,022 INFO DEFAULT_GROUP@@cloud-bio-auth {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [10.2.190.19:8080:unknown:DEFAULT_1.0_true_false_DEFAULT]
-
-2020-12-02 14:29:17,022 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@cloud-bio-auth, ips: 10.2.190.19:8080_true,
-
-2020-12-02 14:42:03,367 INFO {POS} {IP-DISABLED} valid: 10.2.190.19:8080@DEFAULT@DEFAULT_GROUP@@cloud-bio-auth, region: unknown, msg: client timeout after 15000, last beat: 1606891304257
-
-2020-12-02 14:42:18,412 INFO DEFAULT_GROUP@@cloud-bio-auth {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [10.2.190.19:8080:unknown:DEFAULT_1.0_false_false_DEFAULT]
-
-2020-12-02 14:42:18,412 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@cloud-bio-auth, ips: 
+2020-12-21 23:26:06,150 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@bio-admin, ips: 
 
