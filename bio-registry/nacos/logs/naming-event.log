@@ -1,10 +1,10 @@
-2020-12-21 23:24:45,855 INFO DEFAULT_GROUP@@bio-admin {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.123.207:8080:unknown:DEFAULT_1.0_true_false_DEFAULT]
+2020-12-22 14:22:57,232 INFO DEFAULT_GROUP@@bio-admin {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [192.168.123.207:8080:unknown:DEFAULT_1.0_true_false_DEFAULT]
 
-2020-12-21 23:24:45,858 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@bio-admin, ips: 192.168.123.207:8080_true,
+2020-12-22 14:22:57,234 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@bio-admin, ips: 192.168.123.207:8080_true,
 
-2020-12-21 23:25:50,917 INFO {POS} {IP-DISABLED} valid: 192.168.123.207:8080@DEFAULT@DEFAULT_GROUP@@bio-admin, region: unknown, msg: client timeout after 15000, last beat: 1608564330991
+2020-12-22 14:51:55,306 INFO {POS} {IP-DISABLED} valid: 192.168.123.207:8080@DEFAULT@DEFAULT_GROUP@@bio-admin, region: unknown, msg: client timeout after 15000, last beat: 1608619896991
 
-2020-12-21 23:26:06,150 INFO DEFAULT_GROUP@@bio-admin {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.123.207:8080:unknown:DEFAULT_1.0_false_false_DEFAULT]
+2020-12-22 14:52:10,452 INFO DEFAULT_GROUP@@bio-admin {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [192.168.123.207:8080:unknown:DEFAULT_1.0_false_false_DEFAULT]
 
-2020-12-21 23:26:06,150 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@bio-admin, ips: 
+2020-12-22 14:52:10,452 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@bio-admin, ips: 
 

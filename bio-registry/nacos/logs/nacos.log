@@ -1,200 +1,108 @@
-2020-12-21 21:28:10,861 INFO Starting Nacos v1.3.2 on DESKTOP-V528S1D with PID 11532 (C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\target\nacos-server.jar started by super in C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\bin)
+2020-12-22 14:21:44,379 INFO Starting Nacos v1.3.2 on DESKTOP-V528S1D with PID 14156 (C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\target\nacos-server.jar started by super in C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\bin)
 
-2020-12-21 21:28:10,863 INFO The following profiles are active: standalone
+2020-12-22 14:21:44,383 INFO The following profiles are active: standalone
 
-2020-12-21 21:28:16,463 INFO Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$bb754507] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-22 14:21:50,764 INFO Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$d196fb3a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 
-2020-12-21 21:28:16,586 INFO Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-22 14:21:50,889 INFO Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 
-2020-12-21 21:28:16,595 INFO Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@662706a7' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-22 14:21:50,902 INFO Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4816278d' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 
-2020-12-21 21:28:16,596 INFO Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$e049e7b9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-22 14:21:50,910 INFO Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$f66b9dec] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 
-2020-12-21 21:28:16,603 INFO Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-22 14:21:50,921 INFO Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 
-2020-12-21 21:28:17,477 INFO Tomcat initialized with port(s): 8848 (http)
+2020-12-22 14:21:51,916 INFO Tomcat initialized with port(s): 8848 (http)
 
-2020-12-21 21:28:17,510 INFO Starting service [Tomcat]
+2020-12-22 14:21:51,959 INFO Starting service [Tomcat]
 
-2020-12-21 21:28:17,511 INFO Starting Servlet Engine: Apache Tomcat/9.0.13
+2020-12-22 14:21:51,959 INFO Starting Servlet Engine: Apache Tomcat/9.0.13
 
-2020-12-21 21:28:17,530 INFO The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_271\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\DevTools\python3\Scripts\;C:\DevTools\python3\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\DevTools\nodejs\;C:\DevTools\Yarn\bin\;C:\DevTools\Java\jdk-11.0.7\bin;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\DevTools\CLion 2020.1.2\bin\cmake\cygwin\bin;C:\Program Files\Redis\;C:\Go\bin;C:\DevTools\MinIo;C:\DevTools\elasticsearch-7.10.0\bin;C:\DevTools\kibana-7.10.0-windows-x86_64\bin;C:\Program Files\PowerShell\7\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Sublime Text 3;C:\Users\super\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\super\AppData\Local\Programs\Python\Python39\;C:\Users\super\scoop\shims;C:\Users\super\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Bandizip\;C:\Users\super\AppData\Roaming\npm;C:\Users\super\AppData\Local\Yarn\bin;C:\Users\super\go\bin;.]
+2020-12-22 14:21:51,980 INFO The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_271\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\DevTools\python3\Scripts\;C:\DevTools\python3\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\DevTools\nodejs\;C:\DevTools\Yarn\bin\;C:\DevTools\Java\jdk-11.0.7\bin;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\DevTools\CLion 2020.1.2\bin\cmake\cygwin\bin;C:\Program Files\Redis\;C:\Go\bin;C:\DevTools\MinIo;C:\DevTools\elasticsearch-7.10.0\bin;C:\DevTools\kibana-7.10.0-windows-x86_64\bin;C:\Program Files\PowerShell\7\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Sublime Text 3;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\super\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\super\AppData\Local\Programs\Python\Python39\;C:\Users\super\scoop\shims;C:\Users\super\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Bandizip\;C:\Users\super\AppData\Roaming\npm;C:\Users\super\AppData\Local\Yarn\bin;C:\Users\super\go\bin;.]
 
-2020-12-21 21:28:17,710 INFO Initializing Spring embedded WebApplicationContext
+2020-12-22 14:21:52,162 INFO Initializing Spring embedded WebApplicationContext
 
-2020-12-21 21:28:17,710 INFO Root WebApplicationContext: initialization completed in 6747 ms
+2020-12-22 14:21:52,162 INFO Root WebApplicationContext: initialization completed in 7675 ms
 
-2020-12-21 21:28:18,125 INFO HikariPool-1 - Starting...
+2020-12-22 14:21:52,630 INFO HikariPool-1 - Starting...
 
-2020-12-21 21:28:18,434 INFO HikariPool-1 - Start completed.
+2020-12-22 14:21:53,181 INFO HikariPool-1 - Start completed.
 
-2020-12-21 21:28:19,520 INFO Nacos-related cluster resource initialization
+2020-12-22 14:21:54,411 INFO Nacos-related cluster resource initialization
 
-2020-12-21 21:28:19,534 INFO The cluster resource is initialized
+2020-12-22 14:21:54,426 INFO The cluster resource is initialized
 
-2020-12-21 21:28:20,077 INFO Reflections took 97 ms to scan 1 urls, producing 6 keys and 24 values 
+2020-12-22 14:21:55,214 INFO Reflections took 93 ms to scan 1 urls, producing 6 keys and 24 values 
 
-2020-12-21 21:28:20,134 INFO Reflections took 4 ms to scan 1 urls, producing 2 keys and 12 values 
+2020-12-22 14:21:55,265 INFO Reflections took 6 ms to scan 1 urls, producing 2 keys and 12 values 
 
-2020-12-21 21:28:20,156 INFO Reflections took 17 ms to scan 1 urls, producing 3 keys and 15 values 
+2020-12-22 14:21:55,276 INFO Reflections took 5 ms to scan 1 urls, producing 3 keys and 15 values 
 
-2020-12-21 21:28:21,496 INFO Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-22 14:21:57,170 INFO Initializing ExecutorService 'applicationTaskExecutor'
 
-2020-12-21 21:28:21,722 INFO Adding welcome page: class path resource [static/index.html]
+2020-12-22 14:21:57,426 INFO Adding welcome page: class path resource [static/index.html]
 
-2020-12-21 21:28:22,607 INFO Creating filter chain: Ant [pattern='/**'], []
+2020-12-22 14:21:59,547 INFO Creating filter chain: Ant [pattern='/**'], []
 
-2020-12-21 21:28:22,678 INFO Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61d9efe0, org.springframework.security.web.context.SecurityContextPersistenceFilter@4e4efc1b, org.springframework.security.web.header.HeaderWriterFilter@379ab47b, org.springframework.security.web.csrf.CsrfFilter@4940809c, org.springframework.security.web.authentication.logout.LogoutFilter@7eb01b12, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7cc586a8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7a56812e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e70bd39, org.springframework.security.web.session.SessionManagementFilter@4a9e6faf, org.springframework.security.web.access.ExceptionTranslationFilter@4efcf8a]
+2020-12-22 14:21:59,677 INFO Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@11389053, org.springframework.security.web.context.SecurityContextPersistenceFilter@a50b09c, org.springframework.security.web.header.HeaderWriterFilter@e6516e, org.springframework.security.web.csrf.CsrfFilter@7eb01b12, org.springframework.security.web.authentication.logout.LogoutFilter@538613b3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6691490c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21d5c1a0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5db99216, org.springframework.security.web.session.SessionManagementFilter@43ed0ff3, org.springframework.security.web.access.ExceptionTranslationFilter@61d9efe0]
 
-2020-12-21 21:28:23,108 INFO Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-12-22 14:22:00,335 INFO Exposing 2 endpoint(s) beneath base path '/actuator'
 
-2020-12-21 21:28:23,140 INFO Initializing ExecutorService 'taskScheduler'
+2020-12-22 14:22:00,402 INFO Initializing ExecutorService 'taskScheduler'
 
-2020-12-21 21:28:23,317 INFO Tomcat started on port(s): 8848 (http) with context path '/nacos'
+2020-12-22 14:22:00,797 INFO Tomcat started on port(s): 8848 (http) with context path '/nacos'
 
-2020-12-21 21:28:23,325 INFO Started Nacos in 14.435 seconds (JVM running for 15.456)
+2020-12-22 14:22:00,819 INFO Started Nacos in 19.286 seconds (JVM running for 20.611)
 
-2020-12-21 21:28:23,325 INFO Nacos Log files: C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\logs
+2020-12-22 14:22:00,820 INFO Nacos Log files: C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\logs
 
-2020-12-21 21:28:23,329 INFO Nacos Log files: C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\conf
+2020-12-22 14:22:00,838 INFO Nacos Log files: C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\conf
 
-2020-12-21 21:28:23,334 INFO Nacos Log files: C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\data
+2020-12-22 14:22:00,846 INFO Nacos Log files: C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\data
 
-2020-12-21 21:28:23,336 INFO Nacos started successfully in stand alone mode. use external storage
+2020-12-22 14:22:00,851 INFO Nacos started successfully in stand alone mode. use external storage
 
-2020-12-21 21:28:40,816 INFO A cookie header was received [1605059703,1605501611] that contained an invalid cookie. That cookie will be ignored.Note: further occurrences of this error will be logged at DEBUG level.
+2020-12-22 14:22:49,558 INFO Initializing Spring DispatcherServlet 'dispatcherServlet'
 
-2020-12-21 21:28:40,830 INFO Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-12-22 14:22:49,558 INFO Initializing Servlet 'dispatcherServlet'
 
-2020-12-21 21:28:40,830 INFO Initializing Servlet 'dispatcherServlet'
+2020-12-22 14:22:49,574 INFO Completed initialization in 16 ms
 
-2020-12-21 21:28:40,844 INFO Completed initialization in 14 ms
+2020-12-22 14:31:55,581 INFO [capacityManagement] start correct usage
 
-2020-12-21 21:38:20,510 INFO [capacityManagement] start correct usage
+2020-12-22 14:31:55,790 INFO [capacityManagement] end correct usage, cost: 0s
 
-2020-12-21 21:38:20,642 INFO [capacityManagement] end correct usage, cost: 0s
+2020-12-22 14:31:56,272 WARN clearConfigHistory start
 
-2020-12-21 21:38:20,843 WARN clearConfigHistory start
+2020-12-22 14:41:55,798 INFO [capacityManagement] start correct usage
 
-2020-12-21 21:38:20,848 WARN clearConfigHistory, getBeforeStamp:2020-11-21 21:38:20.0, totalCount:10, pageSize:1000, removeTime:1
+2020-12-22 14:41:55,800 INFO [capacityManagement] end correct usage, cost: 0s
 
-2020-12-21 21:48:20,665 INFO [capacityManagement] start correct usage
+2020-12-22 14:41:56,329 WARN clearConfigHistory start
 
-2020-12-21 21:48:20,702 INFO [capacityManagement] end correct usage, cost: 0s
+2020-12-22 14:51:55,807 INFO [capacityManagement] start correct usage
 
-2020-12-21 21:48:20,877 WARN clearConfigHistory start
+2020-12-22 14:51:55,810 INFO [capacityManagement] end correct usage, cost: 0s
 
-2020-12-21 21:58:20,715 INFO [capacityManagement] start correct usage
+2020-12-22 14:51:56,337 WARN clearConfigHistory start
 
-2020-12-21 21:58:20,718 INFO [capacityManagement] end correct usage, cost: 0s
+2020-12-22 15:01:55,819 INFO [capacityManagement] start correct usage
 
-2020-12-21 21:58:20,886 WARN clearConfigHistory start
+2020-12-22 15:01:55,821 INFO [capacityManagement] end correct usage, cost: 0s
 
-2020-12-21 22:08:20,721 INFO [capacityManagement] start correct usage
+2020-12-22 15:01:56,350 WARN clearConfigHistory start
 
-2020-12-21 22:08:20,723 INFO [capacityManagement] end correct usage, cost: 0s
+2020-12-22 15:11:55,830 INFO [capacityManagement] start correct usage
 
-2020-12-21 22:08:20,895 WARN clearConfigHistory start
+2020-12-22 15:11:55,832 INFO [capacityManagement] end correct usage, cost: 0s
 
-2020-12-21 22:18:20,729 INFO [capacityManagement] start correct usage
+2020-12-22 15:11:56,363 WARN clearConfigHistory start
 
-2020-12-21 22:18:20,732 INFO [capacityManagement] end correct usage, cost: 0s
+2020-12-22 15:19:54,880 INFO A cookie header was received [1605059703,1605501611] that contained an invalid cookie. That cookie will be ignored.Note: further occurrences of this error will be logged at DEBUG level.
 
-2020-12-21 22:18:20,901 WARN clearConfigHistory start
+2020-12-22 15:21:55,844 INFO [capacityManagement] start correct usage
 
-2020-12-21 22:28:20,748 INFO [capacityManagement] start correct usage
+2020-12-22 15:21:55,846 INFO [capacityManagement] end correct usage, cost: 0s
 
-2020-12-21 22:28:20,749 INFO [capacityManagement] end correct usage, cost: 0s
-
-2020-12-21 22:28:20,904 WARN clearConfigHistory start
-
-2020-12-21 22:38:20,755 INFO [capacityManagement] start correct usage
-
-2020-12-21 22:38:20,758 INFO [capacityManagement] end correct usage, cost: 0s
-
-2020-12-21 22:38:20,911 WARN clearConfigHistory start
-
-2020-12-21 22:48:20,763 INFO [capacityManagement] start correct usage
-
-2020-12-21 22:48:20,766 INFO [capacityManagement] end correct usage, cost: 0s
-
-2020-12-21 22:48:20,920 WARN clearConfigHistory start
-
-2020-12-21 22:58:20,770 INFO [capacityManagement] start correct usage
-
-2020-12-21 22:58:20,772 INFO [capacityManagement] end correct usage, cost: 0s
-
-2020-12-21 22:58:20,927 WARN clearConfigHistory start
-
-2020-12-21 23:18:14,130 INFO Starting Nacos v1.3.2 on DESKTOP-V528S1D with PID 13588 (C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\target\nacos-server.jar started by super in C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\bin)
-
-2020-12-21 23:18:14,131 INFO The following profiles are active: standalone
-
-2020-12-21 23:18:20,499 INFO Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$16c444ad] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-
-2020-12-21 23:18:20,625 INFO Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-
-2020-12-21 23:18:20,636 INFO Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6d026701' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-
-2020-12-21 23:18:20,637 INFO Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$3b98e75f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-
-2020-12-21 23:18:20,643 INFO Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-
-2020-12-21 23:18:21,638 INFO Tomcat initialized with port(s): 8848 (http)
-
-2020-12-21 23:18:21,687 INFO Starting service [Tomcat]
-
-2020-12-21 23:18:21,687 INFO Starting Servlet Engine: Apache Tomcat/9.0.13
-
-2020-12-21 23:18:21,706 INFO The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_271\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\DevTools\python3\Scripts\;C:\DevTools\python3\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\DevTools\nodejs\;C:\DevTools\Yarn\bin\;C:\DevTools\Java\jdk-11.0.7\bin;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\DevTools\CLion 2020.1.2\bin\cmake\cygwin\bin;C:\Program Files\Redis\;C:\Go\bin;C:\DevTools\MinIo;C:\DevTools\elasticsearch-7.10.0\bin;C:\DevTools\kibana-7.10.0-windows-x86_64\bin;C:\Program Files\PowerShell\7\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Sublime Text 3;C:\Users\super\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\super\AppData\Local\Programs\Python\Python39\;C:\Users\super\scoop\shims;C:\Users\super\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Bandizip\;C:\Users\super\AppData\Roaming\npm;C:\Users\super\AppData\Local\Yarn\bin;C:\Users\super\go\bin;.]
-
-2020-12-21 23:18:21,890 INFO Initializing Spring embedded WebApplicationContext
-
-2020-12-21 23:18:21,890 INFO Root WebApplicationContext: initialization completed in 7630 ms
-
-2020-12-21 23:18:22,364 INFO HikariPool-1 - Starting...
-
-2020-12-21 23:18:22,830 INFO HikariPool-1 - Start completed.
-
-2020-12-21 23:18:24,084 INFO Nacos-related cluster resource initialization
-
-2020-12-21 23:18:24,099 INFO The cluster resource is initialized
-
-2020-12-21 23:18:24,651 INFO Reflections took 61 ms to scan 1 urls, producing 6 keys and 24 values 
-
-2020-12-21 23:18:24,698 INFO Reflections took 6 ms to scan 1 urls, producing 2 keys and 12 values 
-
-2020-12-21 23:18:24,709 INFO Reflections took 6 ms to scan 1 urls, producing 3 keys and 15 values 
-
-2020-12-21 23:18:26,266 INFO Initializing ExecutorService 'applicationTaskExecutor'
-
-2020-12-21 23:18:26,656 INFO Adding welcome page: class path resource [static/index.html]
-
-2020-12-21 23:18:28,593 INFO Creating filter chain: Ant [pattern='/**'], []
-
-2020-12-21 23:18:28,691 INFO Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@455351c4, org.springframework.security.web.context.SecurityContextPersistenceFilter@552518c3, org.springframework.security.web.header.HeaderWriterFilter@2f2bf0e2, org.springframework.security.web.csrf.CsrfFilter@1b11ef33, org.springframework.security.web.authentication.logout.LogoutFilter@5e77f0f4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@59aa20b3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1b28f282, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@29876704, org.springframework.security.web.session.SessionManagementFilter@21ec5d87, org.springframework.security.web.access.ExceptionTranslationFilter@6cea706c]
-
-2020-12-21 23:18:28,935 INFO Exposing 2 endpoint(s) beneath base path '/actuator'
-
-2020-12-21 23:18:28,988 INFO Initializing ExecutorService 'taskScheduler'
-
-2020-12-21 23:18:29,513 INFO Tomcat started on port(s): 8848 (http) with context path '/nacos'
-
-2020-12-21 23:18:29,529 INFO Started Nacos in 17.503 seconds (JVM running for 18.695)
-
-2020-12-21 23:18:29,532 INFO Nacos Log files: C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\logs
-
-2020-12-21 23:18:29,537 INFO Nacos Log files: C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\conf
-
-2020-12-21 23:18:29,538 INFO Nacos Log files: C:\Users\super\IdeaProjects\bio-cloud\bio-registry\nacos\data
-
-2020-12-21 23:18:29,539 INFO Nacos started successfully in stand alone mode. use external storage
-
-2020-12-21 23:18:41,910 INFO A cookie header was received [1605059703,1605501611] that contained an invalid cookie. That cookie will be ignored.Note: further occurrences of this error will be logged at DEBUG level.
-
-2020-12-21 23:18:41,927 INFO Initializing Spring DispatcherServlet 'dispatcherServlet'
-
-2020-12-21 23:18:41,928 INFO Initializing Servlet 'dispatcherServlet'
-
-2020-12-21 23:18:41,952 INFO Completed initialization in 20 ms
+2020-12-22 15:21:56,484 WARN clearConfigHistory start
 

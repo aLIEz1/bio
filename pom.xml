@@ -6,6 +6,8 @@
     <modules>
         <module>bio-common</module>
         <module>bio-admin</module>
+        <module>bio-gateway</module>
+        <module>bio-auth</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
