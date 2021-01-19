@@ -1,4 +1,3 @@
-
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -10,7 +9,7 @@ spring:
     database: 0
     host: localhost
     port: 6379
-    password: 
+    password:
 mybatis-plus:
   configuration:
     # 驼峰下划线转换

@@ -24,7 +24,7 @@ public abstract class BaseEntity implements Serializable {
     private static final long serialVersionUID = 6168451730219825953L;
     @ApiModelProperty(value = "唯一标识")
     @TableId(value = "id")
-    private Long id= SnowFlakeUtil.nextId();
+    private Long id = SnowFlakeUtil.nextId();
 
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

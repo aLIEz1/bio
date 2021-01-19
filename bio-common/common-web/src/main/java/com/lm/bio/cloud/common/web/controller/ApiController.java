@@ -79,7 +79,7 @@ public class ApiController {
      * 未登录返回结果
      *
      * @param data 数据
-     * @param <T> 数据类型
+     * @param <T>  数据类型
      * @return Result
      */
     protected <T> CommonResult<T> unauthorized(T data) {
@@ -91,7 +91,7 @@ public class ApiController {
      * 未授权返回结果
      *
      * @param data 数据
-     * @param <T> 数据类型
+     * @param <T>  数据类型
      * @return Result
      */
     protected <T> CommonResult<T> forbidden(T data) {

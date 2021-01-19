@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/youlai?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true
-    username: root
-    password: 74521
+    url: jdbc:mysql://rm-bp1pm1o1xpa12m525qo.mysql.rds.aliyuncs.com:3306/biography?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true
+    username: mytestdb
+    password: Qwer123456
   redis:
     database: 0
     host: localhost

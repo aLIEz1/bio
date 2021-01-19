@@ -23,8 +23,8 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.time.Duration;
 
 /**
- *
  * Redis 基础配置类
+ *
  * @author zhangfuqi
  * @date 2020/12/21
  */

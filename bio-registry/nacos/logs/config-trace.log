@@ -1,2 +1,10 @@
-2020-12-22 14:22:49,937|192.168.123.207|bio-admin|DEFAULT_GROUP|null|unknown|1608564101000|pull|ok|54068936|127.0.0.1
-2020-12-22 14:22:49,980|192.168.123.207|bio-admin.yaml|DEFAULT_GROUP|null|unknown|-1|pull|not-found|-1|127.0.0.1
+2020-12-30 17:46:35,750|192.168.123.207|bio-auth|DEFAULT_GROUP|null|unknown|-1|pull|not-found|-1|127.0.0.1
+2020-12-30 17:46:36,541|192.168.123.207|bio-auth.yaml|DEFAULT_GROUP|null|unknown|-1|pull|not-found|-1|127.0.0.1
+2020-12-30 17:47:56,246|192.168.123.207|bio-auth|DEFAULT_GROUP|null|unknown|-1|pull|not-found|-1|127.0.0.1
+2020-12-30 17:47:56,255|192.168.123.207|bio-auth.yaml|DEFAULT_GROUP|null|unknown|-1|pull|not-found|-1|127.0.0.1
+2020-12-30 17:58:43,308|192.168.123.207|bio-auth|DEFAULT_GROUP|null|unknown|-1|pull|not-found|-1|127.0.0.1
+2020-12-30 17:58:43,327|192.168.123.207|bio-auth.yaml|DEFAULT_GROUP|null|unknown|-1|pull|not-found|-1|127.0.0.1
+2020-12-30 18:22:15,748|192.168.123.207|bio-auth|DEFAULT_GROUP|null|unknown|-1|pull|not-found|-1|127.0.0.1
+2020-12-30 18:22:15,849|192.168.123.207|bio-auth.yaml|DEFAULT_GROUP|null|unknown|-1|pull|not-found|-1|127.0.0.1
+2020-12-30 18:37:39,779|192.168.123.207|bio-auth|DEFAULT_GROUP|null|unknown|-1|pull|not-found|-1|127.0.0.1
+2020-12-30 18:37:40,185|192.168.123.207|bio-auth.yaml|DEFAULT_GROUP|null|unknown|-1|pull|not-found|-1|127.0.0.1

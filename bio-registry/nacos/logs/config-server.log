@@ -1,34 +1,34 @@
-2020-12-22 14:21:43,793 INFO notifyConnectTimeout:200
+2020-12-30 17:45:04,587 INFO notifyConnectTimeout:200
 
-2020-12-22 14:21:44,371 INFO notifySocketTimeout:8000
+2020-12-30 17:45:04,596 INFO notifySocketTimeout:8000
 
-2020-12-22 14:21:44,371 INFO isHealthCheck:true
+2020-12-30 17:45:04,596 INFO isHealthCheck:true
 
-2020-12-22 14:21:44,371 INFO maxHealthCheckFailCount:12
+2020-12-30 17:45:04,596 INFO maxHealthCheckFailCount:12
 
-2020-12-22 14:21:44,371 INFO maxContent:10485760
+2020-12-30 17:45:04,596 INFO maxContent:10485760
 
-2020-12-22 14:21:44,372 INFO spring.datasource.platform:mysql
+2020-12-30 17:45:04,597 INFO spring.datasource.platform:mysql
 
-2020-12-22 14:21:55,669 WARN DumpService start
+2020-12-30 17:45:28,925 WARN DumpService start
 
-2020-12-22 14:21:55,670 INFO start clear all config-info.
+2020-12-30 17:45:28,926 INFO start clear all config-info.
 
-2020-12-22 14:21:55,687 INFO clear all config-info success.
+2020-12-30 17:45:28,946 INFO clear all config-info success.
 
-2020-12-22 14:21:55,687 WARN clear all config-info-tenant failed.
+2020-12-30 17:45:28,946 WARN clear all config-info-tenant failed.
 
-2020-12-22 14:21:55,737 INFO [all-dump] 66 / 66
+2020-12-30 17:45:29,178 INFO [all-dump] 66 / 66
 
-2020-12-22 14:21:55,737 INFO start clear all config-info-beta.
+2020-12-30 17:45:29,179 INFO start clear all config-info-beta.
 
-2020-12-22 14:21:55,738 WARN clear all config-info-beta failed.
+2020-12-30 17:45:29,179 WARN clear all config-info-beta failed.
 
-2020-12-22 14:21:55,738 WARN clear all config-info-beta-tenant failed.
+2020-12-30 17:45:29,179 WARN clear all config-info-beta-tenant failed.
 
-2020-12-22 14:21:55,739 INFO start clear all config-info-tag.
+2020-12-30 17:45:29,237 INFO start clear all config-info-tag.
 
-2020-12-22 14:21:55,740 WARN clear all config-info-tag failed.
+2020-12-30 17:45:29,237 WARN clear all config-info-tag failed.
 
-2020-12-22 14:21:55,740 WARN clear all config-info-tag-tenant failed.
+2020-12-30 17:45:29,237 WARN clear all config-info-tag-tenant failed.
 

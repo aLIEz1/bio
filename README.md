@@ -1,4 +1,5 @@
 # 自传项目后端API接口
+
 [![Build Status](https://travis-ci.com/aLIEz1/bio.svg?token=QfoSAd13NxgfgoqsozMM&branch=master)](https://travis-ci.com/aLIEz1/bio)
 
 > 主要使用的技术
@@ -71,8 +72,6 @@
 
 ```
 
-
-
 ## 搭建步骤
 
 ### IDEA
@@ -105,15 +104,14 @@
 
 ### 安装Elasticsearch
 
-- 下载Elasticsearch，下载地址：https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.10.0-windows-x86_64.zip 
+- 下载Elasticsearch，下载地址：https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.10.0-windows-x86_64.zip
 
 - 下载完解压到指定目录
 
-- 打开bin目录，在当前地址栏输入cmd后，输入命令 `elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.10.0/elasticsearch-analysis-ik-7.10.0.zip`
+-
+打开bin目录，在当前地址栏输入cmd后，输入命令 `elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.10.0/elasticsearch-analysis-ik-7.10.0.zip`
 
 - 提示安装完成后输入命令`elasticsearch`
-
-  
 
 ### 启动项目
 

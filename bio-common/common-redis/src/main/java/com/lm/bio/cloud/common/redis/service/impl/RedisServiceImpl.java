@@ -2,7 +2,6 @@ package com.lm.bio.cloud.common.redis.service.impl;
 
 import com.lm.bio.cloud.common.redis.service.RedisService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 

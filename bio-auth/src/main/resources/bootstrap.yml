@@ -1,0 +1,12 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: bio-auth
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://192.168.123.47:8848
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yaml
