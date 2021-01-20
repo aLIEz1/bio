@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.lm.bio.cloud.common.redis.service.RedisService;
 import com.lm.bio.cloud.gateway.security.domain.WhiteListProperties;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -23,6 +24,7 @@ import reactor.core.publisher.Mono;
  */
 @Component
 @AllArgsConstructor
+@EnableConfigurationProperties(WhiteListProperties.class)
 public class JwtCheckFilter implements GlobalFilter, Ordered {
 
     private final RedisService redisService;
