@@ -41,7 +41,7 @@ public class JwtCheckFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 //        1.该接口是否需要token访问,不需要token直接放行
-        if (!isRequireToken(exchange)) {
+        if (isRequireToken(exchange)) {
             return chain.filter(exchange);
         }
 //        2.取出用户的token
@@ -99,7 +99,7 @@ public class JwtCheckFilter implements GlobalFilter, Ordered {
      */
     private boolean isRequireToken(ServerWebExchange exchange) {
         String path = exchange.getRequest().getURI().getPath();
-        return !whiteListProperties.getNoRequireTokenUris().contains(path);
+        return whiteListProperties.getNoRequireTokenUris().contains(path);
     }
 
     /**
