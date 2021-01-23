@@ -8,8 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.Cache;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
@@ -28,8 +30,10 @@ import java.time.Duration;
  * @author zhangfuqi
  * @date 2020/12/21
  */
-public abstract class BaseRedisConfig extends CachingConfigurerSupport {
-    private static final Logger LOG = LoggerFactory.getLogger(BaseRedisConfig.class);
+@Configuration
+@EnableCaching
+public class RedisConfig extends CachingConfigurerSupport {
+    private static final Logger LOG = LoggerFactory.getLogger(RedisConfig.class);
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory, RedisSerializer<Object> redisSerializer) {

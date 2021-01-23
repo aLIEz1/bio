@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.lm.bio.cloud.common.web.config.WebMvcConfig,\
+  com.lm.bio.cloud.common.web.exception.GlobalExceptionHandler
