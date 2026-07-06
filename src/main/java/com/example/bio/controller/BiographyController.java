@@ -135,4 +135,13 @@ public class BiographyController extends BaseController {
         return ok(liked ? "点赞成功" : "已取消点赞");
     }
 
+    @ApiOperation(value = "检查当前用户是否已点赞某传记", notes = "返回 data=true 表示已点赞")
+    @GetMapping("/hasLiked/{id}")
+    public Result<?> hasLiked(@PathVariable("id") String id) {
+        if (StrUtil.isBlank(id)) {
+            return fail("请输入正确的id");
+        }
+        return ok(biographyService.hasLiked(id));
+    }
+
 }

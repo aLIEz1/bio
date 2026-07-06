@@ -239,4 +239,14 @@ public class BiographyServiceImpl extends ServiceImpl<BiographyMapper, Biography
             record.setTags(tagsMap.getOrDefault(record.getId(), Collections.emptySet()));
         }
     }
+
+    @Override
+    public boolean hasLiked(String bioId) {
+        User currentUser = userService.getCurrentUser();
+        if (currentUser == null) {
+            return false;
+        }
+        String likeKey = LIKE_KEY_PREFIX + bioId;
+        return Boolean.TRUE.equals(redisService.sIsMember(likeKey, currentUser.getId()));
+    }
 }

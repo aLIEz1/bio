@@ -1,14 +1,12 @@
 package com.example.bio.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.bio.common.domain.PageQueryParams;
 import com.example.bio.dto.BiographyDto;
 import com.example.bio.dto.UpdateBiographyDto;
 import com.example.bio.model.Biography;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import java.util.List;
 
 /**
  * <p>
@@ -82,5 +80,13 @@ public interface BiographyService extends IService<Biography> {
      * @return true-点赞成功，false-已取消点赞
      */
     boolean toggleLike(String bioId);
+
+    /**
+     * 检查当前用户是否已点赞某传记
+     *
+     * @param bioId 传记id
+     * @return true-已点赞，false-未点赞
+     */
+    boolean hasLiked(String bioId);
 
 }

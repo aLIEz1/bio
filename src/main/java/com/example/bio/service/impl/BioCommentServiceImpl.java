@@ -87,15 +87,23 @@ public class BioCommentServiceImpl extends ServiceImpl<BioCommentMapper, BioComm
         if (comment == null) {
             Asserts.fail("评论不存在");
         }
-        if (comment.getUserId().equals(currentUser.getId())) {
-            commentMapper.deleteCommentById(id, currentUser.getId());
-        }
 
+        boolean isCommentOwner = comment.getUserId().equals(currentUser.getId());
         Biography biography = biographyService.getById(comment.getBioId());
-        if (biography != null && biography.getOwnerId().equals(currentUser.getId())) {
-            commentMapper.bioOwnerDeleteCommentById(id, currentUser.getId());
-        }
+        boolean isBioOwner = biography != null && biography.getOwnerId().equals(currentUser.getId());
+        boolean isAdmin = currentUser.getRoles() != null && currentUser.getRoles().stream()
+                .anyMatch(role -> "ROLE_ADMIN".equals(role.getRoleName()));
 
+        if (isCommentOwner) {
+            commentMapper.deleteCommentById(id, currentUser.getId());
+        } else if (isBioOwner) {
+            commentMapper.bioOwnerDeleteCommentById(id, currentUser.getId());
+        } else if (isAdmin) {
+            // 管理员可以删除任何评论
+            removeById(id);
+        } else {
+            Asserts.fail("没有权限删除该评论");
+        }
     }
 
     @Override

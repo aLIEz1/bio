@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.bio.common.annotation.RateLimiter;
 import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.Result;
+import com.example.bio.common.aspect.IdempotentAspect;
 import com.example.bio.common.lock.Callback;
 import com.example.bio.common.lock.RedisLockTemplateImpl;
 import com.example.bio.dto.LoginDto;
@@ -12,6 +13,7 @@ import com.example.bio.dto.ResetPasswordDto;
 import com.example.bio.dto.SignupDto;
 import com.example.bio.model.User;
 import com.example.bio.security.service.UserDetailsImpl;
+import com.example.bio.service.RedisService;
 import com.example.bio.service.UserService;
 import com.example.bio.util.CreateVerifyCode;
 import com.example.bio.util.JwtUtils;
@@ -27,7 +29,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -53,6 +60,8 @@ public class AuthController extends BaseController {
 
     private RedisLockTemplateImpl redisLockTemplate;
 
+    private RedisService redisService;
+
     @Autowired
     public void setAuthenticationManager(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
@@ -71,6 +80,11 @@ public class AuthController extends BaseController {
     @Autowired
     public void setRedisLockTemplate(RedisLockTemplateImpl redisLockTemplate) {
         this.redisLockTemplate = redisLockTemplate;
+    }
+
+    @Autowired
+    public void setRedisService(RedisService redisService) {
+        this.redisService = redisService;
     }
 
     @ApiOperation(value = "登录后返回token")
@@ -187,6 +201,13 @@ public class AuthController extends BaseController {
                 currentUser.getRoles()
         );
         return ok(userVo);
+    }
+
+    @ApiOperation(value = "获取幂等性 token", notes = "用于防重复提交，token 有效期 60 秒")
+    @GetMapping("/getIdempotentToken")
+    public Result<String> getIdempotentToken() {
+        String token = IdempotentAspect.generateToken(redisService, 60);
+        return new Result<>(200L, "获取成功", token);
     }
 
     @ApiOperation(value = "获取邮箱验证码，30秒可以获取一次")
