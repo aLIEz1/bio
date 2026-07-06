@@ -40,4 +40,26 @@ public interface BioCommentService extends IService<BioComment> {
      */
     void deleteCommentById(String id);
 
+    /**
+     * 获取待审核评论列表（管理员）
+     *
+     * @param pageQueryParams 分页参数
+     * @return 待审核评论列表
+     */
+    List<BioComment> getPendingComments(PageQueryParams pageQueryParams);
+
+    /**
+     * 审核通过评论（管理员）
+     *
+     * @param id 评论id
+     */
+    void approveComment(String id);
+
+    /**
+     * 批量审核通过评论（管理员）
+     *
+     * @param ids 评论id列表（逗号分隔）
+     */
+    void approveCommentBatch(List<String> ids);
+
 }

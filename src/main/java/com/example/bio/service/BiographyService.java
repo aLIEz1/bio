@@ -7,6 +7,7 @@ import com.example.bio.dto.UpdateBiographyDto;
 import com.example.bio.model.Biography;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import java.util.List;
 
 /**
@@ -40,7 +41,7 @@ public interface BiographyService extends IService<Biography> {
      * @param pageQueryParams
      * @return
      */
-    List<Biography> getBiographiesPage(PageQueryParams pageQueryParams);
+    IPage<Biography> getBiographiesPage(PageQueryParams pageQueryParams);
 
     /**
      * 获取他人传记分页
@@ -48,7 +49,7 @@ public interface BiographyService extends IService<Biography> {
      * @param pageQueryParams
      * @return
      */
-    List<Biography> getOthersBiographies(PageQueryParams pageQueryParams);
+    IPage<Biography> getOthersBiographies(PageQueryParams pageQueryParams);
 
     /**
      * 游客获取公共传记列表
@@ -56,7 +57,7 @@ public interface BiographyService extends IService<Biography> {
      * @param pageQueryParams
      * @return
      */
-    List<Biography> getPublicBiographyList(PageQueryParams pageQueryParams);
+    IPage<Biography> getPublicBiographyList(PageQueryParams pageQueryParams);
 
     /**
      * 根据id获取私人传记
@@ -73,5 +74,13 @@ public interface BiographyService extends IService<Biography> {
      * @return
      */
     Biography getOthersBiographyById(String id);
+
+    /**
+     * 点赞 / 取消点赞传记（Redis 防重复，操作结果同步到 DB）
+     *
+     * @param bioId 传记id
+     * @return true-点赞成功，false-已取消点赞
+     */
+    boolean toggleLike(String bioId);
 
 }

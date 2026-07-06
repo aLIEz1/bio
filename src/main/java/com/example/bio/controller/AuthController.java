@@ -18,6 +18,7 @@ import com.example.bio.util.JwtUtils;
 import com.example.bio.util.RegUtil;
 import com.example.bio.util.ResponseUtil;
 import com.example.bio.vo.JwtVo;
+import com.example.bio.vo.UserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -166,6 +167,26 @@ public class AuthController extends BaseController {
     public Result<?> resetPassword(@RequestBody @Valid ResetPasswordDto resetPasswordDto) {
         userService.resetPassword(resetPasswordDto);
         return ok("修改成功，请登录");
+    }
+
+    @ApiOperation(value = "获取当前登录用户信息")
+    @GetMapping("/me")
+    public Result<UserVo> getCurrentUser() {
+        User currentUser = userService.getCurrentUser();
+        if (currentUser == null) {
+            return fail("未登录");
+        }
+        UserVo userVo = new UserVo(
+                currentUser.getId(),
+                currentUser.getUsername(),
+                currentUser.getAvatar(),
+                currentUser.getEmail(),
+                currentUser.getInvitationCode(),
+                currentUser.getPoints(),
+                currentUser.getIsLocked(),
+                currentUser.getRoles()
+        );
+        return ok(userVo);
     }
 
     @ApiOperation(value = "获取邮箱验证码，30秒可以获取一次")

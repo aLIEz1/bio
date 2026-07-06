@@ -40,4 +40,12 @@ public interface RoleService extends IService<Role> {
      */
     Set<Role> getRoleByUserId(String userId);
 
+    /**
+     * 删除用户指定角色
+     *
+     * @param userId 用户id
+     * @param roles  待删除的角色集合
+     */
+    void deleteRole(String userId, Set<Role> roles);
+
 }

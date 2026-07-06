@@ -83,6 +83,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             wrapper.eq("username", username)
                     .eq("is_deleted", 0);
             User one = getOne(wrapper);
+            if (one == null) {
+                return null;
+            }
             one.setRoles(roleService.getRoleByUserId(one.getId()));
             cacheService.setUser(one);
             return one;
@@ -95,7 +98,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (activeToken != null && !activeToken.isExpired()) {
             UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
             updateWrapper
-                    .eq("id", activeToken.getUser().getId())
+                    .eq("id", activeToken.getUser() != null ? activeToken.getUser().getId() : null)
                     .eq("is_deleted", 0)
                     .set("is_locked", 0);
             update(updateWrapper);
@@ -120,6 +123,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Set<Role> roles = new HashSet<>();
 
         Role userRole = roleService.getByRoleName(ERole.ROLE_USER);
+        if (userRole == null) {
+            Asserts.fail("系统角色配置异常，请联系管理员");
+        }
         roles.add(userRole);
         user.setInvitationCode(UUID.randomUUID().toString());
         //注册时设置锁定，需要验证邮箱方可解除锁定

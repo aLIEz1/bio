@@ -9,6 +9,7 @@ import com.example.bio.service.EsBiographyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,7 +43,8 @@ public class EsBiographyController extends BaseController {
         return ok(EResult.SUCCESS, i);
     }
 
-    @ApiOperation(value = "根据id删除")
+    @ApiOperation(value = "【管理员】根据id删除")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteById/{id}")
     public Result<?> deleteById(@PathVariable("id") String id) {
         if (StrUtil.isNotBlank(id)) {
@@ -53,7 +55,8 @@ public class EsBiographyController extends BaseController {
         }
     }
 
-    @ApiOperation(value = "根据id批量删除")
+    @ApiOperation(value = "【管理员】根据id批量删除")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteByIdBatches")
     public Result<?> deleteByIdBatches(@RequestParam List<String> ids) {
         if (CollUtil.isEmpty(ids)) {

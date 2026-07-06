@@ -5,6 +5,7 @@ import com.example.bio.common.domain.PageQueryParams;
 import com.example.bio.model.BioTag;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -40,5 +41,13 @@ public interface BioTagService extends IService<BioTag> {
      * @return
      */
     Set<BioTag> getTagsByBiographyId(String id);
+
+    /**
+     * 根据多个bioId批量获取标签，返回 bioId -> Set<BioTag> 的映射
+     *
+     * @param bioIds 传记ID列表
+     * @return bioId到标签集合的映射
+     */
+    Map<String, Set<BioTag>> getTagsByBiographyIds(List<String> bioIds);
 
 }

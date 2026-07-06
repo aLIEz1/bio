@@ -1,0 +1,156 @@
+# ============================================================
+# production profile - 从环境变量读取敏感配置
+# Docker Compose 中通过 environment 字段注入
+# ============================================================
+
+server:
+  port: 8082
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: assign_id
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  type-aliases-package: com.example.bio.model
+  configuration:
+    map-underscore-to-camel-case: true
+
+spring:
+  # ── 生产环境关闭 Swagger API 文档 ──
+  springfox:
+    documentation:
+      enabled: false
+
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  jackson:
+    time-zone: GMT+8
+    serialization:
+      fail-on-empty-beans: false
+
+  # ── RabbitMQ（从环境变量读取）──
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:rabbitmq}
+    port: ${SPRING_RABBITMQ_PORT:5672}
+    username: ${SPRING_RABBITMQ_USERNAME:guest}
+    password: ${SPRING_RABBITMQ_PASSWORD:guest}
+    publisher-confirm-type: correlated
+
+  # ── Redis（从环境变量读取）──
+  redis:
+    database: 0
+    host: ${SPRING_REDIS_HOST:redis}
+    port: ${SPRING_REDIS_PORT:6379}
+    password: ${SPRING_REDIS_PASSWORD:}
+    timeout: 1000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1ms
+
+  # ── MySQL（从环境变量读取）──
+  datasource:
+    druid:
+      url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql:3306/biography?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true}
+      username: ${SPRING_DATASOURCE_USERNAME:root}
+      password: ${SPRING_DATASOURCE_PASSWORD:bio_password_2024}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat
+      use-global-data-source-stat: true
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: 123456
+        reset-enable: false
+        url-pattern: /druid/*
+
+  # ── Elasticsearch（从环境变量读取）──
+  elasticsearch:
+    rest:
+      uris: ${SPRING_ELASTICSEARCH_REST_URIS:http://elasticsearch:9200}
+
+  # ── 邮件（从环境变量读取）──
+  mail:
+    host: ${SPRING_MAIL_HOST:smtp.qq.com}
+    username: ${SPRING_MAIL_USERNAME:}
+    password: ${SPRING_MAIL_PASSWORD:}
+    from: ${SPRING_MAIL_FROM:}
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+
+bio:
+  app:
+    jwtSecret: ${BIO_APP_JWT_SECRET:BioSecretKey_ChangeMe}
+    jwtExpirationMs: 86400000
+  ratelimit:
+    enable: true
+    timeout: 1000
+    limit: 200
+  iplimit:
+    enable: true
+    timeout: 1000
+    limit: 30
+
+min:
+  io:
+    endpoint: ${MIN_IO_ENDPOINT:http://minio:9000}
+    accessKey: ${MIN_IO_ACCESS_KEY:minioadmin}
+    secretKey: ${MIN_IO_SECRET_KEY:minioadmin}
+
+logging:
+  file:
+    name: /app/logs/bio.log
+  level:
+    org.thymeleaf: info
+    org.redisson.connection.DNSMonitor: info
+  config: classpath:logback-spring.xml
+
+secure:
+  ignored:
+    urls:
+      - /swagger-ui.html
+      - /swagger-ui/**
+      - /swagger-resources/**
+      - /swagger/**
+      - /**/v2/api-docs
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico
+      - /webjars/springfox-swagger-ui/**
+      - /actuator/**
+      - /druid/**
+      - /api/auth/**
+      - /api/public/**
+    limitUrls:
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico

@@ -10,6 +10,8 @@ import com.example.bio.dto.BiographyDto;
 import com.example.bio.dto.UpdateBiographyDto;
 import com.example.bio.model.Biography;
 import com.example.bio.service.BiographyService;
+import com.example.bio.model.User;
+import com.example.bio.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +34,17 @@ public class BiographyController extends BaseController {
 
     private BiographyService biographyService;
 
+    private UserService userService;
+
     @Autowired
 
     public void setBiographyService(BiographyService biographyService) {
         this.biographyService = biographyService;
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     @ApiOperation(value = "新增传记")
@@ -51,9 +60,17 @@ public class BiographyController extends BaseController {
      * @param id 传记id
      * @return 删除成功或者失败信息
      */
-    @ApiOperation(value = "删除传记", notes = "软删除")
+    @ApiOperation(value = "删除传记", notes = "软删除，仅传记拥有者可删除")
     @PostMapping("/remove")
     public Result<?> removeBiography(@RequestParam(value = "id") String id) {
+        Biography biography = biographyService.getById(id);
+        if (biography == null) {
+            return fail("传记不存在");
+        }
+        User currentUser = userService.getCurrentUser();
+        if (currentUser == null || !biography.getOwnerId().equals(currentUser.getId())) {
+            return fail("没有权限删除该传记");
+        }
         UpdateWrapper<Biography> wrapper = new UpdateWrapper<>();
         wrapper.eq("id", id)
                 .set("is_deleted", 1);
@@ -105,6 +122,17 @@ public class BiographyController extends BaseController {
             return fail("请输入正确的id");
         }
         return ok(biographyService.getOthersBiographyById(id));
+    }
+
+    @ApiOperation(value = "点赞 / 取消点赞传记",
+            notes = "已点赞则取消点赞，未点赞则点赞。返回 data=true 表示点赞成功，data=false 表示已取消点赞。Redis Set 防重复。")
+    @PostMapping("/like/{id}")
+    public Result<?> toggleLike(@PathVariable("id") String id) {
+        if (StrUtil.isBlank(id)) {
+            return fail("请输入正确的id");
+        }
+        boolean liked = biographyService.toggleLike(id);
+        return ok(liked ? "点赞成功" : "已取消点赞");
     }
 
 }

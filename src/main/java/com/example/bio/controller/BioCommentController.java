@@ -11,8 +11,10 @@ import com.example.bio.service.BioCommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -56,6 +58,35 @@ public class BioCommentController extends BaseController {
         }
         commentService.deleteCommentById(id);
         return ok("删除成功");
+    }
+
+    @ApiOperation(value = "【管理员】获取待审核评论列表")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/pending")
+    public Result<List<BioComment>> getPendingComments(@RequestBody PageQueryParams pageQueryParams) {
+        return ok(commentService.getPendingComments(pageQueryParams));
+    }
+
+    @ApiOperation(value = "【管理员】审核通过单条评论")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/approve/{id}")
+    public Result<?> approveComment(@PathVariable("id") String id) {
+        if (StrUtil.isBlank(id)) {
+            return fail("请输入正确的id");
+        }
+        commentService.approveComment(id);
+        return ok("审核通过");
+    }
+
+    @ApiOperation(value = "【管理员】批量审核通过评论", notes = "ids 为评论id，多个用英文逗号分隔")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/approveBatch")
+    public Result<?> approveCommentBatch(@RequestParam("ids") String ids) {
+        if (StrUtil.isBlank(ids)) {
+            return fail("ids不能为空");
+        }
+        commentService.approveCommentBatch(Arrays.asList(ids.split(",")));
+        return ok("批量审核通过");
     }
 
 }

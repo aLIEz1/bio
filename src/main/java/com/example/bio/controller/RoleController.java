@@ -92,11 +92,34 @@ public class RoleController extends BaseController {
         }
     }
 
-    @ApiOperation(value = "删除用户角色")
+    @ApiOperation(value = "删除用户角色", notes = "软删除 user_role 关联记录，同时清除用户缓存")
     @DeleteMapping("/deleteRole")
     public Result<?> deleteRolesForUser(@RequestBody @Valid AddRoleDto addRoleDto) {
-        //TODO 删除用户角色实现
-        return null;
+        Set<String> strRoles = addRoleDto.getRoles();
+        Set<Role> roles = new HashSet<>();
+        strRoles.forEach(role -> {
+            switch (role) {
+                case "admin":
+                    Role adminRole = roleService.getByRoleName(ERole.ROLE_ADMIN);
+                    roles.add(adminRole);
+                    break;
+                case "company":
+                    Role companyRole = roleService.getByRoleName(ERole.ROLE_COMPANY);
+                    roles.add(companyRole);
+                    break;
+                default:
+                    Role userRole = roleService.getByRoleName(ERole.ROLE_USER);
+                    roles.add(userRole);
+            }
+        });
+        User user = userService.getById(addRoleDto.getUserId());
+        if (user != null) {
+            roleService.deleteRole(addRoleDto.getUserId(), roles);
+            userCacheService.deleteUserCache(user.getUsername());
+            return ok("删除成功");
+        } else {
+            return fail("未找到用户");
+        }
     }
 
     @GetMapping("/getUserRolesById/{id}")

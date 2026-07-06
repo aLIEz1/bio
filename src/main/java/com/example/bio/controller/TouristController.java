@@ -99,7 +99,7 @@ public class TouristController extends BaseController {
                             @RequestParam(required = false, defaultValue = "5") Integer pageSize
     ) {
         Page<EsBiography> esBiographies = esBiographyService.search(keyword, pageNum, pageSize);
-        return ok(esBiographies.getContent());
+        return ok(esBiographies);
     }
 
 }

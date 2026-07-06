@@ -8,7 +8,7 @@ mybatis-plus:
       logic-not-delete-value: 0
       id-type: assign_id
   mapper-locations: classpath*:mapper/**/*Mapper.xml
-  type-aliases-package: com.example.autobiography.model
+  type-aliases-package: com.example.bio.model
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -31,17 +31,17 @@ spring:
       fail-on-empty-beans: false
   #  ====================RabbitMQ配置========================
   rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    password: guest
+    host: ${RABBITMQ_HOST:127.0.0.1}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
     publisher-confirm-type: correlated
   #  ========================redis配置========================
   redis:
     database: 0
-    host: localhost
-    port: 6379
-    password:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
     timeout: 1000ms
     lettuce:
       pool:
@@ -52,11 +52,9 @@ spring:
   #        =====================mysql配置======================
   datasource:
     druid:
-      url: jdbc:mysql://localhost:3306/biography?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
-      #      数据库连接用户名
-      username: root
-      #      数据库连接密码
-      password: 74521
+      url: ${DB_URL:jdbc:mysql://localhost:3306/biography?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true}
+      username: ${DB_USERNAME:root}
+      password: ${DB_PASSWORD:}
       driver-class-name: com.mysql.cj.jdbc.Driver
 
       # 下面为连接池的补充设置，应用到上面所有数据源中
@@ -86,17 +84,17 @@ spring:
       stat-view-servlet:
         # 1.1.10以后的版本需要指定为true 不然默认是关闭的就会出现404
         enabled: true
-        login-username: admin
-        login-password: 123456
+        login-username: ${DRUID_USERNAME:admin}
+        login-password: ${DRUID_PASSWORD:123456}
         reset-enable: false
         url-pattern: /druid/*
 
   # ================JavaMail配置=======================
   mail:
-    host: smtp.qq.com
-    username: 1742720898@qq.com
-    password: zfwogjvrjtsucgda
-    from: 1742720898@qq.com
+    host: ${MAIL_HOST:smtp.qq.com}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    from: ${MAIL_USERNAME:}
     properties:
       mail:
         smtp:
@@ -105,7 +103,7 @@ spring:
 
 bio:
   app:
-    jwtSecret: SecretKey
+    jwtSecret: ${JWT_SECRET:SecretKey}
     jwtExpirationMs: 86400000
   #    限流配置
   ratelimit:
@@ -126,9 +124,9 @@ bio:
 
 min:
   io:
-    endpoint: http://127.0.0.1:9000
-    accessKey: minioadmin
-    secretKey: minioadmin
+    endpoint: ${MINIO_ENDPOINT:http://127.0.0.1:9000}
+    accessKey: ${MINIO_ACCESS_KEY:minioadmin}
+    secretKey: ${MINIO_SECRET_KEY:minioadmin}
 
 logging:
   file:
@@ -156,7 +154,12 @@ secure:
       - /webjars/springfox-swagger-ui/**
       - /actuator/**
       - /druid/**
-      - /api/auth/**
+      - /api/auth/signIn
+      - /api/auth/signup
+      - /api/auth/active
+      - /api/auth/getAuthCode
+      - /api/auth/resetPassword
+      - /api/auth/getResetPasswordToken
       - /api/public/**
 
     limitUrls:

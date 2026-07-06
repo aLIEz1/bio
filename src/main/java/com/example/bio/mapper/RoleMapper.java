@@ -41,4 +41,12 @@ public interface RoleMapper extends BaseMapper<Role> {
      */
     Set<Role> getRoleByUserId(@Param("userId") String userId);
 
+    /**
+     * 删除用户指定角色（软删除 user_role 记录）
+     *
+     * @param userId 用户id
+     * @param roles  待删除的角色集合
+     */
+    void deleteRole(@Param("userId") String userId, @Param("roles") Set<Role> roles);
+
 }

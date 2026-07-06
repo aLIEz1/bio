@@ -62,7 +62,15 @@ public class EsBiographyServiceImpl implements EsBiographyService {
 
     @Override
     public EsBiography createdById(String id) {
-        return null;
+        Biography biography = biographyService.getById(id);
+        if (biography == null) {
+            log.warn("Biography not found for id: {}", id);
+            return null;
+        }
+        EsBiography esBiography = new EsBiography();
+        BeanUtils.copyProperties(biography, esBiography);
+        esBiographyRepository.save(esBiography);
+        return esBiography;
     }
 
     @Override

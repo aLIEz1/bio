@@ -1,16 +1,11 @@
 package com.example.bio.model;
 
 /**
+ * 好友分组枚举
+ *
  * @author zhangfuqi
- * @date 2020/10/26
  */
 public enum EGroup {
-    /**
-     * 朋友分组
-     */
-    GROUP_FRIENDS,
-    /**
-     * 亲戚分组
-     */
+    GROUP_FRIEND,
     GROUP_RELATIVE
 }

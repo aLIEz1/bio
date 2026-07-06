@@ -28,6 +28,11 @@ import java.util.Objects;
 @Slf4j
 public class FileServiceImpl implements FileService {
 
+    private static final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+    private static final java.util.Set<String> ALLOWED_EXTENSIONS = new java.util.HashSet<>(
+            java.util.Arrays.asList(".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp")
+    );
+
     @Autowired
     private UserService userService;
 
@@ -39,7 +44,21 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public void uploadAvatar(MultipartFile file) {
-        String fileName = minIoUtils.renamePic(Objects.requireNonNull(file.getOriginalFilename()));
+        // 文件大小校验
+        if (file.getSize() > MAX_FILE_SIZE) {
+            Asserts.fail("文件大小不能超过5MB");
+        }
+        // 文件类型校验
+        String originalFilename = file.getOriginalFilename();
+        if (originalFilename == null || originalFilename.isEmpty()) {
+            Asserts.fail("文件名不能为空");
+        }
+        String extName = originalFilename.substring(originalFilename.lastIndexOf(".")).toLowerCase();
+        if (!ALLOWED_EXTENSIONS.contains(extName)) {
+            Asserts.fail("不支持的文件类型，仅允许上传图片（jpg/jpeg/png/gif/webp/bmp）");
+        }
+
+        String fileName = minIoUtils.renamePic(originalFilename);
         try {
             InputStream inputStream = file.getInputStream();
             User user = userService.getCurrentUser();

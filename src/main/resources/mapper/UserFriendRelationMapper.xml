@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bio.mapper.UserFriendRelationMapper">
+
+    <resultMap id="FriendRelationMap" type="com.example.bio.model.UserFriendRelation">
+        <result column="user_id"      property="userId"/>
+        <result column="friend_id"    property="friendId"/>
+        <result column="user_group"   property="userGroup"/>
+        <result column="friend_group" property="friendGroup"/>
+        <result column="is_deleted"   property="delFlag"/>
+        <result column="gmt_create"   property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+        <association property="friendUser" javaType="com.example.bio.model.User">
+            <id     column="fu_id"              property="id"/>
+            <result column="fu_username"        property="username"/>
+            <result column="fu_avatar"          property="avatar"/>
+            <result column="fu_email"           property="email"/>
+            <result column="fu_invitation_code" property="invitationCode"/>
+            <result column="fu_points"          property="points"/>
+        </association>
+    </resultMap>
+
+    <select id="getFriendListByUserId" resultMap="FriendRelationMap">
+        SELECT r.user_id,
+               r.friend_id,
+               r.user_group,
+               r.friend_group,
+               r.is_deleted,
+               r.gmt_create,
+               r.gmt_modified,
+               u.id              AS fu_id,
+               u.username        AS fu_username,
+               u.avatar          AS fu_avatar,
+               u.email           AS fu_email,
+               u.invitation_code AS fu_invitation_code,
+               u.points          AS fu_points
+        FROM biography.user_friend_relation r
+                 LEFT JOIN biography.user u ON r.friend_id = u.id AND u.is_deleted = 0
+        WHERE r.user_id = #{userId}
+          AND r.is_deleted = 0
+        ORDER BY r.gmt_create DESC
+    </select>
+
+    <update id="removeFriend">
+        UPDATE biography.user_friend_relation
+        SET is_deleted = 1
+        WHERE (user_id = #{userId} AND friend_id = #{friendId})
+           OR (user_id = #{friendId} AND friend_id = #{userId})
+    </update>
+
+</mapper>

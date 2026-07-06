@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.bio.model.BioTag;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -30,4 +32,12 @@ public interface BioTagMapper extends BaseMapper<BioTag> {
      * @return
      */
     Set<BioTag> getTagsByBiographyId(@Param("id") String id);
+
+    /**
+     * 根据多个bioId批量获取标签，返回 bioId -> Set<BioTag> 的映射
+     *
+     * @param bioIds 传记ID列表
+     * @return bioId与标签的映射列表
+     */
+    List<Map<String, Object>> getTagsByBiographyIds(@Param("bioIds") List<String> bioIds);
 }

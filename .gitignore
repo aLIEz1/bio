@@ -34,3 +34,6 @@ build/
 bio.log/
 log/
 src/main/resources/static/
+
+### Docker 敏感配置 ###
+.env

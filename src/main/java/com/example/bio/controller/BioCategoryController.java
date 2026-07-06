@@ -64,6 +64,8 @@ public class BioCategoryController extends BaseController {
         return ok("删除成功");
     }
 
+    @ApiOperation(value = "修改类别信息，只有管理员能修改")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public Result<?> updateCategoryById(@PathVariable("id") String id,
                                         @RequestParam String categoryName) {

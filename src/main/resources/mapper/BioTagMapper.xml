@@ -31,4 +31,22 @@
           and btr.tag_id = bt.id
           and btr.bio_id = #{id}
     </select>
+
+    <select id="getTagsByBiographyIds" resultType="java.util.Map">
+        select btr.bio_id as bio_id,
+               bt.id as id,
+               bt.tag_name as tag_name,
+               bt.is_deleted as is_deleted,
+               bt.gmt_create as gmt_create,
+               bt.gmt_modified as gmt_modified
+        from biography.bio_tag bt,
+             biography.bio_tag_relation btr
+        where bt.is_deleted = 0
+          and btr.is_deleted = 0
+          and btr.tag_id = bt.id
+          and btr.bio_id in
+        <foreach collection="bioIds" item="bioId" open="(" separator="," close=")">
+            #{bioId}
+        </foreach>
+    </select>
 </mapper>

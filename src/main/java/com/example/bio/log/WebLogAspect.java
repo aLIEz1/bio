@@ -104,7 +104,7 @@ public class WebLogAspect {
             //将RequestBody注解修饰的参数作为请求参数
             RequestBody requestBody = parameters[i].getAnnotation(RequestBody.class);
             if (requestBody != null) {
-                argList.add(args[i]);
+                argList.add(desensitize(args[i]));
             }
             //将RequestParam注解修饰的参数作为请求参数
             RequestParam requestParam = parameters[i].getAnnotation(RequestParam.class);
@@ -114,7 +114,7 @@ public class WebLogAspect {
                 if (!StringUtils.isEmpty(requestParam.value())) {
                     key = requestParam.value();
                 }
-                map.put(key, args[i]);
+                map.put(key, desensitize(args[i]));
                 argList.add(map);
             }
         }
@@ -125,5 +125,56 @@ public class WebLogAspect {
         } else {
             return argList;
         }
+    }
+
+    /**
+     * 对敏感字段进行脱敏处理
+     */
+    private Object desensitize(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        if (obj instanceof Map) {
+            Map<?, ?> map = (Map<?, ?>) obj;
+            Map<Object, Object> result = new HashMap<>();
+            for (Map.Entry<?, ?> entry : map.entrySet()) {
+                if (isSensitiveKey(String.valueOf(entry.getKey()))) {
+                    result.put(entry.getKey(), "******");
+                } else {
+                    result.put(entry.getKey(), entry.getValue());
+                }
+            }
+            return result;
+        }
+        // 对于自定义对象，通过 JSON 序列化后脱敏
+        try {
+            String json = JSONUtil.parse(obj).toString();
+            Map<String, Object> map = JSONUtil.toBean(json, Map.class);
+            if (map != null) {
+                Map<String, Object> result = new HashMap<>();
+                for (Map.Entry<String, Object> entry : map.entrySet()) {
+                    if (isSensitiveKey(entry.getKey())) {
+                        result.put(entry.getKey(), "******");
+                    } else {
+                        result.put(entry.getKey(), entry.getValue());
+                    }
+                }
+                return result;
+            }
+        } catch (Exception ignored) {
+            // 脱敏失败则返回原始值
+        }
+        return obj;
+    }
+
+    private boolean isSensitiveKey(String key) {
+        if (key == null) {
+            return false;
+        }
+        String lowerKey = key.toLowerCase();
+        return lowerKey.contains("password") || lowerKey.contains("pwd")
+                || lowerKey.contains("authcode") || lowerKey.contains("auth_code")
+                || lowerKey.contains("token") || lowerKey.contains("secret")
+                || lowerKey.contains("credential");
     }
 }

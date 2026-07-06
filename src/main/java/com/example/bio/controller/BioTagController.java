@@ -14,6 +14,7 @@ import com.example.bio.util.RegUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -36,7 +37,8 @@ public class BioTagController extends BaseController {
         this.tagService = tagService;
     }
 
-    @ApiOperation(value = "新增标签")
+    @ApiOperation(value = "【管理员】新增标签")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public Result<?> addTag(@RequestParam String tagName) {
         if (RegUtil.username(tagName)) {
@@ -49,7 +51,8 @@ public class BioTagController extends BaseController {
         }
     }
 
-    @ApiOperation(value = "软删除标签")
+    @ApiOperation(value = "【管理员】软删除标签")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteById/{id}")
     public Result<?> deleteTag(@PathVariable("id") String id) {
         if (StrUtil.isBlank(id)) {
