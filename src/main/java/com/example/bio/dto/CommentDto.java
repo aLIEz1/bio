@@ -1,8 +1,6 @@
 package com.example.bio.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
@@ -10,8 +8,6 @@ import javax.validation.constraints.NotNull;
  * @author zhangfuqi
  * @date 2020/11/3
  */
-@Getter
-@Setter
 public class CommentDto {
 
     @ApiModelProperty("自传id")
@@ -25,4 +21,11 @@ public class CommentDto {
     @ApiModelProperty("父级评论Id 若为首级评论则为0")
     @NotNull(message = "父级评论Id不能为空")
     private String parentId;
+
+    public String getBioId() { return bioId; }
+    public void setBioId(String bioId) { this.bioId = bioId; }
+    public String getCommentBody() { return commentBody; }
+    public void setCommentBody(String commentBody) { this.commentBody = commentBody; }
+    public String getParentId() { return parentId; }
+    public void setParentId(String parentId) { this.parentId = parentId; }
 }

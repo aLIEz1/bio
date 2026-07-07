@@ -3,8 +3,6 @@ package com.example.bio.dto;
 import com.example.bio.model.EGroup;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 
@@ -13,8 +11,6 @@ import javax.validation.constraints.NotBlank;
  *
  * @author zhangfuqi
  */
-@Getter
-@Setter
 @ApiModel(value = "AddFriendDto", description = "添加好友请求体")
 public class AddFriendDto {
 
@@ -24,4 +20,9 @@ public class AddFriendDto {
 
     @ApiModelProperty(value = "分组：GROUP_FRIEND（朋友）/ GROUP_RELATIVE（家人），默认 GROUP_FRIEND")
     private EGroup userGroup = EGroup.GROUP_FRIEND;
+
+    public String getFriendId() { return friendId; }
+    public void setFriendId(String friendId) { this.friendId = friendId; }
+    public EGroup getUserGroup() { return userGroup; }
+    public void setUserGroup(EGroup userGroup) { this.userGroup = userGroup; }
 }

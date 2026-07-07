@@ -1,7 +1,6 @@
 package com.example.bio.config;
 
 import com.example.bio.common.constant.EQueue;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,9 +11,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @date 2020/11/10
  */
 @Configuration
-@Slf4j
 @EnableAsync
 public class RabbitMqConfig {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(RabbitMqConfig.class);
+
     @Bean
     DirectExchange mailDirect() {
         return ExchangeBuilder

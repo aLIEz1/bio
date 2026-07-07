@@ -2,27 +2,13 @@ package com.example.bio.model;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.example.bio.biography.domain.model.Biography;
 import com.example.bio.common.api.BaseEntity;
 import com.example.bio.common.constant.CommonConstant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import java.util.Set;
-
-/**
- * <p>
- *
- * </p>
- *
- * @author zhangfuqi
- * @since 2020-10-26
- */
-@Data
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
 @TableName("user")
 @ApiModel(value = "User对象", description = "")
 public class User extends BaseEntity {
@@ -75,5 +61,28 @@ public class User extends BaseEntity {
     @TableField(exist = false)
     private Set<User> friends;
 
-
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public String getAvatar() { return avatar; }
+    public void setAvatar(String avatar) { this.avatar = avatar; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public String getInvitationCode() { return invitationCode; }
+    public void setInvitationCode(String invitationCode) { this.invitationCode = invitationCode; }
+    public Integer getPoints() { return points; }
+    public void setPoints(Integer points) { this.points = points; }
+    public Integer getIsLocked() { return isLocked; }
+    public void setIsLocked(Integer isLocked) { this.isLocked = isLocked; }
+    public Set<Biography> getBiographies() { return biographies; }
+    public void setBiographies(Set<Biography> biographies) { this.biographies = biographies; }
+    public UserInfo getUserInfo() { return userInfo; }
+    public void setUserInfo(UserInfo userInfo) { this.userInfo = userInfo; }
+    public UserActive getUserActive() { return userActive; }
+    public void setUserActive(UserActive userActive) { this.userActive = userActive; }
+    public Set<Role> getRoles() { return roles; }
+    public void setRoles(Set<Role> roles) { this.roles = roles; }
+    public Set<User> getFriends() { return friends; }
+    public void setFriends(Set<User> friends) { this.friends = friends; }
 }

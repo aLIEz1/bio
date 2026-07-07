@@ -1,12 +1,11 @@
 package com.example.bio.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.bio.biography.infrastructure.persistence.mapper.BiographyMapper;
+import com.example.bio.biography.infrastructure.persistence.po.BiographyPO;
 import com.example.bio.mapper.elasticsearch.EsBiographyRepository;
-import com.example.bio.model.Biography;
 import com.example.bio.model.elasticsearch.EsBiography;
-import com.example.bio.service.BiographyService;
 import com.example.bio.service.EsBiographyService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,16 +16,13 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author zhangfuqi
- * @date 2020/11/19
- */
 @Service
-@Slf4j
 public class EsBiographyServiceImpl implements EsBiographyService {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(EsBiographyServiceImpl.class);
+
 
     @Autowired
-    private BiographyService biographyService;
+    private BiographyMapper biographyMapper;
 
     @Autowired
     private EsBiographyRepository esBiographyRepository;
@@ -38,18 +34,17 @@ public class EsBiographyServiceImpl implements EsBiographyService {
 
     @Override
     public int importAll() {
-        QueryWrapper<Biography> wrapper = new QueryWrapper<>();
-        wrapper
+        QueryWrapper<BiographyPO> wrapper = new QueryWrapper<BiographyPO>()
                 .eq("is_deleted", 0)
                 .eq("privacy_level", 0)
                 .eq("status", 1);
 
-        List<Biography> biographyList = biographyService.list(wrapper);
+        List<BiographyPO> list = biographyMapper.selectList(wrapper);
         List<EsBiography> esBiographies = new ArrayList<>();
-        for (Biography biography : biographyList) {
-            EsBiography esBiography = new EsBiography();
-            BeanUtils.copyProperties(biography, esBiography);
-            esBiographies.add(esBiography);
+        for (BiographyPO po : list) {
+            EsBiography es = new EsBiography();
+            BeanUtils.copyProperties(po, es);
+            esBiographies.add(es);
         }
         esBiographyRepository.saveAll(esBiographies);
         return esBiographies.size();
@@ -62,15 +57,15 @@ public class EsBiographyServiceImpl implements EsBiographyService {
 
     @Override
     public EsBiography createdById(String id) {
-        Biography biography = biographyService.getById(id);
-        if (biography == null) {
+        BiographyPO po = biographyMapper.selectById(id);
+        if (po == null) {
             log.warn("Biography not found for id: {}", id);
             return null;
         }
-        EsBiography esBiography = new EsBiography();
-        BeanUtils.copyProperties(biography, esBiography);
-        esBiographyRepository.save(esBiography);
-        return esBiography;
+        EsBiography es = new EsBiography();
+        BeanUtils.copyProperties(po, es);
+        esBiographyRepository.save(es);
+        return es;
     }
 
     @Override
@@ -83,6 +78,7 @@ public class EsBiographyServiceImpl implements EsBiographyService {
     @Override
     public Page<EsBiography> search(String keyword, Integer pageNum, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
-        return esBiographyRepository.findByTitleLikeOrContentContainsOrPenNameContainsOrCategoryIdContains(keyword, keyword, keyword, keyword, pageable);
+        return esBiographyRepository.findByTitleLikeOrContentContainsOrPenNameContainsOrCategoryIdContains(
+                keyword, keyword, keyword, keyword, pageable);
     }
 }

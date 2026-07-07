@@ -5,7 +5,6 @@ import com.example.bio.security.service.UserDetailsImpl;
 import com.example.bio.security.service.UserDetailsServiceImpl;
 import com.example.bio.util.JwtUtils;
 import com.example.bio.util.ResponseUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,8 +24,9 @@ import java.io.IOException;
  * @author zhangfuqi
  * @date 2020/10/26
  */
-@Slf4j
 public class AuthTokenFilter extends OncePerRequestFilter {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AuthTokenFilter.class);
+
     @Autowired
     private JwtUtils jwtUtils;
 

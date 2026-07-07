@@ -3,7 +3,6 @@ package com.example.bio.common.component;
 import com.example.bio.common.constant.EQueue;
 import com.example.bio.model.PasswordResetToken;
 import com.example.bio.model.UserActiveToken;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,8 +12,9 @@ import org.springframework.stereotype.Component;
  * @date 2020/11/10
  */
 @Component
-@Slf4j
 public class MyMailSender {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(MyMailSender.class);
+
     private AmqpTemplate amqpTemplate;
 
     @Autowired

@@ -1,23 +1,15 @@
 package com.example.bio.model;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * 用户好友关系实体
- *
- * @author zhangfuqi
- */
-@Data
 @TableName("user_friend_relation")
 @ApiModel(value = "UserFriendRelation", description = "用户好友关系")
 public class UserFriendRelation implements Serializable {
@@ -53,8 +45,24 @@ public class UserFriendRelation implements Serializable {
     @TableField("gmt_modified")
     private Date gmtModified;
 
-    // 非数据库字段：好友用户信息
     @ApiModelProperty(value = "好友用户信息")
     @TableField(exist = false)
     private User friendUser;
+
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
+    public String getFriendId() { return friendId; }
+    public void setFriendId(String friendId) { this.friendId = friendId; }
+    public EGroup getUserGroup() { return userGroup; }
+    public void setUserGroup(EGroup userGroup) { this.userGroup = userGroup; }
+    public EGroup getFriendGroup() { return friendGroup; }
+    public void setFriendGroup(EGroup friendGroup) { this.friendGroup = friendGroup; }
+    public Integer getDelFlag() { return delFlag; }
+    public void setDelFlag(Integer delFlag) { this.delFlag = delFlag; }
+    public Date getGmtCreate() { return gmtCreate; }
+    public void setGmtCreate(Date gmtCreate) { this.gmtCreate = gmtCreate; }
+    public Date getGmtModified() { return gmtModified; }
+    public void setGmtModified(Date gmtModified) { this.gmtModified = gmtModified; }
+    public User getFriendUser() { return friendUser; }
+    public void setFriendUser(User friendUser) { this.friendUser = friendUser; }
 }

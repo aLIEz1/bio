@@ -2,7 +2,6 @@ package com.example.bio.security.component;
 
 import cn.hutool.json.JSONUtil;
 import com.example.bio.common.api.BaseController;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
@@ -17,8 +16,9 @@ import java.io.IOException;
  * @author zhangfuqi
  * @date 2020/10/28
  */
-@Slf4j
 public class RestfulAccessDeniedHandler extends BaseController implements AccessDeniedHandler {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(RestfulAccessDeniedHandler.class);
+
     @Override
     public void handle(HttpServletRequest request,
                        HttpServletResponse response,

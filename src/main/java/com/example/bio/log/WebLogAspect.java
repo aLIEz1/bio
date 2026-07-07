@@ -5,7 +5,6 @@ import cn.hutool.core.util.URLUtil;
 import cn.hutool.json.JSONUtil;
 import com.example.bio.util.RequestUtil;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.slf4j.Slf4j;
 import net.logstash.logback.marker.Markers;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -37,8 +36,9 @@ import java.util.Map;
 @Aspect
 @Component
 @Order(1)
-@Slf4j
 public class WebLogAspect {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(WebLogAspect.class);
+
 
     @Pointcut("execution(public * com.example.bio.controller.*.*(..))&&@annotation(io.swagger.annotations.ApiOperation))")
 

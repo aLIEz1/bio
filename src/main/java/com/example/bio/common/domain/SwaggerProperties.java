@@ -1,47 +1,44 @@
 package com.example.bio.common.domain;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 /**
  * @author zhangfuqi
  * @date 2020/10/27
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-@Builder
 public class SwaggerProperties {
-    /**
-     * API文档生成基础路径
-     */
     private String apiBasePackage;
-    /**
-     * 是否要启用登录认证
-     */
     private boolean enableSecurity;
-    /**
-     * 文档标题
-     */
     private String title;
-    /**
-     * 文档描述
-     */
     private String description;
-    /**
-     * 文档版本
-     */
     private String version;
-    /**
-     * 文档联系人姓名
-     */
     private String contactName;
-    /**
-     * 文档联系人网址
-     */
     private String contactUrl;
-    /**
-     * 文档联系人邮箱
-     */
     private String contactEmail;
+
+    private SwaggerProperties() {}
+
+    public String getApiBasePackage() { return apiBasePackage; }
+    public boolean isEnableSecurity() { return enableSecurity; }
+    public String getTitle() { return title; }
+    public String getDescription() { return description; }
+    public String getVersion() { return version; }
+    public String getContactName() { return contactName; }
+    public String getContactUrl() { return contactUrl; }
+    public String getContactEmail() { return contactEmail; }
+
+    public static Builder builder() { return new Builder(); }
+
+    public static class Builder {
+        private final SwaggerProperties props = new SwaggerProperties();
+
+        public Builder apiBasePackage(String v) { props.apiBasePackage = v; return this; }
+        public Builder enableSecurity(boolean v) { props.enableSecurity = v; return this; }
+        public Builder title(String v) { props.title = v; return this; }
+        public Builder description(String v) { props.description = v; return this; }
+        public Builder version(String v) { props.version = v; return this; }
+        public Builder contactName(String v) { props.contactName = v; return this; }
+        public Builder contactUrl(String v) { props.contactUrl = v; return this; }
+        public Builder contactEmail(String v) { props.contactEmail = v; return this; }
+
+        public SwaggerProperties build() { return props; }
+    }
 }

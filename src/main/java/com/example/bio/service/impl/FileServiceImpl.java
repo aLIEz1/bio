@@ -9,7 +9,6 @@ import com.example.bio.service.UserService;
 import com.example.bio.util.MinIoUtils;
 import io.minio.PutObjectOptions;
 import io.minio.errors.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,8 +24,9 @@ import java.util.Objects;
  * @date 2020/11/13
  */
 @Service
-@Slf4j
 public class FileServiceImpl implements FileService {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(FileServiceImpl.class);
+
 
     private static final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
     private static final java.util.Set<String> ALLOWED_EXTENSIONS = new java.util.HashSet<>(

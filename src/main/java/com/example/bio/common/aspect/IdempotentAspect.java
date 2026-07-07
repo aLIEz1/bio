@@ -3,7 +3,6 @@ package com.example.bio.common.aspect;
 import com.example.bio.common.annotation.Idempotent;
 import com.example.bio.common.api.ResultUtil;
 import com.example.bio.service.RedisService;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -27,8 +26,9 @@ import java.util.UUID;
 @Aspect
 @Component
 @Order(1)
-@Slf4j
 public class IdempotentAspect {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(IdempotentAspect.class);
+
 
     private final RedisService redisService;
 

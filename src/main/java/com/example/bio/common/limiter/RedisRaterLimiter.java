@@ -1,7 +1,6 @@
 package com.example.bio.common.limiter;
 
 import com.example.bio.common.constant.CommonConstant;
-import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RRateLimiter;
 import org.redisson.api.RateIntervalUnit;
 import org.redisson.api.RateType;
@@ -17,9 +16,10 @@ import java.util.concurrent.TimeUnit;
  * @author zhangfuqi
  * @date 2020/11/5
  */
-@Slf4j
 @Component
 public class RedisRaterLimiter {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(RedisRaterLimiter.class);
+
 
     @Autowired
     private RedissonClient redissonClient;

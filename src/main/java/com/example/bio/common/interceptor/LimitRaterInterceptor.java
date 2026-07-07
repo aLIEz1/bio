@@ -8,7 +8,6 @@ import com.example.bio.common.domain.LimitProperties;
 import com.example.bio.common.limiter.RedisRaterLimiter;
 import com.example.bio.exception.LimitException;
 import com.example.bio.util.RequestUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -23,8 +22,9 @@ import java.lang.reflect.Method;
  * @date 2020/11/5
  */
 @Component
-@Slf4j
 public class LimitRaterInterceptor extends HandlerInterceptorAdapter {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(LimitRaterInterceptor.class);
+
     @Autowired
     private IpLimitProperties ipLimitProperties;
 

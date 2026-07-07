@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.example.bio.util.SnowFlakeUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,7 +16,6 @@ import java.util.Date;
  * @author zhangfuqi
  * @date 2020/10/30
  */
-@Data
 public abstract class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -32,7 +30,6 @@ public abstract class BaseEntity implements Serializable {
     @TableField(value = "gmt_create")
     private Date gmtCreate;
 
-
     @LastModifiedDate
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -44,4 +41,12 @@ public abstract class BaseEntity implements Serializable {
     @TableField(value = "is_deleted")
     private Integer delFlag = 0;
 
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public Date getGmtCreate() { return gmtCreate; }
+    public void setGmtCreate(Date gmtCreate) { this.gmtCreate = gmtCreate; }
+    public Date getGmtModified() { return gmtModified; }
+    public void setGmtModified(Date gmtModified) { this.gmtModified = gmtModified; }
+    public Integer getDelFlag() { return delFlag; }
+    public void setDelFlag(Integer delFlag) { this.delFlag = delFlag; }
 }

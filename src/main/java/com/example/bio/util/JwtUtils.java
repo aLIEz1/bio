@@ -3,22 +3,19 @@ package com.example.bio.util;
 import com.example.bio.exception.Asserts;
 import com.example.bio.security.service.UserDetailsImpl;
 import io.jsonwebtoken.*;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-/**
- * jwt工具类
- *
- * @author zhangfuqi
- * @date 2020/10/26
- */
 @Component
-@Slf4j
 public class JwtUtils {
+
+    private static final Logger log = LoggerFactory.getLogger(JwtUtils.class);
+
     @Value("${bio.app.jwtSecret}")
     private String jwtSecret;
 

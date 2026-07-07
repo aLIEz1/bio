@@ -3,7 +3,6 @@ package com.example.bio.service.impl;
 import com.example.bio.common.constant.CommonConstant;
 import com.example.bio.model.User;
 import com.example.bio.service.MailService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,8 +19,9 @@ import javax.mail.internet.MimeMessage;
  * @date 2020/10/25
  */
 @Service
-@Slf4j
 public class MailServiceImpl implements MailService {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(MailServiceImpl.class);
+
 
     private JavaMailSender mailSender;
     private TemplateEngine templateEngine;

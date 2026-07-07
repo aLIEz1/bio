@@ -1,20 +1,18 @@
 package com.example.bio.common.lock;
 
-import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * @author zhangfuqi
- * @date 2020/11/5
- */
-@Slf4j
 @Component
 public class RedisLockTemplateImpl implements DistributedLockTemplate {
+
+    private static final Logger log = LoggerFactory.getLogger(RedisLockTemplateImpl.class);
 
     @Autowired
     private RedissonClient redisson;

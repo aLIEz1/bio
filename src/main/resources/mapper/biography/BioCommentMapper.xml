@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bio.biography.infrastructure.persistence.mapper.BioCommentMapper">
+
+    <resultMap id="CommentMap" type="com.example.bio.biography.infrastructure.persistence.po.BioCommentPO">
+        <id column="id" property="id"/>
+        <result column="bio_id" property="bioId"/>
+        <result column="user_id" property="userId"/>
+        <result column="comment_body" property="commentBody"/>
+        <result column="comment_status" property="commentStatus"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="is_deleted" property="delFlag"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+
+    <select id="getCommentsByBioId" resultMap="CommentMap">
+        select c1.id,
+               c1.bio_id,
+               c1.user_id,
+               c1.comment_body,
+               c1.comment_status,
+               c1.parent_id,
+               c1.is_deleted,
+               c1.gmt_create,
+               c1.gmt_modified
+        from biography.bio_comment c1
+                 join biography.biography b on c1.bio_id = b.id
+        where c1.bio_id = #{bioId}
+          and c1.comment_status = 1
+          and c1.is_deleted = 0
+          and c1.parent_id is null
+          and b.enable_comment = 0
+          and b.is_deleted = 0
+          and b.status = 1
+          and b.privacy_level = 0
+    </select>
+
+    <update id="deleteCommentById">
+        update biography.bio_comment set is_deleted = 1
+        where id = #{id} and user_id = #{userId};
+        update biography.bio_comment set is_deleted = 1
+        where parent_id = #{id}
+    </update>
+
+    <update id="bioOwnerDeleteCommentById">
+        update biography.bio_comment set is_deleted = 1
+        where bio_id = (select id from biography.biography where owner_id = #{userId})
+          and id = #{id};
+        update biography.bio_comment set is_deleted = 1
+        where parent_id = #{id}
+    </update>
+
+</mapper>

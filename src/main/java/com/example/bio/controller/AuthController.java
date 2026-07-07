@@ -185,7 +185,7 @@ public class AuthController extends BaseController {
 
     @ApiOperation(value = "获取当前登录用户信息")
     @GetMapping("/me")
-    public Result<UserVo> getCurrentUser() {
+    public Result<?> getCurrentUser() {
         User currentUser = userService.getCurrentUser();
         if (currentUser == null) {
             return fail("未登录");

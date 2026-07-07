@@ -16,4 +16,9 @@ public class Asserts {
     public static void fail(ErrorCode errorCode) {
         throw new ApiException(errorCode);
     }
+
+    /** 返回异常实例，供 orElseThrow 使用 */
+    public static ApiException build(String message) {
+        return new ApiException(message);
+    }
 }

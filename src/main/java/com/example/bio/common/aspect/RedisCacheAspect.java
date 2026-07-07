@@ -1,7 +1,6 @@
 package com.example.bio.common.aspect;
 
 import com.example.bio.common.annotation.CacheException;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -20,8 +19,9 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 @Order(2)
-@Slf4j
 public class RedisCacheAspect {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(RedisCacheAspect.class);
+
 
     @Pointcut("execution(public * com.example.bio.service.*CacheService.*(..))")
     public void cacheAspect() {

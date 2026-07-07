@@ -1,7 +1,6 @@
 package com.example.bio.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -11,8 +10,9 @@ import java.util.Map;
  * @author zhangfuqi
  * @date 2020/11/6
  */
-@Slf4j
 public class ResponseUtil {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ResponseUtil.class);
+
     public static void out(HttpServletResponse response, Map<String, Object> resultMap) {
         try {
             response.setCharacterEncoding("UTF-8");

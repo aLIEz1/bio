@@ -1,12 +1,12 @@
 package com.example.bio.common.api;
 
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author super
  */
-@Slf4j
 public class ResultUtil {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ResultUtil.class);
+
 
     public static <T> Result<T> buildSuccess(T data) {
         return new Result<>(EResult.SUCCESS, data);

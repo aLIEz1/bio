@@ -2,8 +2,6 @@ package com.example.bio.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -13,8 +11,6 @@ import java.util.Date;
  *
  * @author zhangfuqi
  */
-@Getter
-@Setter
 @ApiModel(value = "UpdateUserInfoDto", description = "更新用户信息请求体")
 public class UpdateUserInfoDto {
 
@@ -36,4 +32,17 @@ public class UpdateUserInfoDto {
 
     @ApiModelProperty(value = "地址")
     private String address;
+
+    public Date getBirthday() { return birthday; }
+    public void setBirthday(Date birthday) { this.birthday = birthday; }
+    public String getOrganization() { return organization; }
+    public void setOrganization(String organization) { this.organization = organization; }
+    public String getHobby() { return hobby; }
+    public void setHobby(String hobby) { this.hobby = hobby; }
+    public Integer getGender() { return gender; }
+    public void setGender(Integer gender) { this.gender = gender; }
+    public String getTel() { return tel; }
+    public void setTel(String tel) { this.tel = tel; }
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
 }

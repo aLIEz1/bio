@@ -3,7 +3,6 @@ package com.example.bio.common.component;
 import com.example.bio.model.PasswordResetToken;
 import com.example.bio.model.UserActiveToken;
 import com.example.bio.service.MailService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,9 @@ import org.springframework.stereotype.Component;
  * @date 2020/11/10
  */
 @Component
-@Slf4j
 public class MailReceiver {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(MailReceiver.class);
+
     private MailService mailService;
 
     @Autowired

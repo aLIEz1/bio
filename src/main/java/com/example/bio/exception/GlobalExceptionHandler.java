@@ -2,7 +2,6 @@ package com.example.bio.exception;
 
 import com.example.bio.common.api.BaseController;
 import com.example.bio.common.api.Result;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindException;
@@ -20,9 +19,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @author zhangfuqi
  * @date 2020/10/28
  */
-@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler extends BaseController {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
 
     @ExceptionHandler(value = ApiException.class)
     public Result<?> handle(ApiException e) {

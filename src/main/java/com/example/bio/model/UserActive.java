@@ -5,21 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.bio.common.api.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-
-/**
- * <p>
- *
- * </p>
- *
- * @author zhangfuqi
- * @since 2020-10-26
- */
-@Data
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
 @TableName("user_active")
 @ApiModel(value = "UserActive对象", description = "")
 public class UserActive extends BaseEntity {
@@ -39,4 +24,13 @@ public class UserActive extends BaseEntity {
     @ApiModelProperty(value = "邀请数量")
     @TableField("Invitation_num")
     private Integer invitationNum;
+
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
+    public Integer getBioNum() { return bioNum; }
+    public void setBioNum(Integer bioNum) { this.bioNum = bioNum; }
+    public Integer getCommentNum() { return commentNum; }
+    public void setCommentNum(Integer commentNum) { this.commentNum = commentNum; }
+    public Integer getInvitationNum() { return invitationNum; }
+    public void setInvitationNum(Integer invitationNum) { this.invitationNum = invitationNum; }
 }
